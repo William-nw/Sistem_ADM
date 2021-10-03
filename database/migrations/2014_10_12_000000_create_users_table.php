@@ -19,6 +19,9 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->json('siswa_ortu')->nullable();
+            $table->enum('status', ['orang_tua', 'tata_usaha', 'kepala_sekolah']);
+            $table->boolean('changed_password')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
