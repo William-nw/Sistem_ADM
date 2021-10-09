@@ -21,6 +21,25 @@ Route::get('/user', function () {
     return view('index');
 });
 
+Route::get('/siswa', function () {
+    return view('data_siswa');
+});
+
+Route::get('/form_siswa', function () {
+    return view('form_siswa');
+});
+
+Route::get('/ortu', function () {
+    return view('data_ortu');
+});
+
+Route::get('/form_ortu', function () {
+    return view('form_ortu');
+});
+
+Route::get('/pembayaran', function () {
+    return view('opsi_pembayaran');
+});
 
 Auth::routes();
 

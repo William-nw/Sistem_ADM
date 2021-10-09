@@ -14,50 +14,130 @@
 @endsection    
 
 @section('content')
-<div class="container-scroller">
 @include('layouts.navbar')
 <div class="container-fluid page-body-wrapper">
 <div class="main-panel">
     <div class="content-wrapper">
-        <div class="row">
-            <div class="col-sm-6 mb-4 mb-xl-0">
-                <div class="d-lg-flex align-items-center">
-                    <div>
-                        <h3 class="text-dark font-weight-bold mb-2">Hi, welcome back!</h3>
-                        <h6 class="font-weight-normal mb-2">Last login was 23 hours ago. View details</h6>
-                    </div>
-                    <div class="ml-lg-5 d-lg-flex d-none">
-                            <button type="button" class="btn bg-white btn-icon">
-                                <i class="mdi mdi-view-grid text-success"></i>
-                        </button>
-                            <button type="button" class="btn bg-white btn-icon ml-2">
-                                <i class="mdi mdi-format-list-bulleted font-weight-bold text-primary"></i>
-                            </button>
-                    </div>
+        <div class="col-lg-12 stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">Table with contextual classes</h4>
+                <p class="card-description">
+                  Add class <code>.table-{color}</code>
+                </p>
+                <div class="table-responsive pt-3">
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>
+                          #
+                        </th>
+                        <th>
+                          First name
+                        </th>
+                        <th>
+                          Product
+                        </th>
+                        <th>
+                          Amount
+                        </th>
+                        <th>
+                          Deadline
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="table-info">
+                        <td>
+                          1
+                        </td>
+                        <td>
+                          Herman Beck
+                        </td>
+                        <td>
+                          Photoshop
+                        </td>
+                        <td>
+                          $ 77.99
+                        </td>
+                        <td>
+                          May 15, 2015
+                        </td>
+                      </tr>
+                      <tr class="table-warning">
+                        <td>
+                          2
+                        </td>
+                        <td>
+                          Messsy Adam
+                        </td>
+                        <td>
+                          Flash
+                        </td>
+                        <td>
+                          $245.30
+                        </td>
+                        <td>
+                          July 1, 2015
+                        </td>
+                      </tr>
+                      <tr class="table-danger">
+                        <td>
+                          3
+                        </td>
+                        <td>
+                          John Richards
+                        </td>
+                        <td>
+                          Premeire
+                        </td>
+                        <td>
+                          $138.00
+                        </td>
+                        <td>
+                          Apr 12, 2015
+                        </td>
+                      </tr>
+                      <tr class="table-success">
+                        <td>
+                          4
+                        </td>
+                        <td>
+                          Peter Meggik
+                        </td>
+                        <td>
+                          After effects
+                        </td>
+                        <td>
+                          $ 77.99
+                        </td>
+                        <td>
+                          May 15, 2015
+                        </td>
+                      </tr>
+                      <tr class="table-primary">
+                        <td>
+                          5
+                        </td>
+                        <td>
+                          Edward
+                        </td>
+                        <td>
+                          Illustrator
+                        </td>
+                        <td>
+                          $ 160.25
+                        </td>
+                        <td>
+                          May 03, 2015
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
+              </div>
             </div>
-            <div class="col-sm-6">
-                <div class="d-flex align-items-center justify-content-md-end">
-                    <div class="pr-1 mb-3 mb-xl-0">
-                            <button type="button" class="btn btn-outline-inverse-info btn-icon-text">
-                                Feedback
-                                <i class="mdi mdi-message-outline btn-icon-append"></i>                          
-                            </button>
-                    </div>
-                    <div class="pr-1 mb-3 mb-xl-0">
-                            <button type="button" class="btn btn-outline-inverse-info btn-icon-text">
-                                Help
-                                <i class="mdi mdi-help-circle-outline btn-icon-append"></i>                          
-                        </button>
-                    </div>
-                    <div class="pr-1 mb-3 mb-xl-0">
-                            <button type="button" class="btn btn-outline-inverse-info btn-icon-text">
-                                Print
-                                <i class="mdi mdi-printer btn-icon-append"></i>                          
-                            </button>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
         <div class="row mt-4">
             <div class="col-lg-8 grid-margin stretch-card">
@@ -438,6 +518,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <!-- content-wrapper ends -->
     <!-- partial:partials/_footer.html -->
