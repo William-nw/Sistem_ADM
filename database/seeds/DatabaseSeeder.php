@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
         $this->call(master_kelas_seed::class);
         $this->call(master_tahun_ajaran_seed::class);
         $this->call(siswa_seed::class);
+        $this->call(UserSeeder::class);
     }
 }

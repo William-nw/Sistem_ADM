@@ -27,10 +27,11 @@
 
                     <div class="signin-form">
                         <h2 class="form-title">Masuk</h2>
-                        <form method="POST" class="register-form" id="login-form">
+                        <form method="POST" action="{{ route('login') }}">
+                            @csrf
                             <div class="form-group">
                                 <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" id="your_name" name="email" value="{{ old('email') }}" placeholder="Email"/>
+                                <input type="email" id="your_name" name="email" value="{{ old('email') }}" placeholder="Email"/>
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

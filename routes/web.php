@@ -17,6 +17,24 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Auth::routes(['register' => false]);
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => ['auth']], function() {
+
+    Route::resource('/data-admin', 'DataAdminController');
+
+    //Menu Siswa
+    Route::resource('/data-siswa', 'DataSiswa');
+
+    //Menu Tahun Ajaran
+    Route::resource('/master-tahun-ajaran', 'MasterTahunAjaranController');
+
+    //Menu Kelas 
+    Route::resource('/master-kelas', 'MasterKelasController');
+});
+
 Route::get('/user', function () {
     return view('index');
 });
@@ -41,6 +59,7 @@ Route::get('/pembayaran', function () {
     return view('opsi_pembayaran');
 });
 
-Auth::routes();
+Route::get('/pembayaran-spp', function () {
+    return view('opsi_pembayaran');
+});
 
-Route::get('/home', 'HomeController@index')->name('home');
