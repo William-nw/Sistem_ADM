@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Master_ortu;
+use App\Models\MasterOrtu;
 use Illuminate\Http\Request;
 
 class DataOrtuController extends Controller
@@ -15,8 +15,8 @@ class DataOrtuController extends Controller
     public function index()
     {
         //
-        $ortu = Master_ortu::all();
-        
+        $ortu = MasterOrtu::all();
+
         return view('ortu-siswa/index',['ortu' => $ortu]);
     }
 
@@ -51,8 +51,8 @@ class DataOrtuController extends Controller
     public function show($id)
     {
         //
-        $ortu = Master_ortu::find($id);
-        
+        $ortu = MasterOrtu::find($id);
+
 
         return view('data-ortu/edit',['ortu' => $ortu]);
     }
@@ -88,6 +88,6 @@ class DataOrtuController extends Controller
      */
     public function destroy($id)
     {
-        
+
     }
 }

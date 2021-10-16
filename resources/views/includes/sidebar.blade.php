@@ -5,6 +5,12 @@
 
         <ul class="nav side-menu">
             @if (Auth::user()->status == 'tata_usaha')
+                <li><a><i class="fa fa-bank" aria-hidden="true"></i> Akun Bank <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="{{ route('akun-bank.index') }}">Lihat Data Akun Bank</a></li>
+                        <li><a href="{{ route('akun-bank.create') }}">Tambah Akun Bank</a></li>
+                    </ul>
+                </li>
                 <li><a><i class="fa fa-users" aria-hidden="true"></i> Data Admin <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="{{ route('data-admin.index') }}">Lihat Data</a></li>

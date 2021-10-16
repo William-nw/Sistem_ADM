@@ -62,7 +62,11 @@ Route::get('/pembayaran', function () {
     return view('create');
 });
 
-Route::get('/pembayaran-spp', function () {
-    return view('opsi_pembayaran');
+// Backend Feature
+Route::group(['middleware' => ['auth']], function () {
+
+    Route::resource('akun-bank', 'AkunBankController')->only(['index','create','store']);
+
+    Route::get('update-akun-bank', 'BankController@updateVa')->name('update-akun-bank.updateVa');
 });
 

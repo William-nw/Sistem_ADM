@@ -4,10 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Master_ortu extends Model
+class MasterKelas extends Model
 {
-    //
-    protected $table = "ortu";
+    protected $table = "master_kelas";
     protected $primaryKey = "id";
 
     public $timestamps = false;

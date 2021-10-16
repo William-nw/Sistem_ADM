@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Master_Kelas;
+use App\Models\MasterKelas;
 use Illuminate\Http\Request;
 
 class MasterKelasController extends Controller
@@ -15,8 +15,8 @@ class MasterKelasController extends Controller
     public function index()
     {
         //
-        $master_kelas = Master_Kelas::all();
-        
+        $master_kelas = MasterKelas::all();
+
         return view('master-kelas/index',['master_kelas' => $master_kelas]);
     }
 
@@ -62,8 +62,8 @@ class MasterKelasController extends Controller
     public function edit($id)
     {
         //
-        $master_kelas = Master_Kelas::find($id);
-        
+        $master_kelas = MasterKelas::find($id);
+
 
         return view('master-kelas/edit',['master_kelas' => $master_kelas]);
     }

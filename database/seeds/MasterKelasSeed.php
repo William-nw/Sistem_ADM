@@ -1,10 +1,10 @@
 <?php
 
-use App\Models\Master_Kelas;
+use App\Models\MasterKelas;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
-class master_kelas_seed extends Seeder
+class MasterKelasSeed extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,7 +13,7 @@ class master_kelas_seed extends Seeder
      */
     public function run()
     {
-        Master_Kelas::create([
+        MasterKelas::create([
             'nama_kelas' => '1A',
             'created_at' => Carbon::now(),
         ]);

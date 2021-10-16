@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Master_tahun_ajaran;
+use App\Models\MasterTahunAjaran;
 use Illuminate\Http\Request;
 
 class MasterTahunAjaranController extends Controller
@@ -15,9 +15,9 @@ class MasterTahunAjaranController extends Controller
     public function index()
     {
         //
-        
-        $tahun_ajaran = Master_tahun_ajaran::all();
-        
+
+        $tahun_ajaran = MasterTahunAjaran::all();
+
         return view('master-tahun-ajaran/index',['tahun_ajaran' => $tahun_ajaran]);
     }
 
@@ -63,8 +63,8 @@ class MasterTahunAjaranController extends Controller
     public function edit($id)
     {
         //
-        $tahun_ajaran = Master_tahun_ajaran::find($id);
-        
+        $tahun_ajaran = MasterTahunAjaran::find($id);
+
         return view('master-tahun-ajaran/edit',['tahun_ajaran' => $tahun_ajaran]);
     }
 
@@ -89,6 +89,6 @@ class MasterTahunAjaranController extends Controller
     public function destroy($id)
     {
         //
-        
+
     }
 }

@@ -14,15 +14,17 @@ class BankAccount extends Migration
     public function up()
     {
         Schema::create('bank_account', function (Blueprint $table) {
-            $table->id('id_bank');
+            $table->id('id_bank_account');
+            $table->string('bank_id')->unique();
             $table->string('external_id');
             $table->string('owner_id');
             $table->string('merchant_code');
             $table->string('bank_code');
-            $table->string('account_number');
+            $table->string('account_number')->unique();
             $table->string('name');
             $table->string('type_account',30);
-            $table->dateTime('expiration_date');
+            $table->string('status_bank');
+            $table->date('expiration_date');
             $table->timestamps();
         });
     }

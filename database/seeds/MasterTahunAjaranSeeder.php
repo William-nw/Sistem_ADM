@@ -1,10 +1,10 @@
 <?php
 
-use App\Models\Master_tahun_ajaran;
+use App\Models\MasterTahunAjaran;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
-class master_tahun_ajaran_seed extends Seeder
+class MasterTahunAjaranSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,7 +13,7 @@ class master_tahun_ajaran_seed extends Seeder
      */
     public function run()
     {
-        Master_tahun_ajaran::create([
+        MasterTahunAjaran::create([
             'nama_tahun_ajaran' => '2021/2022',
             'created_at' => Carbon::now(),
         ]);

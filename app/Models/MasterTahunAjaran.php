@@ -4,9 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Master_Kelas extends Model
+class MasterTahunAjaran extends Model
 {
-    protected $table = "master_kelas";
+    protected $table = "master_tahun_ajaran";
+    protected $fillable = ['id', 'nama_tahun_ajaran'];
     protected $primaryKey = "id";
 
     public $timestamps = false;

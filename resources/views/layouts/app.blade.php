@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	  <link rel="icon" href="{{ asset('assets/img/favicon.ico') }}" type="image/ico" />
 
-    <title>{{ config('app.name', 'Dashboard') }}</title>
+    <title>@yield('title')</title>
 
     @include('includes.styles')
   </head>
