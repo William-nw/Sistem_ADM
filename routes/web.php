@@ -28,6 +28,9 @@ Route::group(['middleware' => ['auth']], function() {
     //Menu Siswa
     Route::resource('/data-siswa', 'DataSiswa');
 
+    //Menu Data Ortu
+    Route::resource('/data-ortu', 'DataOrtuController');
+
     //Menu Tahun Ajaran
     Route::resource('/master-tahun-ajaran', 'MasterTahunAjaranController');
 
@@ -56,7 +59,7 @@ Route::get('/form_ortu', function () {
 });
 
 Route::get('/pembayaran', function () {
-    return view('opsi_pembayaran');
+    return view('create');
 });
 
 Route::get('/pembayaran-spp', function () {

@@ -13,18 +13,17 @@
                 </li>
                 <li><a><i class="fa fa-table"></i> Data Siswa <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                            <li><a href="{{ route('data-siswa.index') }}">Lihat Data</a></li>
-                            <li><a href="{{ route('data-siswa.create') }}">Tambah Data</a></li>
+                            <li><a href="{{ route('data-ortu.index') }}">Lihat Data</a></li>
+                            <li><a href="{{ route('data-ortu.create') }}">Tambah Data</a></li>
                             {{-- <li><a href="{{ route('naik-tinggal-kelas.index') }}">Siswa Naik & Tinggal</a></li> --}}
                     </ul>
                 </li>
-                {{-- 
                 <li><a><i class="fa fa-table"></i> Data Ortu <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                            <li><a href="{{ route('daftar-ortu-siswa.index') }}">Lihat Data</a></li>
-                            <li><a href="{{ route('daftar-ortu-siswa.create') }}">Tambah Data</a></li>
+                            <li><a href="{{ route('data-ortu.index') }}">Lihat Data</a></li>
+                            <li><a href="{{ route('data-ortu.create') }}">Tambah Data</a></li>
                     </ul>
-                </li> --}}
+                </li>
                 {{-- 
                 <li><a><i class="fa fa-table"></i> Pembayaran <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">

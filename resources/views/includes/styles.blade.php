@@ -19,6 +19,13 @@
 <!-- Custom Theme Style -->
 <link href="{{ asset('assets/css/custom.min.css') }}" rel="stylesheet">
 
+<!-- Smartwizard-->
+<!-- CDN - jsDelivr-->
+<link href="https://cdn.jsdelivr.net/npm/smartwizard@5/dist/css/smart_wizard_all.min.css" rel="stylesheet" type="text/css" />
+<!-- CDN - UNPKG-->
+<link href="https://unpkg.com/smartwizard@5/dist/css/smart_wizard_all.min.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="{{ asset('assets/css/smart_wizard_dots.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/smart_wizard_all.min.css') }}">
 <!-- select 2 -->
 <!-- base:css -->
 <link rel="stylesheet" href="{{ asset('assets/vendors/mdi/css/materialdesignicons.min.css') }}">

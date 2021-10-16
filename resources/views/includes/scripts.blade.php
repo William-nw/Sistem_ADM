@@ -67,3 +67,15 @@
 <script src="{{ asset('assets/js/typeahead.js') }}"></script>
 <script src="{{ asset('assets/js/select2.js') }}"></script>
 <!-- End custom js for this page-->
+<!-- Smartwizard-->
+<!-- CDN - jsDelivr-->
+<script src="https://cdn.jsdelivr.net/npm/smartwizard@5/dist/js/jquery.smartWizard.min.js" type="text/javascript"></script>
+<!-- CDN - UNPKG-->
+<script src="https://unpkg.com/smartwizard@5/dist/js/jquery.smartWizard.min.js" type="text/javascript"></script>
+
+<script>
+    $(document).ready(function(){
+ 
+ // SmartWizard initialize
+ $('#smartwizard').smartWizard();
+});</script>

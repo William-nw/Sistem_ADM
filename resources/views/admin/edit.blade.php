@@ -43,7 +43,7 @@
             <select id="status-user" name="status_user" class="select2_single form-control" tabindex="-1">
                 <option value="kepala_sekolah" {{ $user->status == 'kepala_sekolah' ? "selected" : "" }}>Kepala Sekolah</option>
                 <option value="tata_usaha" {{ $user->status == 'tata_usaha' ? "selected" : "" }}>Tata Usaha</option>
-                <option value="orang_tua" {{ $user->status == 'orang_tua' ? "selected" : "" }}>Orang Tua</option>
+                {{-- <option value="orang_tua" {{ $user->status == 'orang_tua' ? "selected" : "" }}>Orang Tua</option> --}}
             </select>
         </div>
     </div>

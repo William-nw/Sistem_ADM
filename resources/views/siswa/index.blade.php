@@ -40,9 +40,9 @@
                                 <th>Nama Siswa</th>
                                 <th>Kelas</th>
                                 <th>Tahun Ajaran</th>
-                                {{-- @if (Auth::user()->id_status_user == 1)  --}}
+                                @if (Auth::user()->status == 1) 
                                 <th>Aksi</th>
-                                {{-- @endif --}}
+                                @endif
                             </tr>
                         </thead>
                             <tbody>
