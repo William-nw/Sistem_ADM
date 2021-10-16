@@ -15,8 +15,9 @@ class DataSpp extends Migration
     {
         Schema::create('data_spp', function (Blueprint $table) {
             $table->id('id_spp');
-            $table->string('NIS_siswa',30);
             $table->string('kode_spp', 50);
+            $table->string('NIS_siswa',30);
+            $table->enum('tingkat',['TK','SD','SMP'])->default(null);
             $table->unsignedBigInteger('kelas');
             $table->unsignedBigInteger('tahun_ajaran');
             $table->double('total_spp', 10,2);

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UangKonsumsi extends Migration
+class MasterBuku extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,16 @@ class UangKonsumsi extends Migration
      */
     public function up()
     {
-        Schema::create('uang_konsumi', function (Blueprint $table) {
-            $table->id('id_uang_konsumsi');
-            $table->string('kode_uang_konsumsi', 50);
-            $table->string('NIS_siswa',30);
-            $table->enum('tingkat',['TK','SD','SMP']);
+        Schema::create('master_buku', function (Blueprint $table) {
+            $table->id('id_buku');
+            $table->string('nama_buku');
             $table->unsignedBigInteger('kelas');
-            $table->double('total_biaya', 10,2);
-            $table->enum('status_konsumsi', ['belum_lunas', 'tertunggak', 'lunas']);
+            $table->unsignedBigInteger('tahun_ajaran');
+            $table->double('harga_buku', 10,2);
             $table->timestamps();
 
             $table->foreign('kelas')->references('id')->on('master_kelas');
+            $table->foreign('tahun_ajaran')->references('id')->on('master_tahun_ajaran');
         });
     }
 
@@ -34,6 +33,6 @@ class UangKonsumsi extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('uang_konsumi');
+        Schema::dropIfExists('master_buku');
     }
 }

@@ -16,6 +16,7 @@ class UangBaju extends Migration
         Schema::create('uang_baju', function (Blueprint $table) {
             $table->id('id_uang_baju');
             $table->string('NIS_siswa',30);
+            $table->enum('tingkat',['TK','SD','SMP']);
             $table->unsignedBigInteger('kelas');
             $table->unsignedBigInteger('tahun_ajaran');
             $table->json('data_baju')->nullable();

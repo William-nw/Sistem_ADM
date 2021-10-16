@@ -17,6 +17,7 @@ class Siswa extends Migration
             $table->id();
             $table->string('NIS_siswa',30);
             $table->string('nama_siswa',70);
+            $table->enum('tingkat',['TK','SD','SMP']);
             $table->unsignedBigInteger('kelas');
             $table->unsignedBigInteger('tahun_ajaran');
             $table->timestamps();

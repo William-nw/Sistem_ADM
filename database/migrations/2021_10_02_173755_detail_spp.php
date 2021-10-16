@@ -21,6 +21,7 @@ class DetailSpp extends Migration
             $table->integer('tertungak')->nullable();
             $table->double('denda_pembayaran', 10,2)->nullable();
             $table->double('total_spp', 10,2); // jika ada dendan total spp lama + denda;
+            $table->dateTime('tanggal_pembayaran');
             $table->enum('status_detail_spp', ['belum_lunas', 'tertunggak', 'lunas']);
             $table->timestamps();
         });
