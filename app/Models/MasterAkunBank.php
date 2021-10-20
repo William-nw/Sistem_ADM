@@ -5,9 +5,9 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
-class AkunBank extends Model
+class MasterAkunBank extends Model
 {
-    protected $table = "bank_account";
+    protected $table = "master_bank_account";
     protected $primaryKey = "id_bank_account";
     protected $fillable = [
         'bank_id',
@@ -31,7 +31,7 @@ class AkunBank extends Model
      */
     public static function getActiveBankAccount(): object
     {
-        return AkunBank::where('status_bank', 'ACTIVE')->get();
+        return MasterAkunBank::where('status_bank', 'ACTIVE')->get();
     }
 
     /** insert virtual account
@@ -42,7 +42,7 @@ class AkunBank extends Model
     public static function insertVirtualAccount(object $request, array $response): void
     {
 
-        AkunBank::create([
+        MasterAkunBank::create([
             'bank_id' => $response['id'],
             'external_id' => $response['external_id'],
             'owner_id' => $response['owner_id'],
@@ -63,7 +63,7 @@ class AkunBank extends Model
      */
     public static function updateVirtualAccount(array $response): void
     {
-        AkunBank::where('bank_id', $response['id'])
+        MasterAkunBank::where('bank_id', $response['id'])
                   ->update([
                       'status_bank' => $response['status'],
                       'expiration_date' => date('Y-m-d',strtotime($response['expiration_date']) ),
@@ -71,4 +71,10 @@ class AkunBank extends Model
                   ]);
     }
 
+
+    /** relationship callback payment */
+    public function callBackPayment()
+    {
+        return $this->hasMany('App\Models\CallbackPayment', 'external_id', 'external_id');
+    }
 }

@@ -16,8 +16,10 @@ class TabunganSiswa extends Migration
         Schema::create('tabungan_siswa', function (Blueprint $table) {
             $table->id();
             $table->string('NIS_siswa',30);
+            $table->string('external_id')->references('external_id')->on('master_bank_account');
             $table->double('total_tabungan', 10,2);
             $table->timestamps();
+
         });
     }
 

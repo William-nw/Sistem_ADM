@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class InvoicePayment extends Migration
+class CallBackPayment extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,15 @@ class InvoicePayment extends Migration
      */
     public function up()
     {
-        Schema::create('invoice_pembayaran', function (Blueprint $table) {
-            $table->id('id_invoice');
+        Schema::create('callback_pembayaran', function (Blueprint $table) {
+            $table->id('id_callback_pembayaran');
             $table->string('owner_id')->nullable();
-            $table->string('external_id')->nullable();
+            $table->string('external_id')->nullable()->references('external_id')->on('master_bank_account');
+            $table->string('callback_virtual_account_id')->nullable();
+            $table->string('payment_id')->nullable();
             $table->string('bank_code')->nullable();
             $table->string('account_number')->nullable();
-            $table->string('name')->nullable();
             $table->double('jumlah_pembayaran',10,2); // jumlah yang harus di bayar
-            $table->json('keterangan_internal')->nullable();
-            $table->string('status_invoice', 20);
             $table->dateTime('tanggal_pembayaran');
             $table->timestamps();
         });

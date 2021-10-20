@@ -16,6 +16,5 @@ class DatabaseSeeder extends Seeder
         $this->call(MasterTahunAjaranSeeder::class);
         $this->call(siswa_seed::class);
         $this->call(UserSeeder::class);
-        $this->call(BankAccountSeeder::class);
     }
 }

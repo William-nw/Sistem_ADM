@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class BankAccount extends Migration
+class MasterBankAccount extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class BankAccount extends Migration
      */
     public function up()
     {
-        Schema::create('bank_account', function (Blueprint $table) {
+        Schema::create('master_bank_account', function (Blueprint $table) {
             $table->id('id_bank_account');
             $table->string('bank_id')->unique();
             $table->string('external_id');

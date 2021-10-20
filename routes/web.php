@@ -34,7 +34,7 @@ Route::group(['middleware' => ['auth']], function() {
     //Menu Tahun Ajaran
     Route::resource('/master-tahun-ajaran', 'MasterTahunAjaranController');
 
-    //Menu Kelas 
+    //Menu Kelas
     Route::resource('/master-kelas', 'MasterKelasController');
 });
 
@@ -63,10 +63,15 @@ Route::get('/pembayaran', function () {
 });
 
 // Backend Feature
+
 Route::group(['middleware' => ['auth']], function () {
 
-    Route::resource('akun-bank', 'AkunBankController')->only(['index','create','store']);
-
+    // menu bank account
+    Route::resource('akun-bank', 'AkunBankController')->only(['index', 'create', 'store']);
     Route::get('update-akun-bank', 'BankController@updateVa')->name('update-akun-bank.updateVa');
+
+    // test payment Virtual account
+    Route::resource('test-payment','PaymentController')->only(['index', 'create', 'store']);
+    
 });
 

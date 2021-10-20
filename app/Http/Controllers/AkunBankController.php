@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AkunBankStore;
-use App\Models\AkunBank;
+use App\Models\MasterAkunBank;
 use App\Models\MasterTahunAjaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -20,7 +20,7 @@ class AkunBankController extends Controller
     public function index()
     {
         // secret key xendit on AppServiceProvider
-        $data['banks'] = AkunBank::all();
+        $data['banks'] = MasterAkunBank::orderBy('id_bank_account', 'desc')->get();
 
         return view('akun-bank.index', $data);
     }
@@ -32,9 +32,7 @@ class AkunBankController extends Controller
      */
     public function create()
     {
-        $data['get_va_banks'] = \Xendit\VirtualAccounts::getVABanks();
-
-        return view('akun-bank.create', $data);
+        return view('akun-bank.create');
     }
 
     /**
@@ -53,7 +51,7 @@ class AkunBankController extends Controller
             $random_number = rand(199999,999999999) * rand(1,9);
 
             $params = [
-                "external_id" => "va-". $timestamp . $random_number,
+                "external_id" => "VA_fixed-". $timestamp . $random_number,
                 "bank_code" => $request->bank_account,
                 "name" => $request->nama_pemilik_rekening
             ];
@@ -64,7 +62,7 @@ class AkunBankController extends Controller
             $res_VA = \Xendit\VirtualAccounts::create($params);
 
             // function on model
-            AkunBank::insertVirtualAccount($request, $res_VA);
+            MasterAkunBank::insertVirtualAccount($request, $res_VA);
             DB::commit();
 
             return redirect()->route('akun-bank.index')->with(['success' => 'Virtual Account Sedang Diproses']);

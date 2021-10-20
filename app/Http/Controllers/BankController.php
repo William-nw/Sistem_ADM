@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AkunBank;
+use App\Models\MasterAkunBank;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -13,12 +13,12 @@ class BankController extends Controller
     {
         DB::beginTransaction();
         try {
-            $banks = AkunBank::getActiveBankAccount();
+            $banks = MasterAkunBank::getActiveBankAccount();
 
             foreach ($banks as $bank)
             {
                 $get_virtual_account = \Xendit\VirtualAccounts::retrieve($bank->bank_id);
-                AkunBank::updateVirtualAccount($get_virtual_account);
+                MasterAkunBank::updateVirtualAccount($get_virtual_account);
             };
 
             DB::commit();

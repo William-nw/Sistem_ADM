@@ -21,12 +21,7 @@
         <label class="col-form-label col-md-3 col-sm-3 label-align" for="status-user">Bank <span class="required">*</span></label>
         <div class="col-md-6 col-sm-6 ">
             <select id="status-user" name="bank_account" class="select2_single form-control" tabindex="-1">
-            <option value="">-- Pilih Salah Satu --</option>
-            @foreach ($get_va_banks as $bank)
-                    @if ( $bank['is_activated'] == true)
-                        <option value="{{ $bank['code'] }}">{{ $bank['name'] }}</option>
-                    @endif
-                @endforeach
+                <option value="BCA" selected>Bank Central Asia</option>
             </select>
         </div>
     </div>
@@ -34,7 +29,7 @@
         <label class="col-form-label col-md-3 col-sm-3 label-align" for="status-user">Tipe Bank <span class="required">*</span></label>
         <div class="col-md-6 col-sm-6 ">
             <select id="status-user" name="tipe_bank" class="select2_single form-control" tabindex="-1">
-                <option value="Virtual Account">Virtual Account</option>
+                <option value="Virtual Account" selected>Virtual Account</option>
             </select>
         </div>
     </div>
