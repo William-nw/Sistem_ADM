@@ -14,7 +14,7 @@ class ValidationSiswa extends FormRequest
     public function rules()
     {
         return [
-            'nis' => 'required|max:20',
+            'NIS_siswa' => 'required|max:20',
             'nama_siswa' => 'required',
             'kelas' => 'required',
             'tahun_ajaran' => 'required',

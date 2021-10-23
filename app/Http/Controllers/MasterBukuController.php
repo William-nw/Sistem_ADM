@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MasterBukuStore;
+use App\Models\MasterBuku;
 use App\Models\MasterKelas;
 use App\Models\MasterTahunAjaran;
-use Illuminate\Http\Request;
-Use App\Models\Siswa;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
-use function Psy\debug;
-
-class DataSiswa extends Controller
+class MasterBukuController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,10 +19,9 @@ class DataSiswa extends Controller
      */
     public function index()
     {
-        //
-        $data['siswa'] = Siswa::all();
-
-        return view('siswa.index', $data);
+        $data['buku'] = MasterBuku::with('masterKelas', 'masterTahunAjaran')->get();
+        
+        return view('master-buku.index', $data);
     }
 
     /**
@@ -33,8 +31,10 @@ class DataSiswa extends Controller
      */
     public function create()
     {
-        //
-        return view('siswa/create');
+        $data['kelas'] = MasterKelas::all();
+        $data['tahun_ajaran'] = MasterTahunAjaran::all();
+
+        return view('master-buku/create', $data);
     }
 
     /**
@@ -43,27 +43,25 @@ class DataSiswa extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MasterBukuStore $request)
     {
-        //
-        $data['kelas'] = MasterKelas::all();
-        $data['tahun_ajaran'] = MasterTahunAjaran::all();
-            // try {
-            //     Siswa::insert([
-            //         'NIS_siswa ' =>  ucwords($request->nis_siswa),
-            //         'nama_siswa'=>  $request->nama_siswa,
-            //         'tingkat'=>  $request->tingkat,
-            //         'kelas'=>  $request->kelas,
-            //         'tahun_ajaran'=>  $request->tahun_ajaran,
-            //         'created_at' > Carbon::now()
-            //     ]);
-    
-            //     return redirect()->route('data-siswa.index')->with(['success' => 'Siswa '. $request->nama_siswa. ' Telah Tersimpan']);
-            // } catch (\Throwable $th) {
-            //     Log::debug('Error MasterBukuController function store');
-            //     Log::debug($th);
-            //     return redirect()->route('data-siswa.index')->with(['error' => 'Aplikasi Error']);
-            // }
+        
+        try {
+            MasterBuku::insert([
+                'nama_buku' => ucwords($request->nama_buku),
+                'kelas' => $request->kelas,
+                'tahun_ajaran' => $request->tahun_ajaran,
+                'harga_buku' => $request->harga_buku,
+                'created_at' => Carbon::now()
+            ]);
+
+            return redirect()->route('master-buku.index')->with(['success' => 'Buku '. ucwords($request->nama_buku). ' Telah Tersimpan']);
+        } catch (\Throwable $th) {
+            Log::debug('Error MasterBukuController function store');
+            Log::debug($th);
+            return redirect()->route('master-buku.index')->with(['error' => 'Aplikasi Error']);
+        }
+
     }
 
     /**
@@ -85,10 +83,10 @@ class DataSiswa extends Controller
      */
     public function edit($id)
     {
-        //
-        $data['siswa'] = Siswa::all();
+        $data['buku'] = MasterBuku::find($id);
+        
 
-        return view('siswa/edit',['siswa' => $data]);
+        return view('master-buku/edit', $data);
     }
 
     /**
@@ -113,4 +111,6 @@ class DataSiswa extends Controller
     {
         //
     }
+
+ 
 }

@@ -25,8 +25,9 @@
                 </li>
                 <li><a><i class="fa fa-table"></i> Data Siswa <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                            <li><a href="{{ route('data-ortu.index') }}">Lihat Data</a></li>
-                            <li><a href="{{ route('data-ortu.create') }}">Tambah Data</a></li>
+                            <li><a href="{{ route('data-siswa.index') }}">Lihat Data</a></li>
+                            <li><a href="{{ route('data-siswa.create') }}">Tambah Data</a></li>
+                            <li><a href="{{ route('register-all.index') }}">Tambah Pembayaran</a></li>
                             {{-- <li><a href="{{ route('naik-tinggal-kelas.index') }}">Siswa Naik & Tinggal</a></li> --}}
                     </ul>
                 </li>
@@ -34,6 +35,18 @@
                     <ul class="nav child_menu">
                             <li><a href="{{ route('data-ortu.index') }}">Lihat Data</a></li>
                             <li><a href="{{ route('data-ortu.create') }}">Tambah Data</a></li>
+                    </ul>
+                </li>
+                <li><a><i class="fa fa-book"></i> Master Buku <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="{{ route('master-buku.index') }}">Lihat Data</a></li>
+                        <li><a href="{{ route('master-buku.create') }}">Tambah Data</a></li>
+                    </ul>
+                </li>
+                <li><a><i class="fa fa-archive"></i> Master Baju <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        {{-- <li><a href="{{ route('master-baju.index') }}">Lihat Data</a></li> --}}
+                        <li><a href="{{ route('master-baju.create') }}">Tambah Data</a></li>
                     </ul>
                 </li>
                 {{-- 

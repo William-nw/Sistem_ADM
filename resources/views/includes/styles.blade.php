@@ -2,6 +2,8 @@
 <link href="{{ asset('assets/vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
 <!-- Font Awesome -->
 <link href="{{ asset('assets/vendors/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+<link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
+
 <!-- NProgress -->
 <link href="{{ asset('assets/vendors/nprogress/nprogress.css" rel="stylesheet') }}">
 <!-- iCheck -->
@@ -23,7 +25,7 @@
 <!-- CDN - jsDelivr-->
 <link href="https://cdn.jsdelivr.net/npm/smartwizard@5/dist/css/smart_wizard_all.min.css" rel="stylesheet" type="text/css" />
 <!-- CDN - UNPKG-->
-<link href="https://unpkg.com/smartwizard@5/dist/css/smart_wizard_all.min.css" rel="stylesheet" type="text/css" />
+{{-- <link href="https://unpkg.com/smartwizard@5/dist/css/smart_wizard_all.min.css" rel="stylesheet" type="text/css" /> --}}
 <link rel="stylesheet" href="{{ asset('assets/css/smart_wizard_dots.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/smart_wizard_all.min.css') }}">
 <!-- select 2 -->

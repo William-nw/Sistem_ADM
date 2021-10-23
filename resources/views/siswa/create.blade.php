@@ -4,31 +4,7 @@
 
 @section('content')
 
-    @if (session('success'))
-        <div class="alert alert-success alert-dismissible " role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-            </button>
-            {{ session('success') }}
-        </div>
-    @endif
-
-    @if (session('error'))
-        <div class="alert alert-danger alert-dismissible " role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-            </button>
-            {{ session('error') }}
-        </div>
-    @endif
-
-    @if ($errors->any())
-        @foreach ($errors->all() as $error)
-            <div class="alert alert-danger alert-dismissible " role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-                </button>
-                {{ $error }}
-            </div>
-        @endforeach
-    @endif
+ @include('includes/error')
 
 
 <form action="{{ route('data-siswa.store')}}" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" >
@@ -37,7 +13,7 @@
         <label class="col-form-label col-md-3 col-sm-3 label-align" for="nis_siswa">NIS Siswa <span class="required">*</span>
         </label>
         <div class="col-md-6 col-sm-6 ">
-            <input type="number" name="nis" id="nis"
+            <input type="number" name="nis_siswa" id="nis_siswa"
              pattern="(^0[0-9])\w+" 
              title="Angka Mulai Dari 0"
              required="required" class="form-control">
@@ -52,32 +28,33 @@
     <div class="item form-group">
         <label class="col-form-label col-md-3 col-sm-3 label-align" for="tingkat">Tingkat <span class="required">*</span></label>
         <div class="col-md-6 col-sm-6 ">
-            <select class="select2_single form-control" name="tingkat" id="tingkat" tabindex="-1" required >
-                <option value="">Pilih Salah Satu</option>
-                {{-- @foreach ($kelas as $itemKelas)
-                    <option value="{{$itemKelas->id_kelas}}">{{ $itemKelas->nama_kelas}}</option>
-                @endforeach --}}
+            <select id="tingkat" name="tingkat" class="select2_single form-control" tabindex="-1">
+            <option value="">-- Pilih Salah Satu --</option>
+                <option value="tk">TK</option>
+                <option value="sd">SD</option>
+                <option value="smp">SMP</option>
             </select>
         </div>
     </div>
     <div class="item form-group">
-        <label class="col-form-label col-md-3 col-sm-3 label-align" for="kelas">Kelas <span class="required">*</span></label>
+        <label class="col-form-label col-md-3 col-sm-3 label-align" for="kelas">Kelas <span
+                class="required">*</span></label>
         <div class="col-md-6 col-sm-6 ">
-            <select class="select2_single form-control" name="kelas" id="kelas" tabindex="-1" required >
+            <select class="select2_single form-control" name="kelas" id="kelas" tabindex="-1" required>
                 <option value="">Pilih Salah Satu</option>
-                {{-- @foreach ($kelas as $itemKelas)
+                @foreach ($kelas as $itemKelas)
                     <option value="{{$itemKelas->id_kelas}}">{{ $itemKelas->nama_kelas}}</option>
-                @endforeach --}}
+                @endforeach
             </select>
         </div>
     </div>
     <div class="item form-group">
-        <label class="col-form-label col-md-3 col-sm-3 label-align" for="password">Tahun Ajaran <span class="required">*</span></label>
+        <label class="col-form-label col-md-3 col-sm-3 label-align" for="tahun_ajaran">Tahun Ajaran <span class="required">*</span></label>
         <div class="col-md-6 col-sm-6 ">
-            <select class="select2_single form-control" tabindex="-1" name="tahun_ajaran" id="tahun_ajaran" required>
-                <option value="">Pilih Salah Satu</option>
-                {{-- @foreach ($tahunAjaran as $itemtahunAjaran)
-                    <option value="{{$itemtahunAjaran->id_tahun_ajaran}}">{{ $itemtahunAjaran->tahun_ajaran}}</option>
+            <select id="tahun_ajaran" name="tahun_ajaran" class="select2_single form-control" tabindex="-1">
+            <option value="">-- Pilih Salah Satu --</option>
+                {{-- @foreach ($tahun_ajaran as $ttahunAjaran)
+                    <option value="{{ $ttahunAjaran->id }}">{{ $ttahunAjaran->nama_tahun_ajaran }}</option>
                 @endforeach --}}
             </select>
         </div>

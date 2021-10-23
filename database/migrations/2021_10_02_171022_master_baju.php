@@ -18,7 +18,7 @@ class MasterBaju extends Migration
             $table->string('nama_baju');
             $table->string('ukuran_baju');
             $table->unsignedBigInteger('kelas');
-            $table->double('harga_buku', 10,2);
+            $table->double('harga_baju', 10,2);
             $table->timestamps();
 
             $table->foreign('kelas')->references('id')->on('master_kelas');

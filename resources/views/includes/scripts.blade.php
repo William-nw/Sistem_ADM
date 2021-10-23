@@ -71,7 +71,7 @@
 <!-- CDN - jsDelivr-->
 <script src="https://cdn.jsdelivr.net/npm/smartwizard@5/dist/js/jquery.smartWizard.min.js" type="text/javascript"></script>
 <!-- CDN - UNPKG-->
-<script src="https://unpkg.com/smartwizard@5/dist/js/jquery.smartWizard.min.js" type="text/javascript"></script>
+{{-- <script src="https://unpkg.com/smartwizard@5/dist/js/jquery.smartWizard.min.js" type="text/javascript"></script> --}}
 
 <script>
     $(document).ready(function(){

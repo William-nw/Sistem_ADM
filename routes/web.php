@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,6 +28,14 @@ Route::group(['middleware' => ['auth']], function() {
 
     //Menu Siswa
     Route::resource('/data-siswa', 'DataSiswa');
+    Route::resource('/register-all', 'RegisterAllController');
+    //ajax
+    Route::get("/getBuku/{id}", "AjaxController@getBuku");
+    Route::get("/getBaju/{id}", "AjaxController@getBaju");
+    Route::post("test-buku", function(Request $request){
+        dd($request->all());
+    })->name('test.index');
+    // Route::post("test-baju", fu
 
     //Menu Data Ortu
     Route::resource('/data-ortu', 'DataOrtuController');
@@ -36,6 +45,12 @@ Route::group(['middleware' => ['auth']], function() {
 
     //Menu Kelas
     Route::resource('/master-kelas', 'MasterKelasController');
+
+    //Master Buku 
+    Route::resource('/master-buku', 'MasterBukuController');
+
+    //Master Baju
+    Route::resource('/master-baju', 'MasterBajuController');
 });
 
 Route::get('/user', function () {
@@ -58,9 +73,7 @@ Route::get('/form_ortu', function () {
     return view('form_ortu');
 });
 
-Route::get('/pembayaran', function () {
-    return view('create');
-});
+
 
 // Backend Feature
 
