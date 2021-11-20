@@ -40,7 +40,7 @@
                                 <th>Email</th>
                                 <th>No.HP</th>
                                 <th>Siswa Orang Tua</th>
-                                @if (Auth::user()->status == 1) 
+                                @if (Auth::user()->status == 'tata_usaha') 
                                     <th>Aksi</th>
                                 @endif
                             </tr>
