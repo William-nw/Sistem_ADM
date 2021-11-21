@@ -24,6 +24,7 @@ class AkunBankStore extends FormRequest
     public function rules()
     {
         return [
+            'nis_siswa' => 'required',
             'nama_pemilik_rekening' => 'required',
             'bank_account' => 'required',
             'tipe_bank' => 'required',
@@ -33,6 +34,7 @@ class AkunBankStore extends FormRequest
     public function messages()
     {
         return [
+            'nis_siswa.required' => 'NIS Siswa Wajib Di Isi',
             'nama_pemilik_rekening.required' => 'Nama Pemilik Rekening Wajib Di Isi',
             'bank_account.required' => 'Akun Bank Wajib Di Isi',
             'tipe_bank.required' => 'Tipe Bank Wajib Di Isi',

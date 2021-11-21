@@ -18,4 +18,17 @@ class Siswa extends Model
         'updated_at'
     ];
     public $timestamps = false;
+
+    // relation
+    /** Kelas**/
+    public function masterKelas()
+    {
+        return $this->hasOne('App\Models\MasterKelas', 'id');
+    }
+
+    /** tahun ajaran **/
+    public function tahunAjaran()
+    {
+        return $this->hasOne('App\Models\MasterTahunAjaran', 'id');
+    }
 }

@@ -19,6 +19,7 @@ class CallBackController extends Controller
     {
         DB::beginTransaction();
         try {
+            // table callback_pembayaran
             CallbackPayment::updateOrCreate(
                 [
                     'tanggal_pembayaran' => date('Y-m-d H:i:s', strtotime($request['transaction_timestamp'])),

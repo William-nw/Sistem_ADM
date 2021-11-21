@@ -14,8 +14,8 @@ class MasterKelas extends Model
         'updated_at'
     ];
     public $timestamps = false;
- 
-    
+
+
      /** relationship master buku */
      public function masterBuku()
      {
@@ -25,6 +25,12 @@ class MasterKelas extends Model
      public function masterBaju()
      {
         return $this->belongsTo('App\Models\MasterBaju', 'kelas', 'id');
+     }
+
+     /** siswa **/
+     public function siswa()
+     {
+        return $this->belongsTo('App\Models\Siswa', 'kelas');
      }
 
 }

@@ -18,4 +18,10 @@ class MasterTahunAjaran extends Model
      {
         return $this->belongsTo('App\Models\MasterBuku', 'tahun_ajaran', 'id');
      }
+
+     /** siswa **/
+     public function siswa()
+     {
+        return $this->belongsTo('App\Models\Siswa', 'tahun_ajaran');
+     }
 }

@@ -9,6 +9,19 @@
 
 <form id="demo-form2" action="{{ route('akun-bank.store') }}" method="POST" data-parsley-validate class="form-horizontal form-label-left">
     @csrf
+
+    <div class="item form-group">
+        <label class="col-form-label col-md-3 col-sm-3 label-align" for="nis_siswa">NIS Siswa <span class="required">*</span></label>
+        <div class="col-md-6 col-sm-6 ">
+            <select id="nis_siswa" name="nis_siswa" class="select2_single form-control" tabindex="-1" required>
+                <option value="" selected>Pilih Salah Satu</option>
+                @foreach($siswa as $index_siswa => $item_siswa)
+                    <option value="{{ $item_siswa->NIS_siswa }}">{{ $item_siswa->NIS_siswa }} - {{ $item_siswa->nama_siswa }} - {{ $item_siswa->masterKelas->nama_kelas }} - {{ $item_siswa->tahunAjaran->nama_tahun_ajaran }}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+
     <div class="item form-group">
         <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama">Nama Pemilik Rekening <span class="required">*</span>
         </label>

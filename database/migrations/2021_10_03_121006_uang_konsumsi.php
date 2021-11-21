@@ -13,7 +13,7 @@ class UangKonsumsi extends Migration
      */
     public function up()
     {
-        Schema::create('uang_konsumi', function (Blueprint $table) {
+        Schema::create('uang_konsumsi', function (Blueprint $table) {
             $table->id('id_uang_konsumsi');
             $table->string('kode_uang_konsumsi', 50);
             $table->string('NIS_siswa',30);

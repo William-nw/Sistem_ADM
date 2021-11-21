@@ -60,7 +60,7 @@
                     </a>
                 </li>
             </ul>
-            <form method="post" action={{ route('test.index') }}>
+            <form method="post" action={{ route('register-all.store') }}>
                 @csrf
                 <div class="tab-content">
                     <div id="step-1" class="tab-pane" style="padding-top:.5rem" role="tabpanel">
@@ -69,7 +69,7 @@
                                     class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 ">
-                                <input type="number" name="nis" id="nis" pattern="(^0[0-9])\w+" title="Angka Mulai Dari 0"
+                                <input type="number" name="nis_siswa" id="nis" pattern="(^0[0-9])\w+" title="Angka Mulai Dari 0"
                                     required="required" class="form-control">
                             </div>
                         </div>
@@ -101,7 +101,7 @@
                                 <select class="select2_single form-control" name="kelas" id="kelas" tabindex="-1" required>
                                     <option value="">Pilih Salah Satu</option>
                                     @foreach ($kelas as $itemKelas)
-                                        <option value="{{ $itemKelas->id_kelas }}">{{ $itemKelas->nama_kelas }}</option>
+                                        <option value="{{ $itemKelas->id }}">{{ $itemKelas->nama_kelas }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -114,7 +114,7 @@
                                     id="tahun_ajaran" required>
                                     <option value="">Pilih Salah Satu</option>
                                     @foreach ($tahun_ajaran as $itemtahunAjaran)
-                                        <option value="{{ $itemtahunAjaran->nama_tahun_ajaran }}">
+                                        <option value="{{ $itemtahunAjaran->id }}">
                                             {{ $itemtahunAjaran->nama_tahun_ajaran }}</option>
                                     @endforeach
                                 </select>
@@ -163,8 +163,8 @@
                                             </select>
                                         </div>
                                         <div class="col-md-6 col-sm-6 ">
-                                            <button class="btn btn-primary text-white " id="btn_tambah_buku">Tambahkan
-                                            </button>
+                                            <a href="#" class="btn btn-primary text-white " id="btn_tambah_buku">Tambahkan
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -214,8 +214,8 @@
                                             </select>
                                         </div>
                                         <div class="col-md-6 col-sm-6 ">
-                                            <button class="btn btn-primary text-white " id="btn_tambah_baju">Tambahkan
-                                            </button>
+                                            <a href="#" class="btn btn-primary text-white " id="btn_tambah_baju">Tambahkan
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -253,7 +253,7 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
                                     <input type="number" name="uang_konsumsi" id="uang_konsumsi" pattern="(^0[0-9])\w+"
-                                        title="Angka Mulai Dari 0" required="required" class="form-control">
+                                        title="Angka Mulai Dari 0" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6 ">
@@ -267,7 +267,7 @@
                     </div>
                 </div>
             </form>
-            
+
 
 
         <script>
@@ -291,14 +291,14 @@
             function tambahBarang() {
                 let form_buku = document.getElementById('buku');
                 let get_id_buku = form_buku.options[form_buku.selectedIndex].value;
-                
+
                 //baju
                 let form_baju = document.getElementById('baju');
                 let get_id_baju = form_baju.options[form_baju.selectedIndex].value;
 
                 // fetch
                 $.ajax({
-                    url: 'getBuku/' + get_id_buku, 
+                    url: 'getBuku/' + get_id_buku,
                     type: 'get',
                     dataType: 'json',
                     success: function(response) {
@@ -340,7 +340,7 @@
                 });
                 //fetch Baju
                 $.ajax({
-                    url: 'getBaju/' + get_id_baju, 
+                    url: 'getBaju/' + get_id_baju,
                     type: 'get',
                     dataType: 'json',
                     success: function(response) {
@@ -494,7 +494,7 @@
                 for (let index = 0; index < data_buku.length; index++) {
                     total += data_buku[index].harga_buku;
                 }
-                
+
                 doom_total_buku.innerHTML = "Rp " + number_format(total,0);
             }
 
@@ -583,31 +583,31 @@
                 for (let index = 0; index < data_baju.length; index++) {
                     total += data_baju[index].harga_baju;
                 }
-                
+
                 doom_total_baju.innerHTML = "Rp " + number_format(total,0);
             }
             function returnTableBuku(item_buku) {
                 return `
                         <tr>
                             <td>
-                                <input type="hidden" name="buku_id[]" id="nama-buku" value="${item_buku.id_buku}" style="border: transparent;" readonly> 
-                                <input type="text" name="buku[]" id="nama-buku" value="${item_buku.nama_buku}" style="border: transparent;" readonly> 
+                                <input type="hidden" name="buku_id[]" id="nama-buku" value="${item_buku.id_buku}" style="border: transparent;" readonly>
+                                <input type="text" name="buku[]" id="nama-buku" value="${item_buku.nama_buku}" style="border: transparent;" readonly>
                             </td>
                             <td>
                                 <input type="text" name="buku[]" value="${item_buku.qty}" style="width: 50px;text-align: center;" readonly>
-                                <button class="hidden-button" id="btn_tambah_cart" onclick="tambahbuku(${item_buku.id_buku})">
-                                    <i class="fa fa-plus-circle middle-icon" style="color:darkgreen" aria-hidden=true></i>    
-                                </button>
-                                <button class="hidden-button" id="btn_kurang_cart" onclick="kurangbuku(${item_buku.id_buku})">
+                                <a href="#" class="hidden-button" id="btn_tambah_cart" onclick="tambahbuku(${item_buku.id_buku})">
+                                    <i class="fa fa-plus-circle middle-icon" style="color:darkgreen" aria-hidden=true></i>
+                                </a>
+                                <a href="#" class="hidden-button" id="btn_kurang_cart" onclick="kurangbuku(${item_buku.id_buku})">
                                     <i class="fa fa-minus-circle middle-icon" style="color:darkorange"></i>
-                                </button>
-                                <button class="hidden-button" id="btn_delete_cart" onclick="deletebuku(${item_buku.id_buku})">
+                                </a>
+                                <a href="#" class="hidden-button" id="btn_delete_cart" onclick="deletebuku(${item_buku.id_buku})">
                                     <i class="fa fa-trash middle-icon" style="color:red"></i>
-                                </button>
-                                
+                                </a>
+
                             </td>
                             <td>
-                                <input type="text" name="harga[]" value="${number_format(item_buku.harga_buku,0)}" style="border: transparent;" readonly>
+                                <input type="text" name="harga_buku[]" value="${number_format(item_buku.harga_buku,0)}" style="border: transparent;" readonly>
                             </td>
                          </tr>
                 `;
@@ -616,24 +616,24 @@
                 return `
                         <tr>
                             <td>
-                                <input type="hidden" name="baju_id[]" id="nama-baju" value="${item_baju.id_baju}" style="border: transparent;" readonly> 
-                                <input type="text" name="baju[]" id="nama-baju" value="${item_baju.nama_baju}" style="border: transparent;" readonly> 
+                                <input type="hidden" name="baju_id[]" id="nama-baju" value="${item_baju.id_baju}" style="border: transparent;" readonly>
+                                <input type="text" name="baju[]" id="nama-baju" value="${item_baju.nama_baju}" style="border: transparent;" readonly>
                             </td>
                             <td>
                                 <input type="text" name="baju[]" value="${item_baju.qty}" style="width: 50px;text-align: center;" readonly>
-                                <button class="hidden-button" id="btn_tambah_cart" onclick="tambahbaju(${item_baju.id_baju})">
-                                    <i class="fa fa-plus-circle middle-icon" style="color:darkgreen" aria-hidden=true></i>    
-                                </button>
-                                <button class="hidden-button" id="btn_kurang_cart" onclick="kurangbaju(${item_baju.id_baju})">
+                                <a href="#" class="hidden-button" id="btn_tambah_cart" onclick="tambahbaju(${item_baju.id_baju})">
+                                    <i class="fa fa-plus-circle middle-icon" style="color:darkgreen" aria-hidden=true></i>
+                                </a>
+                                <a href="#" class="hidden-button" id="btn_kurang_cart" onclick="kurangbaju(${item_baju.id_baju})">
                                     <i class="fa fa-minus-circle middle-icon" style="color:darkorange"></i>
-                                </button>
-                                <button class="hidden-button" id="btn_delete_cart" onclick="deletebaju(${item_baju.id_baju})">
+                                </a>
+                                <a href="#" class="hidden-button" id="btn_delete_cart" onclick="deletebaju(${item_baju.id_baju})">
                                     <i class="fa fa-trash middle-icon" style="color:red"></i>
-                                </button>
-                                
+                                </a>
+
                             </td>
                             <td>
-                                <input type="text" name="harga[]" value="${number_format(item_baju.harga_baju,0)}" style="border: transparent;" readonly>
+                                <input type="text" name="harga_baju[]" value="${number_format(item_baju.harga_baju,0)}" style="border: transparent;" readonly>
                             </td>
                          </tr>
                 `;

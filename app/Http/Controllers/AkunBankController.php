@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AkunBankStore;
 use App\Models\MasterAkunBank;
-use App\Models\MasterTahunAjaran;
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Xendit\Xendit;
 
 class AkunBankController extends Controller
 {
@@ -32,7 +31,9 @@ class AkunBankController extends Controller
      */
     public function create()
     {
-        return view('akun-bank.create');
+        $data['siswa'] = Siswa::with('masterKelas', 'tahunAjaran')->get();
+
+        return view('akun-bank.create', $data);
     }
 
     /**
@@ -51,7 +52,7 @@ class AkunBankController extends Controller
             $random_number = rand(199999,999999999) * rand(1,9);
 
             $params = [
-                "external_id" => "VA_fixed-". $timestamp . $random_number,
+                "external_id" => "va-". $request->nis_siswa . $timestamp,
                 "bank_code" => $request->bank_account,
                 "name" => $request->nama_pemilik_rekening
             ];
@@ -62,7 +63,7 @@ class AkunBankController extends Controller
             $res_VA = \Xendit\VirtualAccounts::create($params);
 
             // function on model
-            MasterAkunBank::insertVirtualAccount($request, $res_VA);
+//            MasterAkunBank::insertVirtualAccount($request, $res_VA);
             DB::commit();
 
             return redirect()->route('akun-bank.index')->with(['success' => 'Virtual Account Sedang Diproses']);

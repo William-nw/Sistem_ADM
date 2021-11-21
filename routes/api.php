@@ -19,5 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 // call back payment from third party, use ngrok as the forwarding server
+Route::get('testAPI', function (){
+   return response()->json(['data' => "Connected"]);
+});
 Route::post('callback-payment','API\CallBackController@callBackPayment');
 Route::post('callback-fva','API\CallBackController@callBackFVA');

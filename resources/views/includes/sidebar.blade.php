@@ -26,8 +26,8 @@
                 <li><a><i class="fa fa-table"></i> Data Siswa <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                             <li><a href="{{ route('data-siswa.index') }}">Lihat Data</a></li>
-                            <li><a href="{{ route('data-siswa.create') }}">Tambah Data</a></li>
-                            <li><a href="{{ route('register-all.index') }}">Tambah Pembayaran</a></li>
+{{--                            <li><a href="{{ route('data-siswa.create') }}">Tambah Data</a></li>--}}
+                            <li><a href="{{ route('register-all.index') }}">Tambah Data Siswa</a></li>
                             {{-- <li><a href="{{ route('naik-tinggal-kelas.index') }}">Siswa Naik & Tinggal</a></li> --}}
                     </ul>
                 </li>
@@ -45,16 +45,16 @@
                 </li>
                 <li><a><i class="fa fa-archive"></i> Master Baju <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        {{-- <li><a href="{{ route('master-baju.index') }}">Lihat Data</a></li> --}}
+                         <li><a href="{{ route('master-baju.index') }}">Lihat Data</a></li>
                         <li><a href="{{ route('master-baju.create') }}">Tambah Data</a></li>
                     </ul>
                 </li>
-                {{-- 
+                {{--
                 <li><a><i class="fa fa-table"></i> Pembayaran <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="{{ route('data-pembayaran.index')}}">Data Pembayaran</a></li>
                           <li><a href="{{ route('admin-upload-pembayaran.index') }}">Upload Pembayaran</a></li>
-                            <li><a href="{{ route('cari-siswa.index') }}">SPP Siswa</a></li> 
+                            <li><a href="{{ route('cari-siswa.index') }}">SPP Siswa</a></li>
                             <li><a href="{{ route('pembangunan.index') }}">Pembangunan</a></li>
                         </ul>
                     </li>
@@ -71,7 +71,7 @@
                         <li><a href="{{ route('master-tahun-ajaran.create') }}">Tambah Data</a></li>
                     </ul>
                 </li>
-                {{--            
+                {{--
                 <li><a><i class="fa fa-table"></i> Lap.Pembayaran SPP <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="{{ route('pembayaran-siswa.index') }}">Laporan Pembayaran SPP</a></li>
@@ -95,7 +95,7 @@
                         <li><a href="{{ route('pembayaran-pembangunan.tahunan') }}">Laporan Pembayaran Pembangunan Pertahun</a></li>
                     </ul>
                 </li> --}}
-            @elseif(Auth::user()->id_status_user == 2)           
+            @elseif(Auth::user()->id_status_user == 2)
                 <li><a><i class="fa fa-table"></i> Lap.Pembayaran SPP <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="{{ route('pembayaran-siswa.index') }}">Laporan Pembayaran SPP</a></li>
@@ -119,7 +119,7 @@
                         <li><a href="{{ route('pembayaran-pembangunan.tahunan') }}">Laporan Pembayaran Pembangunan Pertahun</a></li>
                     </ul>
                 </li>
-            @elseif(Auth::user()->id_status_user == 3)           
+            @elseif(Auth::user()->id_status_user == 3)
                 <li><a><i class="fa fa-table"></i> Pembayaran <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="{{ route('upload-pembayaran-ortu.index') }}">Data Pembayaran</a></li>
@@ -128,12 +128,12 @@
                 </li>
                 <li><a><i class="fa fa-table"></i> SPP Siswa <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="{{ route('spp-siswa-ortu.index') }}">SPP Siswa</a></li> 
+                        <li><a href="{{ route('spp-siswa-ortu.index') }}">SPP Siswa</a></li>
                     </ul>
                 </li>
                 <li><a><i class="fa fa-table"></i> Pembangunan Siswa <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="{{ route('pembangunan-siswa-ortu.index') }}">Pembangunan Siswa</a></li> 
+                        <li><a href="{{ route('pembangunan-siswa-ortu.index') }}">Pembangunan Siswa</a></li>
                     </ul>
                 </li>
             @endif

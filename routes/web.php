@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 
@@ -27,7 +27,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('/data-admin', 'DataAdminController');
 
     //Menu Siswa
-    Route::resource('/data-siswa', 'DataSiswa');
+    Route::resource('/data-siswa', 'DataSiswaController');
     Route::resource('/register-all', 'RegisterAllController');
     //ajax
     Route::get("/getBuku/{id}", "AjaxController@getBuku");
@@ -46,7 +46,7 @@ Route::group(['middleware' => ['auth']], function() {
     //Menu Kelas
     Route::resource('/master-kelas', 'MasterKelasController');
 
-    //Master Buku 
+    //Master Buku
     Route::resource('/master-buku', 'MasterBukuController');
 
     //Master Baju
@@ -85,6 +85,6 @@ Route::group(['middleware' => ['auth']], function () {
 
     // test payment Virtual account
     Route::resource('test-payment','PaymentController')->only(['index', 'create', 'store']);
-    
+
 });
 

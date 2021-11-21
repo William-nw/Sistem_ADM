@@ -2,14 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RegisterAllStore;
+use App\Http\Services\SiswaService;
 use App\Models\MasterBaju;
 use App\Models\MasterBuku;
 use App\Models\MasterKelas;
 use App\Models\MasterTahunAjaran;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class RegisterAllController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->SiswaService = new SiswaService();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +35,7 @@ class RegisterAllController extends Controller
 
         return view('pembayaran/index', $data);
     }
-    
+
 
 
     /**
@@ -44,9 +54,27 @@ class RegisterAllController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RegisterAllStore $request)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            // service on constructor
+            $this->SiswaService->registerStudent($request);
+            $this->SiswaService->administrationConstruction($request);
+            // optional
+            $this->SiswaService->optionalAdministration($request);
+
+            DB::commit();
+            return redirect()->route('data-siswa.index')->with(['success' => 'Siswa Sukses Terdaftar, Mohon Check Berkas a/n '. ucwords($request->nama_siswa) ]);
+        }catch (\Exception $e)
+        {
+            DB::rollback();
+            Log::debug('Error RegisterAllController function store');
+            log::debug($e);
+            return redirect()->route('data-siswa.index')->with(['error' => $e->getMessage()]);
+
+        }
     }
 
     /**
