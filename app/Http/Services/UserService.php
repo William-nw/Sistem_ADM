@@ -14,21 +14,25 @@ class UserService implements DataParentContract
      */
     public function dataParentWithStudent(): object
     {
+
         $user = UserModel::select('id', 'name', 'email', 'no_hp', 'siswa_ortu','status')
                         ->where('status', 'orang_tua')
                         ->get()->map(function($item){
                             $encoded = json_decode($item->siswa_ortu);
 
-                            foreach ($encoded as $student)
+                            if( !empty($encoded) )
                             {
-                               $student = Siswa::with('masterKelas','tahunAjaran')
-                                               ->where('id', $student)
-                                               ->first();
-                               $data_student[] = $student;
+                                foreach ($encoded as $student)
+                                {
+                                    $student = Siswa::with('masterKelas','tahunAjaran')
+                                        ->where('id', $student)
+                                        ->first();
+                                    $data_student[] = $student;
+                                }
                             }
 
                             // replace the key
-                            $item->siswa_ortu = $data_student;
+                            $item->siswa_ortu = ( !empty($data_student) ) ? $data_student : [];
                             return $item;
                         });
         return $user;
