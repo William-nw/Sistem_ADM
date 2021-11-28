@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterAllStore;
-use App\Http\Services\SiswaService;
+use App\Http\Services\AdministrationService;
 use App\Models\MasterBaju;
 use App\Models\MasterBuku;
 use App\Models\MasterKelas;
@@ -17,7 +17,7 @@ class RegisterAllController extends Controller
 
     public function __construct()
     {
-        $this->SiswaService = new SiswaService();
+        $this->administration_service = new AdministrationService();
     }
 
     /**
@@ -60,10 +60,10 @@ class RegisterAllController extends Controller
 
         try {
             // service on constructor
-            $this->SiswaService->registerStudent($request);
-            $this->SiswaService->administrationConstruction($request);
+            $this->administration_service->registerStudent($request);
+            $this->administration_service->administrationConstruction($request);
             // optional
-            $this->SiswaService->optionalAdministration($request);
+            $this->administration_service->optionalAdministration($request);
 
             DB::commit();
             return redirect()->route('data-siswa.index')->with(['success' => 'Siswa Sukses Terdaftar, Mohon Check Berkas a/n '. ucwords($request->nama_siswa) ]);

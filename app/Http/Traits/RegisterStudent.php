@@ -28,7 +28,7 @@ trait RegisterStudent
         ]);
 
         //create virtual account from PaymentGatewayService
-        $this->createVirtualAccount($request);
+//        $this->createVirtualAccount($request);
 
         //create spp student
         $this->sppSiswa($request);

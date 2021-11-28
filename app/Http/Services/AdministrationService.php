@@ -14,7 +14,7 @@ use App\Models\MasterBuku;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 
-class SiswaService extends PaymentGatewayService implements InvoiceRegisterContract, BuyingContract
+class AdministrationService extends PaymentGatewayService implements InvoiceRegisterContract, BuyingContract
 {
 
     // trait
