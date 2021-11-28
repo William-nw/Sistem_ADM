@@ -23,7 +23,7 @@ class PembayaranKonsumsi extends Migration
             $table->mediumText('keterangan')->nullable();
             $table->timestamps();
 
-            $table->foreign('id_uang_konsumsi')->references('id_uang_konsumsi')->on('uang_konsumi');
+            $table->foreign('id_uang_konsumsi')->references('id_uang_konsumsi')->on('uang_konsumsi');
         });
     }
 
