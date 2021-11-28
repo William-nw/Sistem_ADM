@@ -11,4 +11,9 @@ class MasterOrtu extends Model
     protected $primaryKey = "id";
 
     public $timestamps = false;
+
+    public function MasterSiswa()
+     {
+        return $this->belongsTo('App\Models\Siswa', 'kelas');
+     }
 }

@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\TahunAjaranStore;
-use App\Models\MasterTahunAjaran;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
-class MasterTahunAjaranController extends Controller
+class DataSppSiswaOrtuController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +13,7 @@ class MasterTahunAjaranController extends Controller
      */
     public function index()
     {
-        //
-
-        $tahun_ajaran = MasterTahunAjaran::all();
-
-        return view('master-tahun-ajaran/index',['tahun_ajaran' => $tahun_ajaran]);
+        return "Selamat Routing Anda Sudah Benar";
     }
 
     /**
@@ -32,7 +24,6 @@ class MasterTahunAjaranController extends Controller
     public function create()
     {
         //
-        return view('master-tahun-ajaran/create');
     }
 
     /**
@@ -41,20 +32,9 @@ class MasterTahunAjaranController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TahunAjaranStore $request)
+    public function store(Request $request)
     {
-        try {
-            MasterTahunAjaran::insert([
-                'nama_tahun_ajaran' => $request->nama_tahun_ajaran,
-                'created_at' => Carbon::now()
-            ]);
-            return redirect()->route('master-tahun-ajaran.index')->with(['success' => 'Tahun Ajaran '. ucwords($request->nama_baju). ' Telah Tersimpan']);
-        } catch (\Throwable $th) {
-            Log::debug('Error MasterTahunAjaranController function store');
-            Log::debug($th);
-            return redirect()->route('master-tahun-ajaran.index')->with(['error' => 'Aplikasi Error']);
-        }
-        dd($request->all());
+        //
     }
 
     /**
@@ -77,9 +57,6 @@ class MasterTahunAjaranController extends Controller
     public function edit($id)
     {
         //
-        $tahun_ajaran = MasterTahunAjaran::find($id);
-
-        return view('master-tahun-ajaran/edit',['tahun_ajaran' => $tahun_ajaran]);
     }
 
     /**
@@ -103,6 +80,5 @@ class MasterTahunAjaranController extends Controller
     public function destroy($id)
     {
         //
-
     }
 }

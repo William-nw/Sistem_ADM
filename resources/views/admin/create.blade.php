@@ -12,7 +12,7 @@
         <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama">Nama Lengkap <span class="required">*</span>
         </label>
         <div class="col-md-6 col-sm-6 ">
-            <input type="text" id="nama" name="nama_lengkap" class="form-control ">
+            <input type="text" id="nama" name="nama" class="form-control ">
         </div>
     </div>
     <div class="item form-group">
@@ -28,14 +28,11 @@
         </div>
     </div>
     <div class="item form-group">
-        <label class="col-form-label col-md-3 col-sm-3 label-align" for="status-user">posisi <span class="required">*</span></label>
+        <label class="col-form-label col-md-3 col-sm-3 label-align" for="status">posisi <span class="required">*</span></label>
         <div class="col-md-6 col-sm-6 ">
-            <select id="status-user" name="status_user" class="select2_single form-control" tabindex="-1">
-                {{-- @foreach ($statuses as $status)
-                    @if ($status->id_status_user != 3)
-                        <option value="{{ $status->id_status_user }}">{{ $status->role }}</option>
-                    @endif
-                @endforeach --}}
+            <select id="status" name="status" class="select2_single form-control" tabindex="-1">
+                <option value="tata_usaha">Tata Usaha</option>
+                <option value="kepala_sekolah">Kepala Sekolah</option>
             </select>
         </div>
     </div>

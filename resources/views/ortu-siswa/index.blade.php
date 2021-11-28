@@ -11,26 +11,7 @@
                         <a href="{{ route('data-ortu.create') }}" class="btn btn-success text-white " >Tambah Orang Tua</a>
                     </p>
 
-                    {{-- Validation --}}
-                    @if(session('error'))
-                        <div class="alert alert-danger alert-dismissible " role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                                <strong> {{ session('error') }}</strong>
-                            </div>
-                        </div>
-                    @endif
-
-                    @if(session('success'))
-                        <div class="alert alert-success alert-dismissible " role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                                <strong> {{ session('success') }}</strong>
-                            </div>
-                        </div>
-                    @endif
+                    @include('includes/error')
 
                     <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                         <thead>
@@ -52,10 +33,12 @@
 
                                 @foreach ($ortu as $itemOrtu)
                                     <tr>
+                                        @if ($itemOrtu->status == 'orang_tua')
+                                            
                                         <td> {{ $no++ }} </td>
-                                        <td> {{ $itemOrtu->nama_user}} </td>
-                                        <td> {{ $itemOrtu->nama_lengkap}} </td>
+                                        <td> {{ $itemOrtu->name}} </td>
                                         <td> {{ $itemOrtu->email}} </td>
+                                        <td> {{ $itemOrtu->no_hp}} </td>
                                         <td> {{ $itemOrtu->siswa_ortu}} </td>
                                         @if (Auth::user()->status == 'tata_usaha') 
                                             <td> 
@@ -68,6 +51,7 @@
                                             </td>
                                         @endif
                                     </tr>
+                                    @endif
                                 @endforeach
                             </tbody>
                     </table>

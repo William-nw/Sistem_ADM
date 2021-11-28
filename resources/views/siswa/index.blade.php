@@ -32,8 +32,8 @@
                                         <td>{{ $index_siswa + 1 }}</td>
                                         <td>{{ $item_siswa->NIS_siswa }}</td>
                                         <td>{{ $item_siswa->nama_siswa}}</td>
-                                        <td>{{ $item_siswa->kelas}}</td>
-                                        <td>{{ $item_siswa->tahun_ajaran}}</td>
+                                        <td>{{ $item_siswa->masterKelas->nama_kelas}}</td>
+                                        <td>{{ $item_siswa->tahunAjaran->nama_tahun_ajaran}}</td>
                                 @if (Auth::user()->status == 'tata_usaha') 
                                         <td>
                                             <a href="{{ route('data-siswa.edit',[$item_siswa->id]) }}" class=" btn btn-sm btn-warning">Edit</a>

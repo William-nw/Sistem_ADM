@@ -95,7 +95,7 @@
                         <li><a href="{{ route('pembayaran-pembangunan.tahunan') }}">Laporan Pembayaran Pembangunan Pertahun</a></li>
                     </ul>
                 </li> --}}
-            @elseif(Auth::user()->id_status_user == 2)
+            @elseif(Auth::user()->status == 'kepala_sekolah')           
                 <li><a><i class="fa fa-table"></i> Lap.Pembayaran SPP <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="{{ route('pembayaran-siswa.index') }}">Laporan Pembayaran SPP</a></li>
@@ -119,21 +119,21 @@
                         <li><a href="{{ route('pembayaran-pembangunan.tahunan') }}">Laporan Pembayaran Pembangunan Pertahun</a></li>
                     </ul>
                 </li>
-            @elseif(Auth::user()->id_status_user == 3)
+            @elseif(Auth::user()->status == 'orang_tua')           
                 <li><a><i class="fa fa-table"></i> Pembayaran <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="{{ route('upload-pembayaran-ortu.index') }}">Data Pembayaran</a></li>
-                        <li><a href="{{ route('upload-pembayaran-ortu.create') }}">Upload Pembayaran</a></li>
+                        <li><a href="#">Data Pembayaran</a></li>
+                        {{-- <li><a href="{{ route('upload-pembayaran-ortu.create') }}">Upload Pembayaran</a></li> --}}
                     </ul>
                 </li>
                 <li><a><i class="fa fa-table"></i> SPP Siswa <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="{{ route('spp-siswa-ortu.index') }}">SPP Siswa</a></li>
+                        <li><a href="spp-siswa-ortu.index">SPP Siswa</a></li> 
                     </ul>
                 </li>
                 <li><a><i class="fa fa-table"></i> Pembangunan Siswa <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="{{ route('pembangunan-siswa-ortu.index') }}">Pembangunan Siswa</a></li>
+                        {{-- <li><a href="{{ route('pembangunan-siswa-ortu.index') }}">Pembangunan Siswa</a></li>  --}}
                     </ul>
                 </li>
             @endif

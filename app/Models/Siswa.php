@@ -31,4 +31,8 @@ class Siswa extends Model
     {
         return $this->hasOne('App\Models\MasterTahunAjaran', 'id');
     }
+    public function masterOrtu()
+    {
+        return $this->hasOne('App\Models\MasterOrtu', 'id');
+    }
 }

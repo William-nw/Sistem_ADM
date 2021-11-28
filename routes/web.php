@@ -51,22 +51,26 @@ Route::group(['middleware' => ['auth']], function() {
 
     //Master Baju
     Route::resource('/master-baju', 'MasterBajuController');
+
+    //Menu Orang Tua
+    Route::resource('/spp-siswa-ortu', 'DataSppSiswaOrtuController');
+
 });
 
-Route::get('/user', function () {
-    return view('index');
+Route::get('/spp-show', function () {
+    return view('ortu-siswa/spp-siswa.show');
 });
 
-Route::get('/siswa', function () {
-    return view('data_siswa');
+Route::get('/spp', function () {
+    return view('ortu-siswa/spp-siswa.index');
 });
 
-Route::get('/form_siswa', function () {
-    return view('form_siswa');
+Route::get('/pembayaran', function () {
+    return view('ortu-siswa/data-pembayaran.index');
 });
 
-Route::get('/ortu', function () {
-    return view('data_ortu');
+Route::get('/lainnya', function () {
+    return view('ortu-siswa/pembayaran-lain.show');
 });
 
 Route::get('/form_ortu', function () {

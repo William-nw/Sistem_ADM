@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\MasterKelas;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class MasterKelasController extends Controller
 {
@@ -39,7 +41,18 @@ class MasterKelasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            MasterKelas::insert([
+                'nama_kelas' => $request->nama_kelas,
+                'created_at' => Carbon::now()
+            ]);
+            return redirect()->route('master-kelas.index')->with(['success' => 'Kelas '. ucwords($request->nama_baju). ' Telah Tersimpan']);
+        } catch (\Throwable $th) {
+            Log::debug('Error MasterKelasController function store');
+            Log::debug($th);
+            return redirect()->route('master-kelas.index')->with(['error' => 'Aplikasi Error']);
+        }
+        dd($request->all());
     }
 
     /**

@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MasterOrtu;
+use App\Http\Requests\MasterOrtuStore;
+use App\Models\Siswa;
+use App\Models\UserModel;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class DataOrtuController extends Controller
 {
@@ -15,9 +20,8 @@ class DataOrtuController extends Controller
     public function index()
     {
         //
-        $ortu = MasterOrtu::all();
-
-        return view('ortu-siswa/index',['ortu' => $ortu]);
+        $data['ortu'] = UserModel::all();
+        return view('ortu-siswa.index', $data);
     }
 
     /**
@@ -28,7 +32,10 @@ class DataOrtuController extends Controller
     public function create()
     {
         //
-        return view('ortu-siswa/create');
+        $data['siswa'] = Siswa::all();
+        $data['ortu'] = UserModel::all();
+
+        return view('ortu-siswa/create', $data);
     }
 
     /**
@@ -37,9 +44,25 @@ class DataOrtuController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MasterOrtuStore $request)
     {
-        //
+        try {
+            UserModel::insert([
+                'name' => $request->nama_orang_tua,
+                'email' => $request->email,
+                'no_hp' => $request->no_hp,
+                'password' => Hash::make($request->password),
+                'siswa_ortu' => $request->siswa_ortu,
+                'status' => 'orang_tua',
+                'created_at' => Carbon::now()
+            ]);
+            return redirect()->route('data-ortu.index')->with(['success' => 'Orang Tua '. ucwords($request->nama_baju). ' Telah Tersimpan']);
+        } catch (\Throwable $th) {
+            Log::debug('Error MasterOrtu function store');
+            Log::debug($th);
+            return redirect()->route('data-ortu.index')->with(['error' => 'Aplikasi Error']);
+        }
+        dd($request->all());
     }
 
     /**
@@ -51,7 +74,7 @@ class DataOrtuController extends Controller
     public function show($id)
     {
         //
-        $ortu = MasterOrtu::find($id);
+        $ortu = UserModel::find($id);
 
 
         return view('data-ortu/edit',['ortu' => $ortu]);

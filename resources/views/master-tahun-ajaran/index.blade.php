@@ -42,7 +42,7 @@
         @foreach ($tahun_ajaran as $index => $tahun_ajaran)
             <tr>
                 <td>{{ $index + 1 }}</td>
-                <td>{{ $tahun_ajaran->tahun_ajaran }}</td>
+                <td>{{ $tahun_ajaran->nama_tahun_ajaran }}</td>
                 <td>
                     <form action="{{ route('master-tahun-ajaran.destroy', $tahun_ajaran->id) }}" method="POST" class="d-flex">
                         @csrf 

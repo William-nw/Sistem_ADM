@@ -4,22 +4,10 @@
 
 @section('content')
 
-    @if (session('success'))
-        <div class="alert alert-success alert-dismissible " role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-            </button>
-            {{ session('success') }}
-        </div>
-    @endif
+   @include('includes/error')
 
-    @if (session('error'))
-        <div class="alert alert-danger alert-dismissible " role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-            </button>
-            {{ session('error') }}
-        </div>
-    @endif
-
+   <form action="{{ route('data-ortu.store')}}" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" >
+   
     @csrf
     <div class="item form-group">
         <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_orang_tua">Nama Lengkap Orang Tua <span class="required">*</span>
@@ -50,12 +38,10 @@
         <label class="col-form-label col-md-3 col-sm-3 label-align" for="siswa_ortu">Siswa Ortu <span class="required">*</span></label>
         <div class="col-md-6 col-sm-6 "> 
             <div class="form-group">
-                <select class="js-example-basic-multiple w-100" multiple="multiple">
-                  <option value="AL">Alabama</option>
-                  <option value="WY">Wyoming</option>
-                  <option value="AM">America</option>
-                  <option value="CA">Canada</option>
-                  <option value="RU">Russia</option>
+                <select class="js-example-basic-multiple w-100" name="siswa_ortu" id="siswa_ortu" multiple="multiple">
+                    @foreach ($siswa as $itemSiswa)
+                    <option value="{{$itemSiswa->id}}">{{ $itemSiswa->nama_siswa}}</option>
+                @endforeach
                 </select>
               </div>
         </div>

@@ -8,6 +8,7 @@ use App\Models\MasterTahunAjaran;
 use Illuminate\Http\Request;
 Use App\Models\Siswa;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 use function GuzzleHttp\Promise\all;
@@ -20,6 +21,16 @@ class DataSiswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public static function _onlySiswa($nis)
+    {
+        return DB::table('siswa')
+        ->join('master_kelas', 'siswa.kelas', 'master_kelas.id')
+        ->join('master_tahun_ajaran', 'siswa.tahun_ajaran', 'master_tahun_ajaran.id')
+        ->where('NIS_siswa', '=' , $nis)
+        ->first();
+    }
+    
     public function index()
     {
         //

@@ -271,6 +271,7 @@
 
 
         <script>
+            window.localStorage.clear();
             //check localstorage
             if (localStorage.getItem('buku') != null) {
                 doomBuku();

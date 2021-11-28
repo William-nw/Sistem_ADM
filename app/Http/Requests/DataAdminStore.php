@@ -24,14 +24,24 @@ class DataAdminStore extends FormRequest
     public function rules()
     {
         return [
-            'nama_lengkap' => 'required|min:4',
+            'nama' => 'required|min:3',
+            'email' => 'required',
+            'password' => 'required',
         ];
     }
 
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
     public function messages()
     {
         return [
-            'nama_lengkap.required' => 'Nama Lengkap Wajib Isi',
+            'nama.required' => 'Harap Isikan Nama',
+            'nama.min' => 'nama minimal 3 huruf',
+            'email.required' => 'Harap Masukkan Email',
+            'password.required' => 'Harap Masukkan Password',
         ];
     }
 }

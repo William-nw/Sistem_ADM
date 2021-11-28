@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DataAdminStore;
 use App\Models\UserModel;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class DataAdminController extends Controller
 {
@@ -17,9 +20,8 @@ class DataAdminController extends Controller
     {
         //
 
-        $user = UserModel::all();
-        
-        return view('admin/index',['users' => $user]);
+        $data['admin'] = UserModel::all();
+        return view('admin/index', $data);
     }
 
     /**
@@ -30,7 +32,9 @@ class DataAdminController extends Controller
     public function create()
     {
         //
-        return view('admin/create');
+        $data['admin'] = UserModel::all();
+
+        return view('admin/create', $data);
     }
 
     /**
@@ -41,7 +45,21 @@ class DataAdminController extends Controller
      */
     public function store(DataAdminStore $request)
     {
-        dd($request);
+        try {
+            UserModel::insert([
+                'name' => $request->nama,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'status' => $request->status,
+                'created_at' => Carbon::now()
+            ]);
+            return redirect()->route('data-admin.index')->with(['success' => 'Admin '. ucwords($request->nama_baju). ' Telah Tersimpan']);
+        } catch (\Throwable $th) {
+            Log::debug('Error DataAdmin function store');
+            Log::debug($th);
+            return redirect()->route('data-admin.index')->with(['error' => 'Aplikasi Error']);
+        }
+        dd($request->all());
     }
 
     /**
