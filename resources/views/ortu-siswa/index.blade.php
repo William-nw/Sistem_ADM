@@ -21,7 +21,7 @@
                                 <th>Email</th>
                                 <th>No.HP</th>
                                 <th>Siswa Orang Tua</th>
-                                @if (Auth::user()->status == 'tata_usaha') 
+                                @if (Auth::user()->status == 'tata_usaha')
                                     <th>Aksi</th>
                                 @endif
                             </tr>
@@ -34,14 +34,21 @@
                                 @foreach ($ortu as $itemOrtu)
                                     <tr>
                                         @if ($itemOrtu->status == 'orang_tua')
-                                            
+
                                         <td> {{ $no++ }} </td>
                                         <td> {{ $itemOrtu->name}} </td>
                                         <td> {{ $itemOrtu->email}} </td>
                                         <td> {{ $itemOrtu->no_hp}} </td>
-                                        <td> {{ $itemOrtu->siswa_ortu}} </td>
-                                        @if (Auth::user()->status == 'tata_usaha') 
-                                            <td> 
+                                        <td>
+                                            <ul>
+                                                @foreach($itemOrtu->siswa_ortu as $data_student)
+                                                    <li>{{ $data_student->NIS_siswa }} - {{ $data_student->nama_siswa }} - {{ $data_student->tingkat }} ( {{ $data_student->masterKelas->nama_kelas }} - {{ $data_student->tahunAjaran->nama_tahun_ajaran }})</li>
+                                                @endforeach
+                                            </ul>
+
+                                        </td>
+                                        @if (Auth::user()->status == 'tata_usaha')
+                                            <td>
                                                 <a href="{{ route('data-ortu.edit',$itemOrtu->id) }}" class=" btn btn-sm btn-primary">Edit</a>
                                                 {{-- <form action="{{ route('siswa.destroy', $itemSiswa->nis) }}" method="POST" class="d-flex">
                                                     {{ csrf_field() }}

@@ -3,15 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\MasterOrtuStore;
+use App\Http\Services\AdministrationService;
+use App\Http\Services\UserService;
 use App\Models\Siswa;
 use App\Models\UserModel;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class DataOrtuController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->administration_service = new AdministrationService();
+        $this->user_service = new UserService();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -19,8 +27,9 @@ class DataOrtuController extends Controller
      */
     public function index()
     {
-        //
-        $data['ortu'] = UserModel::all();
+        // login on construct
+        $data['ortu'] = $this->user_service->dataParentWithStudent();
+
         return view('ortu-siswa.index', $data);
     }
 
@@ -46,23 +55,19 @@ class DataOrtuController extends Controller
      */
     public function store(MasterOrtuStore $request)
     {
+        DB::beginTransaction();
+
         try {
-            UserModel::insert([
-                'name' => $request->nama_orang_tua,
-                'email' => $request->email,
-                'no_hp' => $request->no_hp,
-                'password' => Hash::make($request->password),
-                'siswa_ortu' => $request->siswa_ortu,
-                'status' => 'orang_tua',
-                'created_at' => Carbon::now()
-            ]);
-            return redirect()->route('data-ortu.index')->with(['success' => 'Orang Tua '. ucwords($request->nama_baju). ' Telah Tersimpan']);
+            $this->administration_service->registerParentWithStudent($request);
+
+            DB::commit();
+            return redirect()->route('data-ortu.index')->with(['success' => 'Pendaftaran Orang Tua '. ucwords($request->nama_orang_tua). ' Sukses']);
         } catch (\Throwable $th) {
-            Log::debug('Error MasterOrtu function store');
+            DB::rollback();
+            Log::debug('Error DataOrtuController function store');
             Log::debug($th);
             return redirect()->route('data-ortu.index')->with(['error' => 'Aplikasi Error']);
         }
-        dd($request->all());
     }
 
     /**

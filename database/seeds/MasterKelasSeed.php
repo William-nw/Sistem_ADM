@@ -13,9 +13,30 @@ class MasterKelasSeed extends Seeder
      */
     public function run()
     {
-        MasterKelas::create([
-            'nama_kelas' => '1A',
-            'created_at' => Carbon::now(),
+        MasterKelas::insert([
+            [
+                'nama_kelas' => '1A',
+                'created_at' => Carbon::now()
+            ],
+            [
+                'nama_kelas' => '1B',
+                'created_at' => Carbon::now()
+            ],
+            [
+                'nama_kelas' => '1C',
+                'created_at' => Carbon::now()
+            ],   [
+                'nama_kelas' => '2A',
+                'created_at' => Carbon::now()
+            ],
+            [
+                'nama_kelas' => '2B',
+                'created_at' => Carbon::now()
+            ],
+            [
+                'nama_kelas' => '2C',
+                'created_at' => Carbon::now()
+            ]
         ]);
     }
 }

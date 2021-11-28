@@ -13,9 +13,23 @@ class MasterTahunAjaranSeeder extends Seeder
      */
     public function run()
     {
-        MasterTahunAjaran::create([
-            'nama_tahun_ajaran' => '2021/2022',
-            'created_at' => Carbon::now(),
+        MasterTahunAjaran::insert([
+            [
+                'nama_tahun_ajaran' => '2018/2019',
+                'created_at' => Carbon::now(),
+            ],
+            [
+                'nama_tahun_ajaran' => '2019/2020',
+                'created_at' => Carbon::now(),
+            ],
+            [
+                'nama_tahun_ajaran' => '2021/2022',
+                'created_at' => Carbon::now(),
+            ],
+            [
+                'nama_tahun_ajaran' => '2022/2023',
+                'created_at' => Carbon::now(),
+            ],
         ]);
     }
 }

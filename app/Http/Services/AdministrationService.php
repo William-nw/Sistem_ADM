@@ -4,6 +4,7 @@ namespace App\Http\Services;
 
 use App\Http\Services\Contracts\BuyingContract;
 use App\Http\Services\Contracts\InvoiceRegisterContract;
+use App\Http\Services\Contracts\RegisterContract;
 use App\Http\Traits\RegisterStudent;
 use App\Models\AdministrationConstruction;
 use App\Models\BooksMoney;
@@ -11,14 +12,36 @@ use App\Models\ClothesMoney;
 use App\Models\ConsumptionMoney;
 use App\Models\MasterBaju;
 use App\Models\MasterBuku;
+use App\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-class AdministrationService extends PaymentGatewayService implements InvoiceRegisterContract, BuyingContract
+class AdministrationService extends PaymentGatewayService implements RegisterContract,InvoiceRegisterContract, BuyingContract
 {
 
     // trait
     use RegisterStudent;
+
+    /** Register Parent with his own children
+     * @param object $request
+     * @return void
+     */
+    public function registerParentWithStudent(object $request): void
+    {
+        $convert_to_object = (object) $request->siswa_ortu;
+
+        User::insert([
+            'name' => $request->nama_orang_tua,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'no_hp' => $request->no_hp,
+            'siswa_ortu' => json_encode($convert_to_object),
+            'status' => 'orang_tua',
+            'created_at' => Carbon::now()
+        ]);
+    }
+
 
     /** register Student
      * @param object $request
@@ -164,7 +187,11 @@ class AdministrationService extends PaymentGatewayService implements InvoiceRegi
         return $result;
     }
 
-    /** your docs block **/
+    /** Optional Administration
+     * buyClothes
+     * buyBooks
+     * buyConsumption
+     */
     public function optionalAdministration(object $request): void
     {
         if( isset($request->baju_id) )
