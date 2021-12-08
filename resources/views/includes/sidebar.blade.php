@@ -128,7 +128,7 @@
                 </li>
                 <li><a><i class="fa fa-table"></i> SPP Siswa <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="spp-siswa-ortu.index">SPP Siswa</a></li> 
+                        <li><a href={{ route('spp-siswa-ortu.index') }}>SPP Siswa</a></li> 
                     </ul>
                 </li>
                 <li><a><i class="fa fa-table"></i> Pembangunan Siswa <span class="fa fa-chevron-down"></span></a>

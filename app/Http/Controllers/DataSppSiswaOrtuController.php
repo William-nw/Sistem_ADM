@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\UserService;
 use Illuminate\Http\Request;
 
 class DataSppSiswaOrtuController extends Controller
@@ -13,7 +14,12 @@ class DataSppSiswaOrtuController extends Controller
      */
     public function index()
     {
-        return "Selamat Routing Anda Sudah Benar";
+        $this->user_service = new UserService();
+
+        $data['ortu'] = $this->user_service->dataParentWithStudent();
+
+        return view('ortu-siswa/spp-siswa.index', $data);
+
     }
 
     /**

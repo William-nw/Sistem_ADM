@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MasterKelas;
+use App\Models\MasterTahunAjaran;
 use App\Models\Siswa;
+use App\Models\UserModel;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -14,36 +17,4 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    protected function _privelege(){
-        $privilege = DB::table('users')->where('id', Auth::user()->id)->select('id','status','namname')
-        ->first();
-        DB::disconnect('users');
-        return $privilege;
-
-    }
-
-    protected function _getSiswaLoginByOrtu()
-    {
-        $dataLogin = $this->_privelege();
-        $getSiswa = DB::table('users')->where('id', $dataLogin->id)->get();
-
-        foreach ($getSiswa as $indexSiswa => $valueSiswa) {
-            $siswa = Siswa::_onlySiswa($valueSiswa->nis);
-            $valueSiswa->dataDetailSiswa = $siswa;
-
-            // $spp= DB::table('spp')->where('nis', '=', $valueSiswa->nis)->get();
-            // $valueSiswa->SPP = $spp;
-
-            // $pembangunan = DB::table('pembangunan')->where('nis', '=', $valueSiswa->nis)->get();
-            // $valueSiswa->Pembangunan = $pembangunan;
-           
-        }
-        DB::disconnect('Siswa');
-
-
-        return[
-            "dataLogin" => $dataLogin,
-            "getSiswa" => $getSiswa
-        ];
-    }
 }

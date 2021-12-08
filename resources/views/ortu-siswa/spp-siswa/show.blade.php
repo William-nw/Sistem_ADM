@@ -42,6 +42,7 @@
                     <th>Bulan Tertunggak</th>
                     <th>Jumlah SPP</th>
                     <th>Status SPP</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -117,52 +118,37 @@
             <thead>
                 <tr>
                     <th>No.</th>
-                    <th>Kode Pembayaran</th>
+                    <th>Kode SPP</th>
                     <th>Jatuh Tempo</th>
                     <th>Tanggal Bayar</th>
                     <th>Hari Tertunggak</th>
                     <th>Total Bayar</th>
                     <th>Status SPP</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                {{-- @php
-                    $no = 1;
-                @endphp
-                @foreach ($dataPembayaran as $itemData)
-                    <tr>
-                        <td>{{ $no++ }}</td>
-                        <td>{{ $itemData->kode_pembayaran }}</td>
-                        <td> {{ \Carbon\Carbon::parse($itemData->jatuh_tempo)->format('d-m-Y')}} </td>
-                        <td> {{ $itemData->tanggal_bayar != null ? \Carbon\Carbon::parse($itemdetailSPP->tanggal_bayar)->format('d-m-Y') : ""}} </td>
-                        <td> {{ $itemData->tertunggak }}</td>
-                        <td>
-                            @php
-                                
-                                // $totalBiaya = abs($itemdetailSPP->spp) + abs($itemdetailSPP->konsumsi) + abs($itemdetailSPP->pembangunan) + abs($itemdetailSPP->pembayaran_seragam) + abs($itemdetailSPP->lapor);
-                                echo 'Rp. '.number_format($itemData->total_biaya);
-                            @endphp
-                        </td>
-                        <td>
-                            @if ($itemData->status_pembayaran == 'lunas')
-                                <span class="badge badge-success" style="width: 100%;font-size: 15px;">
-                                    @php
-                                        $statusPembayaran = ucwords(str_replace("_", " ", $itemData->status_pembayaran));
-                                        echo $statusPembayaran
-                                    @endphp
-                                </span>
-                            @else
-                                <span class="badge badge-danger" style="width: 100%;font-size: 15px;">
-                                    @php
-                                        $statusPembayaran = ucwords(str_replace("_", " ", $itemData->status_pembayaran));
-                                        echo $statusPembayaran
-                                    @endphp
-                                </span>
-                            @endif
-                        </td>
-                    </tr>
-                    @endforeach --}}
+                <tr>
 
+                </tr>
+                <tr>
+                    
+                </tr>
+                <tr>
+                    
+                </tr>
+                <tr>
+                    
+                </tr>
+                <tr>
+                    
+                </tr>
+                <tr>
+                    
+                </tr>
+                <tr>
+                    <button>bayar</button>
+                </tr>
             </tbody>
         </table>
     </div>

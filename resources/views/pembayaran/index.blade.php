@@ -1,6 +1,6 @@
     @extends('layouts.app')
 
-    @section('content-title', 'Form Daftar User Orang Tua')
+    @section('content-title', 'Form Daftar Siswa')
 
     @section('content')
         <style>

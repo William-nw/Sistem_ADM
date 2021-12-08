@@ -22,14 +22,7 @@ class DataSiswaController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public static function _onlySiswa($nis)
-    {
-        return DB::table('siswa')
-        ->join('master_kelas', 'siswa.kelas', 'master_kelas.id')
-        ->join('master_tahun_ajaran', 'siswa.tahun_ajaran', 'master_tahun_ajaran.id')
-        ->where('NIS_siswa', '=' , $nis)
-        ->first();
-    }
+
     
     public function index()
     {
