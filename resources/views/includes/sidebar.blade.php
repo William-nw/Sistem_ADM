@@ -120,20 +120,19 @@
                     </ul>
                 </li>
             @elseif(Auth::user()->status == 'orang_tua')
-                <li><a><i class="fa fa-table"></i> Pembayaran <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                        <li><a href="#">Data Pembayaran</a></li>
-                        {{-- <li><a href="{{ route('upload-register-siswa-ortu.create') }}">Upload Pembayaran</a></li> --}}
-                    </ul>
-                </li>
+                
                 <li><a><i class="fa fa-table"></i> SPP Siswa <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href={{ route('spp-siswa-ortu.index') }}>SPP Siswa</a></li>
                     </ul>
                 </li>
-                <li><a><i class="fa fa-table"></i> Pembangunan Siswa <span class="fa fa-chevron-down"></span></a>
+                <li><a><i class="fa fa-table"></i> Pembayaran <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        {{-- <li><a href="{{ route('pembangunan-siswa-ortu.index') }}">Pembangunan Siswa</a></li>  --}}
+                        <li><a href="{{ url('uang-pembangunan') }}">Uang Pembangunan</a></li>
+                        <li><a href="{{ url('uang-buku') }}">Uang Buku</a></li>
+                        <li><a href="{{ url('uang-baju') }}">Uang Baju</a></li>
+                        <li><a href="{{ url('uang-konsumsi') }}">Uang Konsumsi</a></li>
+                        <li><a href="{{ url('test-pembayaran') }}">Test Pembayaran</a></li>
                     </ul>
                 </li>
             @endif

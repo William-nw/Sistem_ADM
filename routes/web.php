@@ -66,24 +66,24 @@ Route::group(['middleware' => ['auth']], function() {
 
 });
 
-Route::get('/spp-show', function () {
-    return view('ortu-siswa/spp-siswa.show');
+Route::get('/uang-buku', function () {
+    return view('ortu-siswa/data-pembayaran.uang-buku');
 });
 
-Route::get('/spp', function () {
-    return view('ortu-siswa/spp-siswa.index');
+Route::get('/uang-baju', function () {
+    return view('ortu-siswa/data-pembayaran.uang-baju');
 });
 
-Route::get('/register-siswa', function () {
-    return view('ortu-siswa/data-register-siswa.index');
+Route::get('/uang-konsumsi', function () {
+    return view('ortu-siswa/data-pembayaran.uang-konsumsi');
 });
 
-Route::get('/lainnya', function () {
-    return view('ortu-siswa/register-siswa-lain.show');
+Route::get('/uang-pembangunan', function () {
+    return view('ortu-siswa/data-pembayaran.uang-pembangunan');
 });
 
-Route::get('/form_ortu', function () {
-    return view('form_ortu');
+Route::get('/test-pembayaran', function () {
+    return view('ortu-siswa/test-pembayaran.test-pembayaran');
 });
 
 
