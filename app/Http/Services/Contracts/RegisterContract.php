@@ -8,4 +8,6 @@ interface RegisterContract
 
     public function registerParentWithStudent(object $request): void;
 
+    public function registerSavingAccount(object $request, array $res_va): void;
+
 }

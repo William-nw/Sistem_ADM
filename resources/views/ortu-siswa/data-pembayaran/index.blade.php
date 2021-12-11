@@ -7,7 +7,7 @@
     {{--Alert validation --}}
  @include('includes/error')
 
-  
+
 
   <table id="datatable" class="table table-striped table-bordered table-responsive" style="width:100%">
     <thead>
@@ -48,11 +48,11 @@
                 </td>
                 {{-- <td>
                   @if ($itemPembayaraSiswa->status_transfer == 'terverifikasi')
-                    <a href="{{ route('upload-pembayaran-ortu.show', $itemPembayaraSiswa->kode_pembayaran) }}" class="btn btn-primary">Cetak</a>
+                    <a href="{{ route('upload-register-siswa-ortu.show', $itemPembayaraSiswa->kode_pembayaran) }}" class="btn btn-primary">Cetak</a>
                   @else
                     <a a href="#" class="btn btn-primary">Cetak</a>
                   @endif
-                </td> 
+                </td>
               </tr>
             @endforeach
         @endforeach --}}

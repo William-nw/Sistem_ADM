@@ -3,10 +3,7 @@
 namespace App\Http\Services;
 
 use App\Http\Services\Contracts\DataParentContract;
-use App\Models\DetailSPP;
-use App\Models\Siswa;
-use App\Models\UserModel;
-use Illuminate\Support\Facades\Auth;
+use App\Models\{DataSPP, Siswa, UserModel};
 
 class UserService implements DataParentContract
 {
@@ -17,61 +14,59 @@ class UserService implements DataParentContract
 
     public function dataParentWithStudent(): object
     {
+        $user = UserModel::datasParent()->map(function ($item) {
+            $encoded = json_decode($item->siswa_ortu);
 
-        $user = UserModel::select('id', 'name', 'email', 'no_hp', 'siswa_ortu','status')
-                        ->where('status', 'orang_tua')
-                        ->get()->map(function($item){
-                            $encoded = json_decode($item->siswa_ortu);
+            // parent dont have student
+            if (empty($encoded)) {
+                return [];
+            }
 
-                            if( !empty($encoded) )
-                            {
-                                foreach ($encoded as $student)
-                                {
-                                    $student = Siswa::with('masterKelas','tahunAjaran')
-                                        ->where('id', $student)
+            if (!empty($encoded)) {
+                /** find parent student and add to array $data_student; */
+                foreach ($encoded as $student) {
+                    $relation_student = Siswa::with('masterKelas', 'tahunAjaran')
+                                        ->where('NIS_siswa', $student)
                                         ->first();
-                                    $data_student[] = $student;
-                                }
-                            }
+                    $data_student[] = $relation_student;
+                }
+            }
 
-                            // replace the key
-                            $item->siswa_ortu = ( !empty($data_student) ) ? $data_student : [];
-                            return $item;
-                        });
+            // replace the key
+            $item->siswa_ortu = (!empty($data_student)) ? $data_student : [];
+            return $item;
+        });
         return $user;
     }
+
     public function dataParentWithSPP(): object
     {
+        /** find parent */
+        $parent = UserModel::userParent()->map(function ($item) {
+            $encoded = json_decode($item->siswa_ortu);
 
-        $orangtua = UserModel::with('name')->where('id', Auth::user()->id)->firstOrFail();
+            // parent dont have student
+            if (empty($encoded)) {
+                return [];
+            }
 
-        $user = UserModel::select('id', 'name', 'email', 'no_hp', 'siswa_ortu','status')
-                        ->where('status', 'orang_tua')
-                        ->get()->map(function($item){
-                            $encoded = json_decode($item->siswa_ortu);
+            if (!empty($encoded)) {
 
-                            if( !empty($encoded) )
-                            {
-                                foreach ($encoded as $dataSPP)
-                                {
-                                    $dataSPP = DetailSPP::where('id', $dataSPP)
-                                        ->first();
-                                    $data_spp[] = $dataSPP;
-                                }
-                                foreach ($encoded as $student)
-                                {
-                                $student = Siswa::with('masterKelas','tahunAjaran')
-                                        ->where('id', $student)
-                                        ->first();
-                                    $data_student[] = $student;
-                                }
-                            }
+                foreach ($encoded as $student) {
 
-                            // replace the key
-                            $item->siswa_ortu = ( !empty($data_spp) ) ? $data_spp : [];
-                            return $item;
-                        });
-        return $user;
+                    $dataSPP = DataSPP::with('siswaData','masterKelas', 'tahunAjaran')
+                                        ->where('NIS_siswa', $student)
+                                        ->whereIn('status_spp',['belum_lunas', 'tertunggak'])
+                                        ->orderBy('id_spp', 'desc')
+                                        ->get();
+                }
+            }
+
+            // replace the key
+            $item->data_spp = (!empty($dataSPP)) ? $dataSPP : [];
+            return $item;
+        });
+        return $parent;
     }
 
 }

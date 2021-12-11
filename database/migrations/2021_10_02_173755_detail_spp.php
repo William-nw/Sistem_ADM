@@ -17,9 +17,9 @@ class DetailSpp extends Migration
             $table->id('id_detail_spp');
             $table->string('kode_spp', 50);
             $table->string('NIS_siswa',30);
+            $table->date('jatuh_tempo');
             $table->tinyInteger('bulan');
             $table->integer('tertungak')->nullable();
-            $table->double('denda_pembayaran', 10,2)->nullable();
             $table->double('total_spp', 10,2); // jika ada dendan total spp lama + denda;
             $table->dateTime('tanggal_pembayaran')->nullable();
             $table->enum('status_detail_spp', ['belum_lunas', 'tertunggak', 'lunas']);

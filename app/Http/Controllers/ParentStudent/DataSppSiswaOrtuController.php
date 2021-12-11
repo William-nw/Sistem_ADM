@@ -1,8 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\ParentStudent;
 
+use App\Http\Controllers\Controller;
 use App\Http\Services\UserService;
+use App\Models\DataSPP;
+use App\Models\DetailSPP;
+use App\Models\StudentSavings;
 use Illuminate\Http\Request;
 
 class DataSppSiswaOrtuController extends Controller
@@ -16,10 +20,9 @@ class DataSppSiswaOrtuController extends Controller
     {
         $this->user_service = new UserService();
 
-        $data['ortu'] = $this->user_service->dataParentWithStudent();
+        $data['ortu'] = $this->user_service->dataParentWithSPP();
 
         return view('ortu-siswa/spp-siswa.index', $data);
-
     }
 
     /**
@@ -51,7 +54,16 @@ class DataSppSiswaOrtuController extends Controller
      */
     public function show($id)
     {
-        //
+        $data['spp'] = DataSPP::with('detailSppStudent','siswaData','masterKelas', 'tahunAjaran')
+                                ->where('kode_spp', $id)
+                                ->first();
+
+        $data['studentSaving'] = StudentSavings::with('masterAccountBank')
+                                ->where('NIS_siswa', $data['spp']->NIS_siswa)
+                                ->first();
+
+        return view('ortu-siswa/spp-siswa.show', $data);
+
     }
 
     /**

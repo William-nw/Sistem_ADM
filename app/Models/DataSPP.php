@@ -21,4 +21,28 @@ class DataSPP extends Model
         ];
 
     public $timestamps = false;
+
+    /** Siswa**/
+    public function siswaData()
+    {
+        return $this->hasMany('App\Models\Siswa', 'NIS_siswa', 'NIS_siswa');
+    }
+
+    /** Detailspp **/
+    public function detailSppStudent()
+    {
+        return $this->hasMany('App\Models\DetailSPP', 'kode_spp', 'kode_spp');
+    }
+
+    /** Kelas**/
+    public function masterKelas()
+    {
+        return $this->hasOne('App\Models\MasterKelas', 'id');
+    }
+
+    /** tahun ajaran **/
+    public function tahunAjaran()
+    {
+        return $this->hasOne('App\Models\MasterTahunAjaran', 'id');
+    }
 }

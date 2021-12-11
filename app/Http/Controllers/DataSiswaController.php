@@ -23,12 +23,11 @@ class DataSiswaController extends Controller
      */
 
 
-    
+
     public function index()
     {
         //
-        $data['siswa'] = Siswa::all();
-        
+        $data['siswa'] = Siswa::with('masterKelas','tahunAjaran')->get();
 
         return view('siswa.index', $data);
     }
@@ -95,9 +94,13 @@ class DataSiswaController extends Controller
     public function edit($id)
     {
         //
-        $data['siswa'] = Siswa::all();
+        $data['siswa'] = Siswa::with('masterKelas','tahunAjaran')
+                            ->where('id', $id)
+                            ->first();
+        $data['kelas'] = MasterKelas::all();
+        $data['tahunAjaran'] = MasterTahunAjaran::all();
 
-        return view('siswa/edit',['siswa' => $data]);
+        return view('siswa/edit', $data);
     }
 
     /**

@@ -17,7 +17,7 @@ class TabunganSiswa extends Migration
             $table->id();
             $table->string('NIS_siswa',30);
             $table->string('external_id')->references('external_id')->on('master_bank_account');
-            $table->double('total_tabungan', 10,2);
+            $table->double('total_tabungan', 10,2)->default(0);
             $table->timestamps();
 
         });

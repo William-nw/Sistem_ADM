@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\MasterOrtuStore;
-use App\Http\Services\AdministrationService;
-use App\Http\Services\UserService;
-use App\Models\Siswa;
-use App\Models\UserModel;
+use App\Http\Services\{ AdministrationService, UserService};
+use App\Models\{ Siswa, UserModel};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;

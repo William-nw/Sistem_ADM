@@ -25,7 +25,7 @@
 
         @include('includes.error')
 
-        {{-- <form id="demo-form2" action="{{ route('pembayaran.store') }}" method="POST" data-parsley-validate class="form-horizontal form-label-left">
+        {{-- <form id="demo-form2" action="{{ route('register-siswa.store') }}" method="POST" data-parsley-validate class="form-horizontal form-label-left">
     @csrf --}}
         <div id="smartwizard" class="sw sw-theme-default">
             <ul class="nav">

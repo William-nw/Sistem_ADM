@@ -2,22 +2,15 @@
 
 namespace App\Http\Services;
 
-use App\Http\Services\Contracts\BuyingContract;
-use App\Http\Services\Contracts\InvoiceRegisterContract;
-use App\Http\Services\Contracts\RegisterContract;
 use App\Http\Traits\RegisterStudent;
-use App\Models\AdministrationConstruction;
-use App\Models\BooksMoney;
-use App\Models\ClothesMoney;
-use App\Models\ConsumptionMoney;
-use App\Models\MasterBaju;
-use App\Models\MasterBuku;
+use App\Http\Services\Contracts\{ BuyingContract, InvoiceRegisterContract, RegisterContract};
+use App\Models\{ AdministrationConstruction, BooksMoney, ClothesMoney, ConsumptionMoney, MasterBaju, MasterBuku};
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-class AdministrationService extends PaymentGatewayService implements RegisterContract,InvoiceRegisterContract, BuyingContract
+class AdministrationService extends PaymentGatewayService implements RegisterContract, InvoiceRegisterContract, BuyingContract
 {
 
     // trait

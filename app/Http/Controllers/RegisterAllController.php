@@ -33,7 +33,7 @@ class RegisterAllController extends Controller
         $data['buku'] = MasterBuku::with('masterKelas', 'masterTahunAjaran')->get();
         $data['baju'] = MasterBaju::with('masterKelas')->get();
 
-        return view('pembayaran/index', $data);
+        return view('register-siswa.index', $data);
     }
 
 

@@ -3,7 +3,7 @@
 @section('content-title', 'Tabel Pembayaran Siswa Filter Tanggal')
 
 @section('content')
-        <form action="{{ route('tanggal-pembayaran-siswa.store')}}" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" >
+        <form action="{{ route('tanggal-register-siswa-siswa.store')}}" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" >
             @csrf
 
             <div class="item form-group">
@@ -42,7 +42,7 @@
         @if ($data != null)
         <table id="datatable" class="table table-striped table-bordered" style="width:100%">
             <div id="filter-tanggal">
-                <form action="{{ route('tanggal-pembayaran-siswa.filter')}}" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" >
+                <form action="{{ route('tanggal-register-siswa-siswa.filter')}}" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" >
                     @csrf
                     <input type="hidden" name="tanggal_awal" value="{{ $tanggal_awal }}">
                     <input type="hidden" name="tanggal_akhir" value="{{ $tanggal_akhir }}">
@@ -61,7 +61,7 @@
                 @php
                     $no = 1;
                 @endphp
-                
+
                 @foreach ($data as $indexKelas => $itemKelas)
                     {{-- create new array for keep kelas --}}
                     @php

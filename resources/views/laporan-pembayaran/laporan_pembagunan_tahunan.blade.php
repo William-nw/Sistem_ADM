@@ -3,7 +3,7 @@
 @section('content-title', 'Tabel Pembayaran Tahunan Pembangunan')
 
 @section('content')
-        <form action="{{ route('pembayaran-pembangunan.storetahunan')}}" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" >
+        <form action="{{ route('register-siswa-pembangunan.storetahunan')}}" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" >
             @csrf
 
             <div class="item form-group">
@@ -36,7 +36,7 @@
         @if ($data != null)
         <table id="datatable" class="table table-striped table-bordered" style="width:100%">
             <div id="filter-tanggal">
-                <form action="{{ route('pembayaran-pembangunan.cetaktahunan')}}" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" >
+                <form action="{{ route('register-siswa-pembangunan.cetaktahunan')}}" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" >
                     @csrf
                     <input type="hidden" name="tahun" value="{{ $tahun }}" readonly>
                     <input type="hidden" name="tahun_ajaran" value="{{ $tahun_ajaran }}" readonly>

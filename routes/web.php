@@ -24,36 +24,45 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['auth']], function() {
 
-    Route::resource('/data-admin', 'DataAdminController');
+    //Menu Orang Tua
+    Route::prefix('orangtua')->group(function () {
 
-    //Menu Siswa
-    Route::resource('/data-siswa', 'DataSiswaController');
-    Route::resource('/register-all', 'RegisterAllController');
-    //ajax
-    Route::get("/getBuku/{id}", "AjaxController@getBuku");
-    Route::get("/getBaju/{id}", "AjaxController@getBaju");
+        Route::resource('/spp-siswa-ortu', 'ParentStudent\DataSppSiswaOrtuController');
+
+    });
+
+    // menu Admin
+    Route::prefix('admin')->group(function () {
+        Route::resource('/data-admin', 'DataAdminController');
+
+        //Menu Siswa
+        Route::resource('/data-siswa', 'DataSiswaController');
+        Route::resource('/register-all', 'RegisterAllController');
+
+        //Menu Data Ortu
+        Route::resource('/data-ortu', 'Admin\DataOrtuController');
+
+
+        //Menu Tahun Ajaran
+        Route::resource('/master-tahun-ajaran', 'MasterTahunAjaranController');
+
+        //Menu Kelas
+        Route::resource('/master-kelas', 'MasterKelasController');
+
+        //Master Buku
+        Route::resource('/master-buku', 'MasterBukuController');
+
+        //Master Baju
+        Route::resource('/master-baju', 'MasterBajuController');
+
+        //ajax
+        Route::get("/getBuku/{id}", "AjaxController@getBuku");
+        Route::get("/getBaju/{id}", "AjaxController@getBaju");
+    });
+
     Route::post("test-buku", function(Request $request){
         dd($request->all());
     })->name('test.index');
-    // Route::post("test-baju", fu
-
-    //Menu Data Ortu
-    Route::resource('/data-ortu', 'DataOrtuController');
-
-    //Menu Tahun Ajaran
-    Route::resource('/master-tahun-ajaran', 'MasterTahunAjaranController');
-
-    //Menu Kelas
-    Route::resource('/master-kelas', 'MasterKelasController');
-
-    //Master Buku
-    Route::resource('/master-buku', 'MasterBukuController');
-
-    //Master Baju
-    Route::resource('/master-baju', 'MasterBajuController');
-
-    //Menu Orang Tua
-    Route::resource('/spp-siswa-ortu', 'DataSppSiswaOrtuController');
 
 });
 
@@ -65,12 +74,12 @@ Route::get('/spp', function () {
     return view('ortu-siswa/spp-siswa.index');
 });
 
-Route::get('/pembayaran', function () {
-    return view('ortu-siswa/data-pembayaran.index');
+Route::get('/register-siswa', function () {
+    return view('ortu-siswa/data-register-siswa.index');
 });
 
 Route::get('/lainnya', function () {
-    return view('ortu-siswa/pembayaran-lain.show');
+    return view('ortu-siswa/register-siswa-lain.show');
 });
 
 Route::get('/form_ortu', function () {

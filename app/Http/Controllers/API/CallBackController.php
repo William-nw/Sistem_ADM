@@ -34,7 +34,7 @@ class CallBackController extends Controller
                     'account_number' => $request['account_number'],
                     'jumlah_pembayaran' => $request['amount'],
                     'tanggal_pembayaran' => date('Y-m-d H:i:s', strtotime($request['transaction_timestamp'])),
-                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
                 ]
             );
             DB::commit();

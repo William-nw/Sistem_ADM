@@ -50,7 +50,7 @@ class MasterAkunBank extends Model
             'bank_code' => $response['bank_code'],
             'account_number' => $response['account_number'],
             'name' => $response['name'],
-            'type_account'=> $request->tipe_bank,
+            'type_account'=> 'BCA',
             'status_bank' => $response['status'],
             'expiration_date' => date('Y-m-d',strtotime($response['expiration_date']) ),
             'created_at' => Carbon::now(),
@@ -76,5 +76,11 @@ class MasterAkunBank extends Model
     public function callBackPayment()
     {
         return $this->hasMany('App\Models\CallbackPayment', 'external_id', 'external_id');
+    }
+
+    /** your docs block **/
+    public function studentSavings()
+    {
+        return $this->belongsTo('App\Models\StudentSavings', 'external_id','external_id');
     }
 }

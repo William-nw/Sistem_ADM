@@ -11,9 +11,9 @@ class DetailSPP extends Model
     protected $fillable = [
         'kode_spp',
         'NIS_siswa',
+        'jatuh_tempo',
         'bulan',
         'tertungak',
-        'denda_pembayaran',
         'total_spp',
         'tanggal_pembayaran',
         'status_detail_spp',
@@ -22,4 +22,10 @@ class DetailSPP extends Model
     ];
 
     public $timestamps = false;
+
+    /** dataSPP **/
+    public function dataSPP()
+    {
+        return $this->belongsTo('App\Models\DataSPP', 'kode_spp', 'kode_spp');
+    }
 }

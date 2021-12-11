@@ -52,10 +52,12 @@
         <label class="col-form-label col-md-3 col-sm-3 label-align" for="password">Kelas <span class="required">*</span></label>
         <div class="col-md-6 col-sm-6 ">
             <select class="select2_single form-control" name="kelas" id="kelas" tabindex="-1" required >
-                <option value="{{ $siswa->id_kelas }}">{{ $siswa->nama_kelas }}</option>
-                    {{-- @foreach ($kelas as $itemKelas)
-                        <option value="{{$itemKelas->id_kelas}}">{{ $itemKelas->nama_kelas}}</option>
-                    @endforeach --}}
+                <option value="{{ $siswa->masterKelas->id }}">{{ $siswa->masterKelas->nama_kelas }}</option>
+                    @foreach ($kelas as $itemKelas)
+                        @if( $siswa->masterKelas->id != $itemKelas->id)
+                            <option value="{{$itemKelas->id}}">{{ $itemKelas->nama_kelas}}</option>
+                        @endif
+                    @endforeach
             </select>
         </div>
     </div>
@@ -63,11 +65,13 @@
         <label class="col-form-label col-md-3 col-sm-3 label-align" for="password">Tahun Ajaran <span class="required">*</span></label>
         <div class="col-md-6 col-sm-6 ">
             <select class="select2_single form-control" tabindex="-1" name="tahun_ajaran" id="tahun_ajaran" required>
-                <option value="">Pilih Salah Satu</option>
-                {{-- @foreach ($tahunAjaran as $itemtahunAjaran)
-                    <option value="{{$itemtahunAjaran->id_tahun_ajaran}}">{{ $itemtahunAjaran->tahun_ajaran}}</option>
+                <option value="{{ $siswa->tahunAjaran->id }}">{{ $siswa->tahunAjaran->nama_tahun_ajaran }}</option>
+
+                @foreach ($tahunAjaran as $itemtahunAjaran)
+                    @if( $siswa->tahunAjaran->id != $itemtahunAjaran->id)
+                        <option value="{{$itemtahunAjaran->id}}">{{ $itemtahunAjaran->nama_tahun_ajaran}}</option>
+                    @endif
                 @endforeach
-                --}}
             </select>
         </div>
     </div>

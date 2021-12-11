@@ -2,9 +2,7 @@
 
 namespace App\Http\Traits;
 
-use App\Models\DataSPP;
-use App\Models\DetailSPP;
-use App\Models\Siswa;
+use App\Models\{DataSPP, DetailSPP, Siswa, StudentSavings};
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 
@@ -28,10 +26,33 @@ trait RegisterStudent
         ]);
 
         //create virtual account from PaymentGatewayService
-//        $this->createVirtualAccount($request);
+        $res_va = $this->createVirtualAccount($request);
+
+        // create saving account student
+        $this->registerSavingAccount($request, $res_va);
 
         //create spp student
         $this->sppSiswa($request);
+    }
+
+    /** register student saving account
+     * @param object $request
+     * @param array $res_va
+     * @return void
+     */
+    public function registerSavingAccount(object $request, array $res_va): void
+    {
+        StudentSavings::updateOrCreate(
+            [
+                'NIS_siswa' => $request->nis_siswa,
+                'external_id' => $res_va['external_id'],
+            ],
+            [
+                'NIS_siswa' => $request->nis_siswa,
+                'external_id' => $res_va['external_id'],
+                'created_at' => Carbon::now()
+            ]
+        );
     }
 
     /** Spp siswa from contracs(interface)
@@ -69,11 +90,13 @@ trait RegisterStudent
     {
         for ($bulan=0; $bulan < 12; $bulan++)
         {
+            $due_date = date("Y-m-d", strtotime("+". $bulan . "month") );
             $month = date("m", strtotime("+". $bulan . "month") );
 
             DetailSPP::insert([
                 'kode_spp' => $inv_number,
                 'NIS_siswa' => $NIS_siswa,
+                'jatuh_tempo' => $due_date,
                 'bulan' => $month,
                 'total_spp' => $uang_spp,
                 'status_detail_spp' => 'belum_lunas',

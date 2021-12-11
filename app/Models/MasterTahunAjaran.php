@@ -24,4 +24,10 @@ class MasterTahunAjaran extends Model
      {
         return $this->belongsTo('App\Models\Siswa', 'tahun_ajaran');
      }
+
+    /** Data Spp */
+    public function dataSpp()
+    {
+        return $this->belongsTo('App\Models\DataSPP', 'tahun_ajaran', 'id');
+    }
 }

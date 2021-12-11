@@ -52,8 +52,8 @@
                 {{--
                 <li><a><i class="fa fa-table"></i> Pembayaran <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="{{ route('data-pembayaran.index')}}">Data Pembayaran</a></li>
-                          <li><a href="{{ route('admin-upload-pembayaran.index') }}">Upload Pembayaran</a></li>
+                        <li><a href="{{ route('data-register-siswa.index')}}">Data Pembayaran</a></li>
+                          <li><a href="{{ route('admin-upload-register-siswa.index') }}">Upload Pembayaran</a></li>
                             <li><a href="{{ route('cari-siswa.index') }}">SPP Siswa</a></li>
                             <li><a href="{{ route('pembangunan.index') }}">Pembangunan</a></li>
                         </ul>
@@ -74,8 +74,8 @@
                 {{--
                 <li><a><i class="fa fa-table"></i> Lap.Pembayaran SPP <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="{{ route('pembayaran-siswa.index') }}">Laporan Pembayaran SPP</a></li>
-                        <li><a href="{{ route('tanggal-pembayaran-siswa.index') }}">Laporan Pembayaran SPP Perbulan</a></li>
+                        <li><a href="{{ route('register-siswa-siswa.index') }}">Laporan Pembayaran SPP</a></li>
+                        <li><a href="{{ route('tanggal-register-siswa-siswa.index') }}">Laporan Pembayaran SPP Perbulan</a></li>
                         <li><a href="{{ route('laporan-spp-kelas.index') }}">Laporan Pembayaran SPP Kelas</a></li>
                         <li><a href="{{ route('laporan-sppSiswaKelas.index') }}">Laporan Pembayaran SPP Siswa & Kelas</a></li>
                         <li><a href="{{ route('laporan-spp-siswa.indexTahunan') }}">Laporan Pembayaran SPP Pertahun</a></li>
@@ -91,15 +91,15 @@
                 <li><a><i class="fa fa-table"></i> Lap.Pembangunan <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="{{ route('laporan-pembagunan.index') }}">Laporan Tunggakan & Pembayaran Pembangunan</a></li>
-                        <li><a href="{{ route('pembayaran-pembangunan-perkelas.index') }}">Laporan Pembayaran Pembagunan Perkelas</a></li>
-                        <li><a href="{{ route('pembayaran-pembangunan.tahunan') }}">Laporan Pembayaran Pembangunan Pertahun</a></li>
+                        <li><a href="{{ route('register-siswa-pembangunan-perkelas.index') }}">Laporan Pembayaran Pembagunan Perkelas</a></li>
+                        <li><a href="{{ route('register-siswa-pembangunan.tahunan') }}">Laporan Pembayaran Pembangunan Pertahun</a></li>
                     </ul>
                 </li> --}}
-            @elseif(Auth::user()->status == 'kepala_sekolah')           
+            @elseif(Auth::user()->status == 'kepala_sekolah')
                 <li><a><i class="fa fa-table"></i> Lap.Pembayaran SPP <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="{{ route('pembayaran-siswa.index') }}">Laporan Pembayaran SPP</a></li>
-                        <li><a href="{{ route('tanggal-pembayaran-siswa.index') }}">Laporan Pembayaran SPP Perbulan</a></li>
+                        <li><a href="{{ route('register-siswa-siswa.index') }}">Laporan Pembayaran SPP</a></li>
+                        <li><a href="{{ route('tanggal-register-siswa-siswa.index') }}">Laporan Pembayaran SPP Perbulan</a></li>
                         <li><a href="{{ route('laporan-spp-kelas.index') }}">Laporan Pembayaran SPP Kelas</a></li>
                         <li><a href="{{ route('laporan-sppSiswaKelas.index') }}">Laporan Pembayaran SPP Siswa & Kelas</a></li>
                         <li><a href="{{ route('laporan-spp-siswa.indexTahunan') }}">Laporan Pembayaran SPP Pertahun</a></li>
@@ -115,20 +115,20 @@
                 <li><a><i class="fa fa-table"></i> Lap.Pembangunan <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="{{ route('laporan-pembagunan.index') }}">Laporan Tunggakan & Pembayaran Pembangunan</a></li>
-                        <li><a href="{{ route('pembayaran-pembangunan-perkelas.index') }}">Laporan Pembayaran Pembagunan Perkelas</a></li>
-                        <li><a href="{{ route('pembayaran-pembangunan.tahunan') }}">Laporan Pembayaran Pembangunan Pertahun</a></li>
+                        <li><a href="{{ route('register-siswa-pembangunan-perkelas.index') }}">Laporan Pembayaran Pembagunan Perkelas</a></li>
+                        <li><a href="{{ route('register-siswa-pembangunan.tahunan') }}">Laporan Pembayaran Pembangunan Pertahun</a></li>
                     </ul>
                 </li>
-            @elseif(Auth::user()->status == 'orang_tua')           
+            @elseif(Auth::user()->status == 'orang_tua')
                 <li><a><i class="fa fa-table"></i> Pembayaran <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="#">Data Pembayaran</a></li>
-                        {{-- <li><a href="{{ route('upload-pembayaran-ortu.create') }}">Upload Pembayaran</a></li> --}}
+                        {{-- <li><a href="{{ route('upload-register-siswa-ortu.create') }}">Upload Pembayaran</a></li> --}}
                     </ul>
                 </li>
                 <li><a><i class="fa fa-table"></i> SPP Siswa <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href={{ route('spp-siswa-ortu.index') }}>SPP Siswa</a></li> 
+                        <li><a href={{ route('spp-siswa-ortu.index') }}>SPP Siswa</a></li>
                     </ul>
                 </li>
                 <li><a><i class="fa fa-table"></i> Pembangunan Siswa <span class="fa fa-chevron-down"></span></a>

@@ -19,20 +19,28 @@ class Siswa extends Model
     ];
     public $timestamps = false;
 
-    // relation
+
     /** Kelas**/
     public function masterKelas()
     {
-        return $this->hasOne('App\Models\MasterKelas', 'id');
+        return $this->hasOne('App\Models\MasterKelas', 'id', 'kelas');
     }
 
     /** tahun ajaran **/
     public function tahunAjaran()
     {
-        return $this->hasOne('App\Models\MasterTahunAjaran', 'id');
+        return $this->hasOne('App\Models\MasterTahunAjaran', 'id', 'tahun_ajaran');
     }
+
+    /** Master ortu*/
     public function masterOrtu()
     {
         return $this->hasOne('App\Models\MasterOrtu', 'id');
+    }
+
+    /** Data spp **/
+    public function dataSPP()
+    {
+        return $this->belongsTo('App\Models\DataSPP', 'NIS_siswa', 'NIS_siswa');
     }
 }

@@ -3,7 +3,7 @@
 @section('content-title', 'Tabel Pembayaran Pembangunan Perkelas')
 
 @section('content')
-        <form action="{{ route('pembayaran-pembangunan-perkelas.store')}}" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" >
+        <form action="{{ route('register-siswa-pembangunan-perkelas.store')}}" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" >
             @csrf
             <div class="item form-group">
                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="kelas">Kelas <span class="required">*</span></label>
@@ -38,7 +38,7 @@
 
         @if ($data != null)
         <div id="filter-tanggal">
-            <form action="{{ route('pembayaran-pembangunan-perkelas.laporanPembayaran') }}" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" >
+            <form action="{{ route('register-siswa-pembangunan-perkelas.laporanPembayaran') }}" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" >
                 @csrf
                 <input type="hidden" name="kelas" value="{{ $data_kelas }}">
                 <input type="hidden" name="tahun_ajaran" value="{{ $data_kelas }}">
@@ -46,7 +46,7 @@
             </form>
         </div>
         <table id="datatable" class="table table-striped table-bordered" style="width:100%">
-            
+
             <thead>
                 <tr>
                     <th>No</th>
@@ -94,7 +94,7 @@
                 @endforeach
 
                     <th colspan="7">
-                        Total: Rp 
+                        Total: Rp
                         @php
                             echo number_format(array_sum($total_biaya),0);
                         @endphp

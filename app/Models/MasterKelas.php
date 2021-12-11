@@ -33,4 +33,9 @@ class MasterKelas extends Model
         return $this->belongsTo('App\Models\Siswa', 'kelas');
      }
 
+    /** Data Spp */
+    public function dataSpp()
+    {
+        return $this->belongsTo('App\Models\DataSPP', 'kelas', 'id');
+    }
 }

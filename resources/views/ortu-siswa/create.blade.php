@@ -40,7 +40,7 @@
             <div class="form-group">
                 <select class="js-example-basic-multiple w-100" name="siswa_ortu[]" id="siswa_ortu" multiple="multiple">
                     @foreach ($siswa as $itemSiswa)
-                    <option value="{{$itemSiswa->id}}">{{ $itemSiswa->nama_siswa}}</option>
+                    <option value="{{$itemSiswa->NIS_siswa}}">{{ $itemSiswa->nama_siswa}}</option>
                 @endforeach
                 </select>
               </div>
