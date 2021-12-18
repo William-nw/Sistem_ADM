@@ -114,28 +114,14 @@ Route::get('/lappembangunanperkelas', function () {
 Route::get('/lappembangunanpertahun', function () {
     return view('laporan-pembayaran.laporan_pembagunan_tahunan');
 });
+
+//tertunggak
 Route::get('/laptertunggakperbulan', function () {
     return view('tertunggak.index');
 });
 Route::get('/laptertunggakperkelas', function () {
     return view('tertunggak.perkelas');
 });
-Route::get('/', function () {
-    return view('');
-});
-Route::get('/', function () {
-    return view('');
-});
-Route::get('/', function () {
-    return view('');
-});
-Route::get('/', function () {
-    return view('');
-});
-Route::get('/', function () {
-    return view('');
-});
-
 
 // Backend Feature
 
