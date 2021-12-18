@@ -3,7 +3,7 @@
 @section('content-title', 'Tabel Pembayaran Tahunan Pembangunan')
 
 @section('content')
-        <form action="{{ route('register-siswa-pembangunan.storetahunan')}}" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" >
+        <form action="#" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" >
             @csrf
 
             <div class="item form-group">
@@ -19,9 +19,9 @@
                 <div class="col-md-6 col-sm-6 ">
                     <select class="select2_single form-control" name="tahun_ajaran" id="tahun_ajaran" tabindex="-1" required >
                         <option value="">Pilih Salah Satu</option>
-                        @foreach ($tahunAjaran as $itemTahunAjaran)
-                            <option value="{{$itemTahunAjaran->id_tahun_ajaran}}">{{ $itemTahunAjaran->tahun_ajaran}}</option>
-                        @endforeach
+                            <option value="#">2019/2020</option>
+                            <option value="#">2020/2021</option>
+                            <option value="#">2021/2022</option>
                     </select>
                 </div>
             </div>
@@ -33,13 +33,12 @@
             </div>
         </form>
 
-        @if ($data != null)
         <table id="datatable" class="table table-striped table-bordered" style="width:100%">
             <div id="filter-tanggal">
-                <form action="{{ route('register-siswa-pembangunan.cetaktahunan')}}" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" >
+                <form action="#" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" >
                     @csrf
-                    <input type="hidden" name="tahun" value="{{ $tahun }}" readonly>
-                    <input type="hidden" name="tahun_ajaran" value="{{ $tahun_ajaran }}" readonly>
+                    <input type="hidden" name="tahun" value="#" readonly>
+                    <input type="hidden" name="tahun_ajaran" value="#" readonly>
                     <button type="submit" class="btn btn-primary">Cetak</button>
                 </form>
             </div>
@@ -51,28 +50,13 @@
                 </tr>
             </thead>
             <tbody>
-                @php
-                    $no = 1;
-                    $totalSetahun = [];
-                    foreach ($data as $key => $value) {
-                        array_push($totalSetahun, $value->totalSetahun);
-                    }
-                @endphp
-
                     <tr>
-                        <td>{{ $no++ }}</td>
+                        <td>1</td>
+                        <td>Rp. 10.150.000</td>
                         <td>
-                           @php
-                               echo "Rp ".number_format(array_sum($totalSetahun),0);
-                           @endphp
+                            2021/2022
                         </td>
-                        <td>
-                            {{$dataTahunAjaran->tahun_ajaran}}
-                        </td>
-
                     </tr>
             </tbody>
         </table>
-        @endif
-
 @endsection

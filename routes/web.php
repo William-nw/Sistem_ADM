@@ -87,6 +87,55 @@ Route::get('/test-pembayaran', function () {
 });
 
 
+//laporan Pembayaran
+Route::get('/lappembayaranspp', function () {
+    return view('laporan-pembayaran.index');
+});
+Route::get('/lappembayaranperbulan', function () {
+    return view('laporan-pembayaran.tanggal_pembayaran');
+});
+Route::get('/lappembayaranperkelas', function () {
+    return view('laporan-pembayaran.laporan_spp_perkelas');
+});
+Route::get('/lappembayaransiswakelas', function () {
+    return view('laporan-pembayaran.laporan-siswa-kelas');
+});
+Route::get('/lappembayaranpertahun', function () {
+    return view('laporan-pembayaran.laporan_spp_tahunan');
+});
+
+//laporan pembangunan
+Route::get('/lappembangunantunggakan', function () {
+    return view('laporan-pembayaran.laporan_tunggakan_pembangunan');
+});
+Route::get('/lappembangunanperkelas', function () {
+    return view('laporan-pembayaran.laporan_pembangunan_perkelas');
+});
+Route::get('/lappembangunanpertahun', function () {
+    return view('laporan-pembayaran.laporan_pembagunan_tahunan');
+});
+Route::get('/laptertunggakperbulan', function () {
+    return view('tertunggak.index');
+});
+Route::get('/laptertunggakperkelas', function () {
+    return view('tertunggak.perkelas');
+});
+Route::get('/', function () {
+    return view('');
+});
+Route::get('/', function () {
+    return view('');
+});
+Route::get('/', function () {
+    return view('');
+});
+Route::get('/', function () {
+    return view('');
+});
+Route::get('/', function () {
+    return view('');
+});
+
 
 // Backend Feature
 

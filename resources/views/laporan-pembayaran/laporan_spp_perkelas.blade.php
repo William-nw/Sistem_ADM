@@ -3,7 +3,7 @@
 @section('content-title', 'Laporan SPP PerKelas')
 
 @section('content')
-        <form action="{{ route('laporan-spp-kelas.store')}}" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" >
+        <form action="#" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" >
             @csrf
 
             <div class="item form-group">
@@ -11,9 +11,9 @@
                 <div class="col-md-6 col-sm-6 ">
                     <select class="select2_single form-control" name="kelas" id="kelas" tabindex="-1" required >
                         <option value="">Pilih Salah Satu</option>
-                        @foreach ($kelas as $itemKelas)
-                            <option value="{{$itemKelas->id_kelas}}">{{ $itemKelas->nama_kelas}}</option>
-                        @endforeach
+                            <option value="#">1A</option>
+                            <option value="#">1B</option>
+                            <option value="#">1C</option>
                     </select>
                 </div>
             </div>
@@ -31,9 +31,9 @@
                 <div class="col-md-6 col-sm-6 ">
                     <select class="select2_single form-control" name="tahun_ajaran" id="tahun_ajaran" tabindex="-1" required >
                         <option value="">Pilih Salah Satu</option>
-                        @foreach ($tahunAjaran as $itemTahunAjaran)
-                            <option value="{{$itemTahunAjaran->id_tahun_ajaran}}">{{ $itemTahunAjaran->tahun_ajaran}}</option>
-                        @endforeach
+                            <option value="#">2019/2020</option>
+                            <option value="#">2020/2021</option>
+                            <option value="#">2021/2022</option>
                     </select>
                 </div>
             </div>
@@ -46,13 +46,12 @@
             </div>
         </form>
 
-        @if ($data != null)
         <div id="filter-tanggal">
-            <form action="{{ route('laporan-spp-kelas.laporanKelas') }}" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" >
+            <form action="#" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" >
                 @csrf
-                <input type="hidden" name="kelas" value="{{ $data_kelas }}">
-                <input type="hidden" name="tanggal_pby" value="{{ $data_tanggal_pby }}">
-                <input type="hidden" name="tahun_ajaran" value="{{ $data_tahun_ajaran }}">
+                <input type="hidden" name="kelas" value="#">
+                <input type="hidden" name="tanggal_pby" value="#">
+                <input type="hidden" name="tahun_ajaran" value="#">
                 <button type="submit" class="btn btn-primary">Cetak</button>
             </form>
         </div>
@@ -73,42 +72,61 @@
                 </tr>
             </thead>
             <tbody>
-                @php
-                    $no = 1;
-                    $total_biaya =[];
-                @endphp
+                    <tr>
+                        <td>1</td>
+                        <td>0000001</td>
+                        <td>Poly</td>
+                        <td>1A</td>
+                        <td>2021/2022</td>
+                        <td>Des-2021</td>
+                        <td>Desember</td>
+                        <td>12-Des-2021</td>
+                        <td>Rp. 150.000</td>
+                        <td>
+                            <div class="btn btn-success text-white text-uppercase font-weight-bold">
+                                Lunas
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>0000001</td>
+                        <td>Poly</td>
+                        <td>1A</td>
+                        <td>2021/2022</td>
+                        <td>Jan-2021</td>
+                        <td>Januari</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>
+                            <div class="btn btn-danger text-white text-uppercase font-weight-bold">
+                                Belum Lunas
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>0000002</td>
+                        <td>Doly</td>
+                        <td>1A</td>
+                        <td>2021/2022</td>
+                        <td>Nov-2021</td>
+                        <td>November</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>
+                            <div class="btn btn-danger text-white text-uppercase font-weight-bold">
+                                Tertunggak
+                            </div>
+                        </td>
+                    </tr>
 
-                @foreach ($data as $index => $delay)
-                    @foreach ($delay->data as $itemDetailSPP)
-                        <tr>
-                            <td>{{ $no++ }}</td>
-                            <td>{{ $delay->nis }}</td>
-                            <td>{{ $delay->nama_siswa }}</td>
-                            <td>{{ $delay->nama_kelas }}</td>
-                            <td>{{ $delay->tahun_ajaran }}</td>
-                            <td>{{  \Carbon\Carbon::parse($itemDetailSPP->jatuh_tempo)->format('m-Y')}}</td>
-                            <td>{{ $itemDetailSPP->tertunggak }}</td>
-                            <td>{{  \Carbon\Carbon::parse($itemDetailSPP->tanggal_bayar)->format('d-m-Y')}}</td>
-                            <td>
-                                @php
-                                    array_push($total_biaya, $itemDetailSPP->total_biaya);
-                                    echo "Rp ".number_format($itemDetailSPP->total_biaya,0);
-                                @endphp
-                            </td>
-                            <td>{{ ucfirst($itemDetailSPP->status_pembayaran) }}</td>
-                        </tr>
-                        @endforeach
-                @endforeach
-
-                    <th colspan="6">
+                    <th colspan="8">
                         Total: Rp 
-                        @php
-                            echo number_format(array_sum($total_biaya),0);
-                        @endphp
                     </th>
+                    <th>Rp. 150.000</th>
 
             </tbody>
         </table>
-        @endif
 
 @endsection

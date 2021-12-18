@@ -3,7 +3,7 @@
 @section('content-title', 'Tabel Pembayaran Siswa Filter Tanggal')
 
 @section('content')
-        <form action="{{ route('tanggal-register-siswa-siswa.store')}}" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" >
+        <form action="#" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" >
             @csrf
 
             <div class="item form-group">
@@ -25,9 +25,9 @@
                 <div class="col-md-6 col-sm-6 ">
                     <select class="select2_single form-control" name="tahun_ajaran" id="tahun_ajaran" tabindex="-1" required >
                         <option value="">Pilih Salah Satu</option>
-                        @foreach ($tahunAjaran as $itemTahunAjaran)
-                            <option value="{{$itemTahunAjaran->id_tahun_ajaran}}">{{ $itemTahunAjaran->tahun_ajaran}}</option>
-                        @endforeach
+                            <option value="#">2019/2020</option>
+                            <option value="#">2020/2021</option>
+                            <option value="#">2021/2022</option>
                     </select>
                 </div>
             </div>
@@ -39,14 +39,13 @@
             </div>
         </form>
 
-        @if ($data != null)
         <table id="datatable" class="table table-striped table-bordered" style="width:100%">
             <div id="filter-tanggal">
-                <form action="{{ route('tanggal-register-siswa-siswa.filter')}}" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" >
+                <form action="#" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" >
                     @csrf
-                    <input type="hidden" name="tanggal_awal" value="{{ $tanggal_awal }}">
-                    <input type="hidden" name="tanggal_akhir" value="{{ $tanggal_akhir }}">
-                    <input type="hidden" name="tahun_ajaran" value="{{ $tahun_ajaran }}">
+                    <input type="hidden" name="tanggal_awal" value="#">
+                    <input type="hidden" name="tanggal_akhir" value="#">
+                    <input type="hidden" name="tahun_ajaran" value="#">
                     <button type="submit" class="btn btn-primary">Cetak</button>
                 </form>
             </div>
@@ -58,43 +57,22 @@
                 </tr>
             </thead>
             <tbody>
-                @php
-                    $no = 1;
-                @endphp
-
-                @foreach ($data as $indexKelas => $itemKelas)
-                    {{-- create new array for keep kelas --}}
-                    @php
-                         $total_biaya[$itemKelas->id_kelas] = [];
-                    @endphp
-
-                    <tr>
-                        <td>{{ $no++ }}</td>
-                        <td>
-                            {{ $itemKelas->nama_kelas }}
-                        </td>
-                            @foreach ($itemKelas->dataSPP as $itemPembayaranSPP)
-                                @php
-                                    if($itemKelas->id_kelas == $itemPembayaranSPP->id_kelas)
-                                    {
-                                        array_push($total_biaya[$itemKelas->id_kelas], $itemPembayaranSPP->totalPembayaran);
-                                    }
-                                 @endphp
-                            @endforeach
-                        <td>
-                            @foreach ($total_biaya as $indexTotal => $valueTotal)
-                                @php
-                                    if($indexTotal == $itemKelas->id_kelas)
-                                    {
-                                        echo "Rp ".number_format(array_sum($valueTotal),0);
-                                    }
-                                @endphp
-                            @endforeach
-                        </td>
-                    </tr>
-                @endforeach
+                <tr>
+                    <td>1</td>
+                    <td>1A</td>
+                    <td>Rp. 5.000.000</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>1B</td>
+                    <td>Rp. 8.000.000</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>1C</td>
+                    <td>Rp. 4.000.000</td>
+                </tr>
             </tbody>
         </table>
-        @endif
 
 @endsection

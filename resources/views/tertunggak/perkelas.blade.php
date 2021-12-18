@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('content-title', 'Tabel Pembayaran Pembangunan Perkelas')
+@section('content-title', 'Laporan Tunggakan SPP PerKelas')
 
 @section('content')
         <form action="#" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" >
@@ -30,6 +30,14 @@
             </div>
 
             <div class="item form-group">
+                <label class="col-form-label col-md-3 col-sm-3 label-align" for="bulan">Bulan<span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 ">
+                    <input type="number" name="bulan" id="bulan" class="form-control " required>
+                </div>
+            </div>
+
+            <div class="item form-group">
                 <div class="col-md-6 col-sm-6 offset-md-3">
                     <button type="submit" class="btn btn-success">Submit</button>
                 </div>
@@ -40,12 +48,13 @@
             <form action="#" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" >
                 @csrf
                 <input type="hidden" name="kelas" value="#">
+                <input type="hidden" name="bulan" value="#">
                 <input type="hidden" name="tahun_ajaran" value="#">
                 <button type="submit" class="btn btn-primary">Cetak</button>
             </form>
         </div>
         <table id="datatable" class="table table-striped table-bordered" style="width:100%">
-
+            
             <thead>
                 <tr>
                     <th>No</th>
@@ -53,34 +62,38 @@
                     <th>Nama Siswa</th>
                     <th>Kelas</th>
                     <th>Tahun</th>
-                    <th>Uang Pembangunan</th>
-                    <th>Nominal Pembayaran Pembangunan</th>
+                    <th>Jatuh Tempo</th>
+                    <th>Jumlah Tertunggak (Bulan)</th>
+                    <th>Nominal Tunggakan SPP</th>
                 </tr>
             </thead>
             <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>0000001</td>
-                            <td>Poly</td>
-                            <td>1A</td>
-                            <td>2021/2022</td>
-                            <td>Rp. 2.000.000</td>
-                            <td>
-                                <ul>
-                                    <li>
-                                        Rp. 150.000
-                                    </li>
-                                    <li>
-                                        Rp. 150.000
-                                    </li>
-                                </ul>
-                            </td>
-                        </tr>
+                
+                    <tr>
+                        <td>1</td>
+                        <td>0000001</td>
+                        <td>Poly</td>
+                        <td>1A</td>
+                        <td>2020/2021</td>
+                        <td>Nov-2020</td>
+                        <td>November</td>
+                        <td>Rp. 150.000</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>0000001</td>
+                        <td>Poly</td>
+                        <td>1A</td>
+                        <td>2020/2021</td>
+                        <td>Des-2020</td>
+                        <td>Desember</td>
+                        <td>Rp. 150.000</td>
+                    </tr>
 
-                    <th colspan="6">
+                    <th colspan="7">
                         Total: 
                     </th>
-                    <th>Rp. 300.000</th>
+                    <th> Rp. 300.000</th>
 
             </tbody>
         </table>

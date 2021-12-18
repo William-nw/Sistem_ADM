@@ -4,7 +4,7 @@
 
 @section('content')
 <table id="datatable" class="table table-striped table-bordered" style="width:100%">
-    <a href="{{ route('laporan-spp-siswa.show')}}" class="btn btn-primary">Cetak</a>
+    <a href="#" class="btn btn-primary">Cetak</a>
 
     <thead>
         <tr>
@@ -21,26 +21,54 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($pembayaranSPP as $index => $delay)
             <tr>
-                <td>{{ $index + 1 }}</td>
-                <td>{{ $delay->nis }}</td>
-                <td>{{ $delay->nama_siswa }}</td>
-                <td>{{ $delay->nama_kelas }}</td>
-                <td>{{ $delay->tahun_ajaran }}</td>
-                <td>{{  \Carbon\Carbon::parse($delay->jatuh_tempo)->format('m-Y')}}</td>
-                <td>{{ $delay->tertunggak }}</td>
-                <td>{{  \Carbon\Carbon::parse($delay->tanggal_bayar)->format('d-m-Y')}}</td>
-                @foreach ($delay->pembayaranSPP as $itemBiaya)
-                    <td>Rp {{  number_format($itemBiaya->total_biaya,0)}}</td>
-                @endforeach
+                <td>1</td>
+                <td>0000001</td>
+                <td>Poly</td>
+                <td>1A</td>
+                <td>2021/2022</td>
+                <td>Nov-2022</td>
+                <td>November</td>
+                <td>12-Nov-2021</td>
+                <td>Rp. 150.000</td>
                 <td>
-                    <div class="btn btn-danger text-white text-uppercase font-weight-bold">
-                        {{ $delay->status_pembayaran }}
+                    <div class="btn btn-success text-white text-uppercase font-weight-bold">
+                        Lunas
                     </div>
                 </td>
             </tr>
-        @endforeach
+            <tr>
+                <td>1</td>
+                <td>0000001</td>
+                <td>Poly</td>
+                <td>1A</td>
+                <td>2021/2022</td>
+                <td>Jun-2022</td>
+                <td>Juni</td>
+                <td>12-Jun-2021</td>
+                <td>Rp. 150.000</td>
+                <td>
+                    <div class="btn btn-success text-white text-uppercase font-weight-bold">
+                        Lunas
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>0000003</td>
+                <td>Doly</td>
+                <td>1A</td>
+                <td>2021/2022</td>
+                <td>Des-2021</td>
+                <td>Desember</td>
+                <td>12-Desember-2021</td>
+                <td>Rp. 150.000</td>
+                <td>
+                    <div class="btn btn-success text-white text-uppercase font-weight-bold">
+                        Lunas
+                    </div>
+                </td>
+            </tr>
     </tbody>
 </table>
 @endsection

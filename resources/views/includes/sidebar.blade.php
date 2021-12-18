@@ -71,30 +71,30 @@
                         <li><a href="{{ route('master-tahun-ajaran.create') }}">Tambah Data</a></li>
                     </ul>
                 </li>
-                {{--
+                
                 <li><a><i class="fa fa-table"></i> Lap.Pembayaran SPP <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="{{ route('register-siswa-siswa.index') }}">Laporan Pembayaran SPP</a></li>
-                        <li><a href="{{ route('tanggal-register-siswa-siswa.index') }}">Laporan Pembayaran SPP Perbulan</a></li>
-                        <li><a href="{{ route('laporan-spp-kelas.index') }}">Laporan Pembayaran SPP Kelas</a></li>
-                        <li><a href="{{ route('laporan-sppSiswaKelas.index') }}">Laporan Pembayaran SPP Siswa & Kelas</a></li>
-                        <li><a href="{{ route('laporan-spp-siswa.indexTahunan') }}">Laporan Pembayaran SPP Pertahun</a></li>
+                        <li><a href="{{ url('lappembayaranspp')}}">Laporan Pembayaran SPP</a></li>
+                        <li><a href="{{ url('lappembayaranperbulan') }}">Laporan Pembayaran SPP Perbulan</a></li>
+                        <li><a href="{{ url('lappembayaranperkelas') }}">Laporan Pembayaran SPP Kelas</a></li>
+                        <li><a href="{{ url('lappembayaransiswakelas') }}">Laporan Pembayaran SPP Siswa & Kelas</a></li>
+                        <li><a href="{{ url('lappembayaranpertahun') }}">Laporan Pembayaran SPP Pertahun</a></li>
 
                     </ul>
                 </li>
                 <li><a><i class="fa fa-table"></i> Lap.Tunggakan SPP <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="{{ route('tertunggak.index') }}">Laporan Tunggakan SPP Perbulan</a></li>
-                        <li><a href="{{ route('tertunggak.tunggakanKelas') }}">Laporan Tunggakan SPP Perkelas</a></li>
+                        <li><a href="{{ url('laptertunggakperbulan') }}">Laporan Tunggakan SPP Perbulan</a></li>
+                        <li><a href="{{ url('laptertunggakperkelas') }}">Laporan Tunggakan SPP Perkelas</a></li>
                     </ul>
                 </li>
                 <li><a><i class="fa fa-table"></i> Lap.Pembangunan <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="{{ route('laporan-pembagunan.index') }}">Laporan Tunggakan & Pembayaran Pembangunan</a></li>
-                        <li><a href="{{ route('register-siswa-pembangunan-perkelas.index') }}">Laporan Pembayaran Pembagunan Perkelas</a></li>
-                        <li><a href="{{ route('register-siswa-pembangunan.tahunan') }}">Laporan Pembayaran Pembangunan Pertahun</a></li>
+                        <li><a href="{{ url('lappembangunantunggakan') }}">Laporan Tunggakan & Pembayaran Pembangunan</a></li>
+                        <li><a href="{{ url('lappembangunanperkelas') }}">Laporan Pembayaran Pembagunan Perkelas</a></li>
+                        <li><a href="{{ url('lappembangunanpertahun') }}">Laporan Pembayaran Pembangunan Pertahun</a></li>
                     </ul>
-                </li> --}}
+                </li>
             @elseif(Auth::user()->status == 'kepala_sekolah')
                 <li><a><i class="fa fa-table"></i> Lap.Pembayaran SPP <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
