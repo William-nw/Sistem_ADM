@@ -17,9 +17,20 @@ class StudentSavings extends Model
         'updated_at'
     ];
 
-    /** your docs block **/
+    /** Master Account bank **/
     public function masterAccountBank()
     {
         return $this->hasOne('App\Models\MasterAkunBank', 'external_id', 'external_id');
+    }
+
+    /** get Student Sabing Account
+     * @param string $nis_siswa
+     * @return object
+     */
+    public static function getStudentSavingAccount(string $nis_siswa)
+    {
+        return StudentSavings::with('masterAccountBank')
+            ->where('NIS_siswa', $nis_siswa)
+            ->first();
     }
 }

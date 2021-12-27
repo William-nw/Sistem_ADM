@@ -3,7 +3,14 @@
 namespace App\Http\Services;
 
 use App\Http\Services\Contracts\DataParentContract;
-use App\Models\{DataSPP, Siswa, UserModel};
+use App\Models\{AdministrationConstruction,
+    BooksMoney,
+    ClothesMoney,
+    ConsumptionMoney,
+    DataSPP,
+    Siswa,
+    StudentSavings,
+    UserModel};
 
 class UserService implements DataParentContract
 {
@@ -53,17 +60,143 @@ class UserService implements DataParentContract
             if (!empty($encoded)) {
 
                 foreach ($encoded as $student) {
-
-                    $dataSPP = DataSPP::with('siswaData','masterKelas', 'tahunAjaran')
+                    $dataSPP[] = DataSPP::with('siswaData','masterKelas', 'tahunAjaran')
                                         ->where('NIS_siswa', $student)
                                         ->whereIn('status_spp',['belum_lunas', 'tertunggak'])
                                         ->orderBy('id_spp', 'desc')
-                                        ->get();
+                                        ->first();
                 }
             }
 
             // replace the key
             $item->data_spp = (!empty($dataSPP)) ? $dataSPP : [];
+            return $item;
+        });
+        return $parent;
+    }
+
+    public function dataParentWithConstruction(): object
+    {
+        /** find parent */
+        $parent = UserModel::userParent()->map(function ($item) {
+            $encoded = json_decode($item->siswa_ortu);
+
+            // parent dont have student
+            if (empty($encoded)) {
+                return [];
+            }
+
+            if (!empty($encoded)) {
+
+                foreach ($encoded as $student) {
+
+                    $dataConstruction[] = AdministrationConstruction::with('siswaData','masterKelas', 'tahunAjaran')
+                        ->where('NIS_siswa', $student)
+                        ->whereIn('status_pembangunan',['belum_lunas', 'tertunggak'])
+                        ->orderBy('id_uang_pembangunan', 'desc')
+                        ->first();
+
+                    $savingAccount[$student]= StudentSavings::getStudentSavingAccount($student);
+                }
+            }
+
+            // replace the key
+            $item->data_administration = (!empty($dataConstruction)) ? $dataConstruction : [];
+            $item->studentSaving = (!empty($savingAccount)) ? $savingAccount : [];
+            return $item;
+        });
+        return $parent;
+    }
+
+    public function dataParentWithBooksAdministration(): object
+    {
+        /** find parent */
+        $parent = UserModel::userParent()->map(function ($item) {
+            $encoded = json_decode($item->siswa_ortu);
+
+            // parent dont have student
+            if (empty($encoded)) {
+                return [];
+            }
+
+            if (!empty($encoded)) {
+
+                foreach ($encoded as $student) {
+                    $dataBooksAdministration[] = BooksMoney::with('siswaData','masterKelas', 'tahunAjaran')
+                        ->where('NIS_siswa', $student)
+                        ->whereIn('status_buku',['belum_lunas', 'tertunggak'])
+                        ->orderBy('id_uang_buku', 'desc')
+                        ->first();
+
+                    $savingAccount[$student] = StudentSavings::getStudentSavingAccount($student);
+                }
+            }
+
+            // replace the key
+            $item->data_administration = (!empty($dataBooksAdministration)) ? $dataBooksAdministration : [];
+            $item->studentSaving = (!empty($savingAccount)) ? $savingAccount : [];
+            return $item;
+        });
+        return $parent;
+    }
+
+    public function dataParentWithClothesAdministration(): object
+    {
+        /** find parent */
+        $parent = UserModel::userParent()->map(function ($item) {
+            $encoded = json_decode($item->siswa_ortu);
+
+            // parent dont have student
+            if (empty($encoded)) {
+                return [];
+            }
+
+            if (!empty($encoded)) {
+
+                foreach ($encoded as $student) {
+                    $dataClothesAdministration[] = ClothesMoney::with('siswaData','masterKelas', 'tahunAjaran')
+                        ->where('NIS_siswa', $student)
+                        ->whereIn('status_baju',['belum_lunas', 'tertunggak'])
+                        ->orderBy('id_uang_baju', 'desc')
+                        ->first();
+                    $savingAccount[$student] = StudentSavings::getStudentSavingAccount($student);
+                }
+            }
+
+            // replace the key
+            $item->data_administration = (!empty($dataClothesAdministration)) ? $dataClothesAdministration : [];
+            $item->studentSaving = (!empty($savingAccount)) ? $savingAccount : [];
+            return $item;
+        });
+        return $parent;
+    }
+
+    public function dataParentWithConsumptionAdministration(): object
+    {
+        /** find parent */
+        $parent = UserModel::userParent()->map(function ($item) {
+            $encoded = json_decode($item->siswa_ortu);
+
+            // parent dont have student
+            if (empty($encoded)) {
+                return [];
+            }
+
+            if (!empty($encoded)) {
+
+                foreach ($encoded as $student) {
+                    $dataConsumptionAdministration[] = ConsumptionMoney::with('siswaData','masterKelas', 'tahunAjaran')
+                        ->where('NIS_siswa', $student)
+                        ->whereIn('status_konsumsi',['belum_lunas', 'tertunggak'])
+                        ->orderBy('id_uang_konsumsi', 'desc')
+                        ->first();
+                    $savingAccount[$student] = StudentSavings::getStudentSavingAccount($student);
+                }
+            }
+
+            // replace the key
+            $item->data_administration = (!empty($dataConsumptionAdministration)) ? $dataConsumptionAdministration : [];
+            $item->studentSaving = (!empty($savingAccount)) ? $savingAccount : [];
             return $item;
         });
         return $parent;

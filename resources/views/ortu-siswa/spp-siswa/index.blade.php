@@ -8,15 +8,15 @@
             <h2>NIS</h2>
         </div>
         {{--  search for admin  --}}
-        <div class="col-md-5 col-sm-5  form-group top_search">
-            <div class="input-group">
-                <input type="hidden" id="link" readonly>
-                <input type="number" name="nis" id="nis" class="form-control" placeholder="NIS Siswa">
-                <span class="input-group-btn">
-                <button class="btn btn-default" id="searchNis">Go!</button>
-            </span>
-            </div>
-        </div>
+{{--        <div class="col-md-5 col-sm-5  form-group top_search">--}}
+{{--            <div class="input-group">--}}
+{{--                <input type="hidden" id="link" readonly>--}}
+{{--                <input type="number" name="nis" id="nis" class="form-control" placeholder="NIS Siswa">--}}
+{{--                <span class="input-group-btn">--}}
+{{--                <button class="btn btn-default" id="searchNis">Go!</button>--}}
+{{--            </span>--}}
+{{--            </div>--}}
+{{--        </div>--}}
     </div>
     <div class="row" id="show-siswa">
 

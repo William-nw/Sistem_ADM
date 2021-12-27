@@ -43,4 +43,28 @@ class Siswa extends Model
     {
         return $this->belongsTo('App\Models\DataSPP', 'NIS_siswa', 'NIS_siswa');
     }
+
+    /** Data Construction **/
+    public function dataAdministrationConstruction()
+    {
+        return $this->belongsTo('App\Models\AdministrationConstruction', 'NIS_siswa', 'NIS_siswa');
+    }
+
+    /** Data Books Money **/
+    public function dataBooksMoney()
+    {
+        return $this->belongsTo('App\Models\BooksMoney', 'NIS_siswa', 'NIS_siswa');
+    }
+
+    /** Data Clothes Money **/
+    public function dataClothesMoney()
+    {
+        return $this->belongsTo('App\Models\ClothesMoney', 'NIS_siswa', 'NIS_siswa');
+    }
+
+    /** Data Consumption Money **/
+    public function dataConsumptionMoney()
+    {
+        return $this->belongsTo('App\Models\ConsumptionMoney', 'NIS_siswa', 'NIS_siswa');
+    }
 }

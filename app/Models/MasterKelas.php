@@ -38,4 +38,28 @@ class MasterKelas extends Model
     {
         return $this->belongsTo('App\Models\DataSPP', 'kelas', 'id');
     }
+
+    /** Data administration construction */
+    public function dataAdministrationConstruction()
+    {
+        return $this->belongsTo('App\Models\AdministrationConstruction', 'kelas', 'id');
+    }
+
+    /** Data Books Money */
+    public function dataBooksMoney()
+    {
+        return $this->belongsTo('App\Models\BooksMoney', 'kelas', 'id');
+    }
+
+    /** Data Clothes Money */
+    public function dataClothesMoney()
+    {
+        return $this->belongsTo('App\Models\ClothesMoney', 'kelas', 'id');
+    }
+
+    /** Data Consumption Money **/
+    public function dataConsumptionMoney()
+    {
+        return $this->belongsTo('App\Models\ConsumptionMoney', 'kelas', 'id');
+    }
 }
