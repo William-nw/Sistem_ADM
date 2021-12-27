@@ -30,4 +30,22 @@ class MasterTahunAjaran extends Model
     {
         return $this->belongsTo('App\Models\DataSPP', 'tahun_ajaran', 'id');
     }
+
+    /** Data administration construction */
+    public function dataAdministrationConstruction()
+    {
+        return $this->belongsTo('App\Models\AdministrationConstruction', 'tahun_ajaran', 'id');
+    }
+
+    /** Data Books Money */
+    public function dataBooksMoney()
+    {
+        return $this->belongsTo('App\Models\BooksMoney', 'tahun_ajaran', 'id');
+    }
+
+    /** Data Clothes Money */
+    public function dataClothesMoney()
+    {
+        return $this->belongsTo('App\Models\ClothesMoney', 'tahun_ajaran', 'id');
+    }
 }

@@ -84,6 +84,7 @@ class AdministrationService extends PaymentGatewayService implements RegisterCon
             // add new key and value
             $cart[$index_cart]["cloth_name"] = $clothes->nama_baju;
             $cart[$index_cart]["size"] = $clothes->ukuran_baju;
+            $cart[$index_cart]["price_clothes"] = $clothes->harga_baju;
             $cart[$index_cart]["total"] = $clothes->harga_baju * $value_cart['qty'];
 
             // sum all item
@@ -119,6 +120,7 @@ class AdministrationService extends PaymentGatewayService implements RegisterCon
                 ->where('id_buku', $value_cart['id_item'])->first();
             // add new key and value
             $cart[$index_cart]["book_name"] = $book->nama_buku;
+            $cart[$index_cart]["price_book"] = $book->harga_buku;
             $cart[$index_cart]["total"] = $book->harga_buku * $value_cart['qty'];
 
             // sum all item

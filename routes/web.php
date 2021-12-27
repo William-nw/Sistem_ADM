@@ -29,6 +29,12 @@ Route::group(['middleware' => ['auth']], function() {
 
         Route::resource('/spp-siswa-ortu', 'ParentStudent\DataSppSiswaOrtuController');
 
+        // administration
+        Route::get('/uang-pembangunan', 'Payment\AdministrationController@ContructionAdmininstration')->name('uang-pembangunan.ContructionAdmininstration');
+        Route::get('/uang-buku', 'Payment\AdministrationController@BooksAdmininstration')->name('uang-buku.BooksAdmininstration');
+        Route::get('/uang-baju', 'Payment\AdministrationController@ClothesAdmininstration')->name('uang-baju.ClothesAdmininstration');
+        Route::get('/uang-konsumsi', 'Payment\AdministrationController@ConsumptionAdmininstration')->name('uang-konsumsi.ConsumptionAdmininstration');
+
     });
 
     // menu Admin
@@ -66,21 +72,12 @@ Route::group(['middleware' => ['auth']], function() {
 
 });
 
-Route::get('/uang-buku', function () {
-    return view('ortu-siswa/data-pembayaran.uang-buku');
-});
 
-Route::get('/uang-baju', function () {
-    return view('ortu-siswa/data-pembayaran.uang-baju');
-});
 
-Route::get('/uang-konsumsi', function () {
-    return view('ortu-siswa/data-pembayaran.uang-konsumsi');
-});
 
-Route::get('/uang-pembangunan', function () {
-    return view('ortu-siswa/data-pembayaran.uang-pembangunan');
-});
+
+
+
 
 Route::get('/test-pembayaran', function () {
     return view('ortu-siswa/test-pembayaran.test-pembayaran');

@@ -58,9 +58,7 @@ class DataSppSiswaOrtuController extends Controller
                                 ->where('kode_spp', $id)
                                 ->first();
 
-        $data['studentSaving'] = StudentSavings::with('masterAccountBank')
-                                ->where('NIS_siswa', $data['spp']->NIS_siswa)
-                                ->first();
+        $data['studentSaving'] = StudentSavings::getStudentSavingAccount($data['spp']->NIS_siswa);
 
         return view('ortu-siswa/spp-siswa.show', $data);
 
