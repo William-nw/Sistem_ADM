@@ -185,7 +185,7 @@ class UserService implements DataParentContract
             if (!empty($encoded)) {
 
                 foreach ($encoded as $student) {
-                    $dataConsumptionAdministration[] = ConsumptionMoney::with('siswaData','masterKelas', 'tahunAjaran')
+                    $dataConsumptionAdministration[] = ConsumptionMoney::with('siswaData','masterKelas')
                         ->where('NIS_siswa', $student)
                         ->whereIn('status_konsumsi',['belum_lunas', 'tertunggak'])
                         ->orderBy('id_uang_konsumsi', 'desc')
