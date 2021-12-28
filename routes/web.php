@@ -34,6 +34,9 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('/uang-buku', 'Payment\AdministrationController@BooksAdmininstration')->name('uang-buku.BooksAdmininstration');
         Route::get('/uang-baju', 'Payment\AdministrationController@ClothesAdmininstration')->name('uang-baju.ClothesAdmininstration');
         Route::get('/uang-konsumsi', 'Payment\AdministrationController@ConsumptionAdmininstration')->name('uang-konsumsi.ConsumptionAdmininstration');
+        // testing payment
+        Route::get('/testing-payment', 'Payment\TestingPaymentController@index')->name('testing-payment.index');
+        Route::post('/testing-payment', 'Payment\TestingPaymentController@simulatePayment')->name('testing-payment.simulatePayment');
 
     });
 
@@ -66,21 +69,6 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get("/getBaju/{id}", "AjaxController@getBaju");
     });
 
-    Route::post("test-buku", function(Request $request){
-        dd($request->all());
-    })->name('test.index');
-
-});
-
-
-
-
-
-
-
-
-Route::get('/test-pembayaran', function () {
-    return view('ortu-siswa/test-pembayaran.test-pembayaran');
 });
 
 
@@ -121,7 +109,6 @@ Route::get('/laptertunggakperkelas', function () {
 });
 
 // Backend Feature
-
 Route::group(['middleware' => ['auth']], function () {
 
     // menu bank account

@@ -71,7 +71,7 @@
                         <li><a href="{{ route('master-tahun-ajaran.create') }}">Tambah Data</a></li>
                     </ul>
                 </li>
-                
+
                 <li><a><i class="fa fa-table"></i> Lap.Pembayaran SPP <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="{{ url('lappembayaranspp')}}">Laporan Pembayaran SPP</a></li>
@@ -132,7 +132,9 @@
                         <li><a href="{{ route('uang-buku.BooksAdmininstration') }}">Uang Buku</a></li>
                         <li><a href="{{ route('uang-baju.ClothesAdmininstration') }}">Uang Baju</a></li>
                         <li><a href="{{ route('uang-konsumsi.ConsumptionAdmininstration') }}">Uang Konsumsi</a></li>
-                        <li><a href="{{ url('test-pembayaran') }}">Test Pembayaran</a></li>
+                        @if(env('APP_ENV') == "local")
+                            <li><a href="{{ route('testing-payment.index') }}">Test Pembayaran</a></li>
+                        @endif
                     </ul>
                 </li>
             @endif
