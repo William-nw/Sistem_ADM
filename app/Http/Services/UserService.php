@@ -14,11 +14,41 @@ use App\Models\{AdministrationConstruction,
 
 class UserService implements DataParentContract
 {
-
     /** Data User Parent with they Student/Kid
      * @return object
      */
+    public function parentWithStudent(): object
+    {
+        $user = UserModel::userParent()->map(function ($item) {
+            $encoded = json_decode($item->siswa_ortu);
 
+            // parent dont have student
+            if (empty($encoded)) {
+                return [];
+            }
+
+            if (!empty($encoded)) {
+                /** find parent student and add to array $data_student; */
+                foreach ($encoded as $student) {
+                    $child[] = Siswa::with('masterKelas', 'tahunAjaran')
+                        ->where('NIS_siswa', $student)
+                        ->first();
+
+                    $savingAccount[$student]= StudentSavings::getStudentSavingAccount($student);
+                }
+            }
+
+            // replace the key
+            $item->siswa_ortu = (!empty($child)) ? $child : [];
+            $item->studentSaving = (!empty($savingAccount)) ? $savingAccount : [];
+            return $item;
+        });
+        return $user;
+    }
+
+    /** All Data User Parent with they Student/Kid
+     * @return object
+     */
     public function dataParentWithStudent(): object
     {
         $user = UserModel::datasParent()->map(function ($item) {
@@ -185,7 +215,7 @@ class UserService implements DataParentContract
             if (!empty($encoded)) {
 
                 foreach ($encoded as $student) {
-                    $dataConsumptionAdministration[] = ConsumptionMoney::with('siswaData','masterKelas', 'tahunAjaran')
+                    $dataConsumptionAdministration[] = ConsumptionMoney::with('siswaData','masterKelas')
                         ->where('NIS_siswa', $student)
                         ->whereIn('status_konsumsi',['belum_lunas', 'tertunggak'])
                         ->orderBy('id_uang_konsumsi', 'desc')
