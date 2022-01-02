@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Jobs\{AutoDebtBooks,AutoDebtClothes,AutoDebtConstruction,AutoDebtConsumption,AutoDebtSPP};
+use App\Models\{CallbackPayment,MasterAkunBank};
 use App\Http\Controllers\Controller;
 use App\Http\Services\SavingService;
 use App\Http\Traits\CallBackPaymentTraits;
-use App\Models\{CallbackPayment,MasterAkunBank};
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -45,6 +46,14 @@ class CallBackController extends Controller
             // update saving amount
             $saving_service = new SavingService();
             $saving_service->updateBalanceSavingStudent($request);
+
+            // Job to Auto Debet
+            AutoDebtConstruction::dispatch()->onQueue('autodebet');
+            AutoDebtSPP::dispatch()->onQueue('autodebet');
+            AutoDebtConsumption::dispatch()->onQueue('autodebet');
+            AutoDebtClothes::dispatch()->onQueue('autodebet');
+            AutoDebtBooks::dispatch()->onQueue('autodebet');
+
             DB::commit();
         } catch (\Throwable $e) {
             DB::rollBack();

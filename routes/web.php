@@ -1,5 +1,6 @@
 <?php
 
+use App\Jobs\{AutoDebtBooks,AutoDebtClothes,AutoDebtConstruction,AutoDebtConsumption,AutoDebtSPP};
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -111,6 +112,16 @@ Route::get('/laptertunggakperkelas', function () {
 // Backend Feature
 Route::group(['middleware' => ['auth']], function () {
 
+    Route::prefix('dev')->group(function () {
+        Route::get('testjob', function () {
+            AutoDebtConstruction::dispatch()->onQueue('autodebet');
+            AutoDebtSPP::dispatch()->onQueue('autodebet');
+            AutoDebtConsumption::dispatch()->onQueue('autodebet');
+            AutoDebtClothes::dispatch()->onQueue('autodebet');
+            AutoDebtBooks::dispatch()->onQueue('autodebet');
+            return "check jobs";
+        });
+    });
     // menu bank account
     Route::resource('akun-bank', 'AkunBankController')->only(['index', 'create', 'store']);
     Route::get('update-akun-bank', 'BankController@updateVa')->name('update-akun-bank.updateVa');

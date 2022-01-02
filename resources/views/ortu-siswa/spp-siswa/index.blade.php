@@ -34,11 +34,17 @@
                                 <b> {{ date("d-m-Y H:i:s" , strtotime($itemSPP->created_at) ) }} </b>
                             </h7><br/>
                             <h7>
+                                Sisa Pembayaran:
+                                <b>
+                                    Rp {{ number_format($itemSPP->total_spp) }}
+                                </b>
+                            </h7><br/>
+                            <h7>
                                 Status Pembayaran:
                                 <b>
                                     {{ str_replace("_", " ", strtoupper($itemSPP->status_spp) ) }}
                                 </b>
-                            </h7>
+                            </h7><br/>
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">Kelas: {{ $itemSPP->masterKelas->nama_kelas }} </h5>

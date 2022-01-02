@@ -30,6 +30,11 @@
                 </li>
                 <li>
                     <i class="fa fa-credit-card"></i>
+                    Sisa Pembayaran:
+                    <b>Rp {{ number_format($spp->total_spp) }}</b>
+                </li>
+                <li>
+                    <i class="fa fa-credit-card"></i>
                     Tabungan Siswa : Rp {{ number_format($studentSaving->total_tabungan,2)}}
                 </li>
             </ul>
@@ -82,11 +87,13 @@
                             @endif
                         </td>
                         <td>
-                            <div class="d-flex">
-                                <a href="#" type="submit" class="btn btn-success" data-toggle="modal" data-target=".bs-example-modal-sm">
-                                    Bayar
-                                </a>
-                            </div>
+                            @if ($dataSppStudent->status_detail_spp != 'lunas')
+                                <div class="d-flex">
+                                    <a href="#" type="submit" class="btn btn-success" data-toggle="modal" data-target=".bs-example-modal-sm">
+                                        Bayar
+                                    </a>
+                                </div>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
