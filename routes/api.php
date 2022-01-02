@@ -22,5 +22,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('testAPI', function (){
    return response()->json(['data' => "Connected"]);
 });
+// Callback Payment from user
 Route::post('callback-payment','API\CallBackController@callBackPayment');
+// create account virtual
 Route::post('callback-fva','API\CallBackController@callBackFVA');

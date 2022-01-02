@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\CallbackPayment;
-use App\Models\MasterAkunBank;
+use App\Http\Services\SavingService;
+use App\Http\Traits\CallBackPaymentTraits;
+use App\Models\{CallbackPayment,MasterAkunBank};
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -12,19 +13,22 @@ use Illuminate\Support\Facades\Log;
 
 class CallBackController extends Controller
 {
+    use CallBackPaymentTraits;
+
     /** callBack Payment third party
      * @return void
      */
     public function callBackPayment(Request $request): void
     {
+        $payment = $this->checkExistingCallBackPayment($request);
+        if($payment > 0){
+            return;
+        }
+
         DB::beginTransaction();
         try {
             // table callback_pembayaran
-            CallbackPayment::updateOrCreate(
-                [
-                    'tanggal_pembayaran' => date('Y-m-d H:i:s', strtotime($request['transaction_timestamp'])),
-                    'external_id' => $request['external_id']
-                ],
+            CallbackPayment::insert(
                 [
                     'owner_id' => $request['owner_id'],
                     'external_id' => $request['external_id'],
@@ -37,6 +41,10 @@ class CallBackController extends Controller
                     'updated_at' => Carbon::now(),
                 ]
             );
+
+            // update saving amount
+            $saving_service = new SavingService();
+            $saving_service->updateBalanceSavingStudent($request);
             DB::commit();
         } catch (\Throwable $e) {
             DB::rollBack();
