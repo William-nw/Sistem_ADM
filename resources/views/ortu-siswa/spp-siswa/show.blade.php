@@ -67,9 +67,9 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($spp->detailSppStudent as $index => $dataSppStudent)
+                @foreach($spp->detailSppStudent as  $dataSppStudent)
                     <tr>
-                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $loop->iteration }}</td>
                         <td>{{ date("d-m-Y", strtotime($dataSppStudent->jatuh_tempo) ) }}</td>
                         <td>{{ $dataSppStudent->tanggal_pembayaran }}</td>
                         <td>{{ $dataSppStudent->tertungak }}</td>
@@ -115,37 +115,22 @@
                 <thead>
                 <tr>
                     <th>No.</th>
-                    <th>Kode SPP</th>
-                    <th>Jatuh Tempo</th>
+                    <th>No Pembayaran</th>
+                    <th>Nama Siswa</th>
                     <th>Tanggal Bayar</th>
-                    <th>Hari Tertunggak</th>
                     <th>Total Bayar</th>
-                    <th>Status SPP</th>
-                    <th>Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-
-                </tr>
-                <tr>
-
-                </tr>
-                <tr>
-
-                </tr>
-                <tr>
-
-                </tr>
-                <tr>
-
-                </tr>
-                <tr>
-
-                </tr>
-                <tr>
-                    <button>bayar</button>
-                </tr>
+                    @foreach($payment_spp as $data_payment_spp)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $data_payment_spp->kode_pembayaran }}</td>
+                            <td>{{ $data_payment_spp->siswaData->NIS_siswa }} - {{ $data_payment_spp->siswaData->nama_siswa }}</td>
+                            <td>{{ date("d-m-Y", strtotime($data_payment_spp->tanggal_pembayaran) ) }}</td>
+                            <td>Rp {{ number_format($data_payment_spp->total_bayar, 2) }}</td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

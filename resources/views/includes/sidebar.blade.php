@@ -121,14 +121,10 @@
                 </li>
             @elseif(Auth::user()->status == 'orang_tua')
 
-                <li><a><i class="fa fa-table"></i> SPP Siswa <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                        <li><a href={{ route('spp-siswa-ortu.index') }}>SPP Siswa</a></li>
-                    </ul>
-                </li>
                 <li><a><i class="fa fa-table"></i> Pembayaran <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
+                    <ul class="nav child_menu" style="max-height: 100% !important;">
                         <li><a href="{{ route('uang-pembangunan.ContructionAdmininstration') }}">Uang Pembangunan</a></li>
+                        <li><a href={{ route('spp-siswa-ortu.index') }}>SPP Siswa</a></li>
                         <li><a href="{{ route('uang-buku.BooksAdmininstration') }}">Uang Buku</a></li>
                         <li><a href="{{ route('uang-baju.ClothesAdmininstration') }}">Uang Baju</a></li>
                         <li><a href="{{ route('uang-konsumsi.ConsumptionAdmininstration') }}">Uang Konsumsi</a></li>

@@ -110,18 +110,18 @@ Route::get('/laptertunggakperkelas', function () {
 });
 
 // Backend Feature
-Route::group(['middleware' => ['auth']], function () {
-
-    Route::prefix('dev')->group(function () {
-        Route::get('testjob', function () {
-            AutoDebtConstruction::dispatch()->onQueue('autodebet');
-            AutoDebtSPP::dispatch()->onQueue('autodebet');
-            AutoDebtConsumption::dispatch()->onQueue('autodebet');
-            AutoDebtClothes::dispatch()->onQueue('autodebet');
-            AutoDebtBooks::dispatch()->onQueue('autodebet');
-            return "check jobs";
-        });
+Route::prefix('dev')->group(function () {
+    Route::get('testjob', function () {
+        AutoDebtConstruction::dispatch()->onQueue('autodebet');
+        AutoDebtSPP::dispatch()->onQueue('autodebet');
+        AutoDebtConsumption::dispatch()->onQueue('autodebet');
+        AutoDebtClothes::dispatch()->onQueue('autodebet');
+        AutoDebtBooks::dispatch()->onQueue('autodebet');
+        return "check Table jobs";
     });
+});
+
+Route::group(['middleware' => ['auth']], function () {
     // menu bank account
     Route::resource('akun-bank', 'AkunBankController')->only(['index', 'create', 'store']);
     Route::get('update-akun-bank', 'BankController@updateVa')->name('update-akun-bank.updateVa');

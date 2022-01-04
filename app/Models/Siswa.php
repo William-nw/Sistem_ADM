@@ -67,4 +67,34 @@ class Siswa extends Model
     {
         return $this->belongsTo('App\Models\ConsumptionMoney', 'NIS_siswa', 'NIS_siswa');
     }
+
+    /** payment construction **/
+    public function dataPaymentConstruction()
+    {
+        return $this->belongsTo('App\Models\PaymentConstruction', 'NIS_siswa', 'NIS_siswa');
+    }
+
+    /** payment books **/
+    public function dataPaymentBooks()
+    {
+        return $this->belongsTo('App\Models\PaymentBooks', 'NIS_siswa', 'NIS_siswa');
+    }
+
+    /** payment clothes **/
+    public function dataPaymentClothes()
+    {
+        return $this->belongsTo('App\Models\PaymentClothes', 'NIS_siswa', 'NIS_siswa');
+    }
+
+    /** payment Consumption **/
+    public function dataPaymentConsumption()
+    {
+        return $this->belongsTo('App\Models\PaymentConsumption', 'NIS_siswa', 'NIS_siswa');
+    }
+
+    /** payment Consumption **/
+    public function dataPaymentDetailSPP()
+    {
+        return $this->belongsTo('App\Models\PaymentDetailSPP', 'NIS_siswa', 'NIS_siswa');
+    }
 }

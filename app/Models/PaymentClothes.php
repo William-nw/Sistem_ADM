@@ -19,4 +19,10 @@ class PaymentClothes extends Model
     ];
 
     public $timestamps = false;
+
+    /** Siswa **/
+    public function siswaData()
+    {
+        return $this->hasOne('App\Models\Siswa', 'NIS_siswa', 'NIS_siswa');
+    }
 }

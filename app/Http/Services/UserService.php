@@ -8,6 +8,10 @@ use App\Models\{AdministrationConstruction,
     ClothesMoney,
     ConsumptionMoney,
     DataSPP,
+    PaymentBooks,
+    PaymentClothes,
+    PaymentConstruction,
+    PaymentConsumption,
     Siswa,
     StudentSavings,
     UserModel};
@@ -121,10 +125,13 @@ class UserService implements DataParentContract
                 foreach ($encoded as $student) {
 
                     $dataConstruction[] = AdministrationConstruction::with('siswaData','masterKelas', 'tahunAjaran')
-                        ->where('NIS_siswa', $student)
-                        ->whereIn('status_pembangunan',['belum_lunas', 'tertunggak'])
-                        ->orderBy('id_uang_pembangunan', 'desc')
-                        ->first();
+                                        ->where('NIS_siswa', $student)
+                //                        ->whereIn('status_pembangunan',['belum_lunas', 'tertunggak'])
+                                        ->orderBy('id_uang_pembangunan', 'desc')
+                                        ->first();
+                    $data_payment_const = PaymentConstruction::with('siswaData')
+                                            ->where('NIS_siswa', $student)
+                                            ->orderBy('id_uang_pembangunan', 'desc')->get();
 
                     $savingAccount[$student]= StudentSavings::getStudentSavingAccount($student);
                 }
@@ -132,6 +139,7 @@ class UserService implements DataParentContract
 
             // replace the key
             $item->data_administration = (!empty($dataConstruction)) ? $dataConstruction : [];
+            $item->data_payment_construction = (!empty($data_payment_const)) ? $data_payment_const : [];
             $item->studentSaving = (!empty($savingAccount)) ? $savingAccount : [];
             return $item;
         });
@@ -153,10 +161,13 @@ class UserService implements DataParentContract
 
                 foreach ($encoded as $student) {
                     $dataBooksAdministration[] = BooksMoney::with('siswaData','masterKelas', 'tahunAjaran')
-                        ->where('NIS_siswa', $student)
-                        ->whereIn('status_buku',['belum_lunas', 'tertunggak'])
-                        ->orderBy('id_uang_buku', 'desc')
-                        ->first();
+                                                ->where('NIS_siswa', $student)
+                        //                        ->whereIn('status_buku',['belum_lunas', 'tertunggak'])
+                                                ->orderBy('id_uang_buku', 'desc')
+                                                ->first();
+                    $data_payment_books = PaymentBooks::with('siswaData')
+                                            ->where('NIS_siswa', $student)
+                                            ->orderBy('id_pembayaran_buku', 'desc')->get();
 
                     $savingAccount[$student] = StudentSavings::getStudentSavingAccount($student);
                 }
@@ -164,6 +175,7 @@ class UserService implements DataParentContract
 
             // replace the key
             $item->data_administration = (!empty($dataBooksAdministration)) ? $dataBooksAdministration : [];
+            $item->data_payment_books = (!empty($data_payment_books)) ? $data_payment_books : [];
             $item->studentSaving = (!empty($savingAccount)) ? $savingAccount : [];
             return $item;
         });
@@ -185,16 +197,21 @@ class UserService implements DataParentContract
 
                 foreach ($encoded as $student) {
                     $dataClothesAdministration[] = ClothesMoney::with('siswaData','masterKelas', 'tahunAjaran')
-                        ->where('NIS_siswa', $student)
-                        ->whereIn('status_baju',['belum_lunas', 'tertunggak'])
-                        ->orderBy('id_uang_baju', 'desc')
-                        ->first();
+                                                    ->where('NIS_siswa', $student)
+                            //                        ->whereIn('status_baju',['belum_lunas', 'tertunggak'])
+                                                    ->orderBy('id_uang_baju', 'desc')
+                                                    ->first();
+                    $data_payment_clothes = PaymentClothes::with('siswaData')
+                                        ->where('NIS_siswa', $student)
+                                        ->orderBy('id_pembayaran_baju', 'desc')->get();
                     $savingAccount[$student] = StudentSavings::getStudentSavingAccount($student);
                 }
             }
 
             // replace the key
             $item->data_administration = (!empty($dataClothesAdministration)) ? $dataClothesAdministration : [];
+            $item->data_payment_clothes = (!empty($data_payment_clothes)) ? $data_payment_clothes : [];
+
             $item->studentSaving = (!empty($savingAccount)) ? $savingAccount : [];
             return $item;
         });
@@ -217,15 +234,19 @@ class UserService implements DataParentContract
                 foreach ($encoded as $student) {
                     $dataConsumptionAdministration[] = ConsumptionMoney::with('siswaData','masterKelas')
                         ->where('NIS_siswa', $student)
-                        ->whereIn('status_konsumsi',['belum_lunas', 'tertunggak'])
+//                        ->whereIn('status_konsumsi',['belum_lunas', 'tertunggak'])
                         ->orderBy('id_uang_konsumsi', 'desc')
                         ->first();
+                    $data_payment_consumption = PaymentConsumption::with('siswaData')
+                        ->where('NIS_siswa', $student)
+                        ->orderBy('id_uang_konsumsi', 'desc')->get();
                     $savingAccount[$student] = StudentSavings::getStudentSavingAccount($student);
                 }
             }
 
             // replace the key
             $item->data_administration = (!empty($dataConsumptionAdministration)) ? $dataConsumptionAdministration : [];
+            $item->data_payment_consumption = (!empty($data_payment_consumption)) ? $data_payment_consumption : [];
             $item->studentSaving = (!empty($savingAccount)) ? $savingAccount : [];
             return $item;
         });

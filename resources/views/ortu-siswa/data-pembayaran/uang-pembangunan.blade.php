@@ -50,10 +50,12 @@
                             </td>
                             <td>
                                 <div class="d-flex">
-                                    <a href="#" type="submit" class="btn btn-success" data-toggle="modal"
-                                       data-target=".bs-example-modal-sm-{{ $data_administration_construction->siswaData->NIS_siswa }}">
-                                        Bayar
-                                    </a>
+                                    @if($data_administration_construction->status_pembangunan != "lunas")
+                                        <a href="#" type="submit" class="btn btn-success" data-toggle="modal"
+                                           data-target=".bs-example-modal-sm-{{ $data_administration_construction->siswaData->NIS_siswa }}">
+                                            Bayar
+                                        </a>
+                                    @endif
                                 </div>
                             </td>
                         </tr>
@@ -72,24 +74,26 @@
         <div class="col-md-12 col-sm-12">
             <table id="datatable2" class="table table-striped table-bordered" style="width:100%">
                 <thead>
-                <tr>
-                  <th>No.</th>
-                  <th>Data Siswa</th>
-                  <th>Total Biaya Pembangunan</th>
-                  <th>Status Pembayaran Pembangunan</th>
-                </tr>
+                    <tr>
+                      <th>No.</th>
+                      <th>Kode Pembayaran</th>
+                      <th>Data Siswa</th>
+                      <th>Total Pembayaran Pembangunan</th>
+                      <th>Tanggal Bayar</th>
+                    </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Poly - SD - 1A - 2021/2022</td>
-                    <td>Rp. 1.600.000</td>
-                    <td>
-                      <span class="badge badge-success" style="width: 100%;font-size: 15px;">
-                        Lunas
-                      </span>
-                    </td>
-                </tr>
+                @foreach($administration as $item_adm)
+                    @foreach($item_adm['data_payment_construction'] as $data_payment_const)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $data_payment_const->kode_pembayaran }}</td>
+                            <td>{{ $data_payment_const->NIS_siswa }} - {{ $data_payment_const->siswaData->nama_siswa }}</td>
+                            <td>Rp {{ number_format($data_payment_const->total_pembayaran,2) }}</td>
+                            <td>{{ date('d-m-Y h:i:s', strtotime($data_payment_const->tanggal_bayar)) }}</td>
+                        </tr>
+                    @endforeach
+                @endforeach
                 </tbody>
             </table>
         </div>
