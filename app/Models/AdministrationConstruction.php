@@ -40,4 +40,10 @@ class AdministrationConstruction extends Model
         return $this->hasOne('App\Models\MasterTahunAjaran', 'id', 'tahun_ajaran');
     }
 
+    /** payment construction */
+    public function paymentConstruction()
+    {
+        return $this->hasMany('App\Models\PaymentConstruction', 'id_uang_pembangunan', 'id_uang_pembangunan');
+    }
+
 }

@@ -26,4 +26,11 @@ class PaymentConstruction extends Model
     {
         return $this->hasOne('App\Models\Siswa', 'NIS_siswa', 'NIS_siswa');
     }
+
+    /** AdministrationConstruction **/
+    public function administrationConstruction()
+    {
+        return $this->belongsTo('App\Models\AdministrationConstruction', 'id_uang_pembangunan', 'id_uang_pembangunan');
+
+    }
 }

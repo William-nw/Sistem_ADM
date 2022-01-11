@@ -40,8 +40,7 @@ class DataOrtuController extends Controller
     public function create()
     {
         //
-        $data['siswa'] = Siswa::all();
-        $data['ortu'] = UserModel::all();
+        $data['siswa'] = Siswa::with('masterKelas','tahunAjaran')->get();
 
         return view('ortu-siswa/create', $data);
     }

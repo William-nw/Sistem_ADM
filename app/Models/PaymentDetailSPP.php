@@ -26,4 +26,10 @@ class PaymentDetailSPP extends Model
     {
         return $this->hasOne('App\Models\Siswa', 'NIS_siswa', 'NIS_siswa');
     }
+
+    /** detail spp **/
+    public function detailSPP()
+    {
+        return $this->hasOne('App\Models\detailSPP', 'id_detail_spp', 'kode_spp');
+    }
 }

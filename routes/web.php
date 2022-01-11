@@ -52,7 +52,6 @@ Route::group(['middleware' => ['auth']], function() {
         //Menu Data Ortu
         Route::resource('/data-ortu', 'Admin\DataOrtuController');
 
-
         //Menu Tahun Ajaran
         Route::resource('/master-tahun-ajaran', 'MasterTahunAjaranController');
 
@@ -68,15 +67,20 @@ Route::group(['middleware' => ['auth']], function() {
         //ajax
         Route::get("/getBuku/{id}", "AjaxController@getBuku");
         Route::get("/getBaju/{id}", "AjaxController@getBaju");
+
+        // report
+        Route::get('laporan-pembayaran-pembagunan','Report\ReportController@reportConstruction')->name('report.construction');
+        Route::get('laporan-pembayaran-spp','Report\ReportController@reportSPP')->name('report.spp');
+
+        //Printing
+        Route::get('print-spp', 'Printing\PrintController@printSPP')->name('print.spp');
+        Route::get('print-pembagunan', 'Printing\PrintController@printConstruction')->name('print.construction');
     });
 
 });
 
 
 //laporan Pembayaran
-Route::get('/lappembayaranspp', function () {
-    return view('laporan-pembayaran.index');
-});
 Route::get('/lappembayaranperbulan', function () {
     return view('laporan-pembayaran.tanggal_pembayaran');
 });
@@ -91,9 +95,6 @@ Route::get('/lappembayaranpertahun', function () {
 });
 
 //laporan pembangunan
-Route::get('/lappembangunantunggakan', function () {
-    return view('laporan-pembayaran.laporan_tunggakan_pembangunan');
-});
 Route::get('/lappembangunanperkelas', function () {
     return view('laporan-pembayaran.laporan_pembangunan_perkelas');
 });
