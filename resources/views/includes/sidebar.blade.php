@@ -71,46 +71,56 @@
                         <li><a href="{{ route('master-tahun-ajaran.create') }}">Tambah Data</a></li>
                     </ul>
                 </li>
-
+                {{-- report administration--}}
                 <li><a><i class="fa fa-table"></i> Lap.Pembayaran SPP <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="{{ route('report.spp')}}">Laporan Pembayaran SPP</a></li>
-{{--                        <li><a href="{{ url('lappembayaranperbulan') }}">Laporan Pembayaran SPP Perbulan</a></li>--}}
-{{--                        <li><a href="{{ url('lappembayaranperkelas') }}">Laporan Pembayaran SPP Kelas</a></li>--}}
-{{--                        <li><a href="{{ url('lappembayaransiswakelas') }}">Laporan Pembayaran SPP Siswa & Kelas</a></li>--}}
-{{--                        <li><a href="{{ url('lappembayaranpertahun') }}">Laporan Pembayaran SPP Pertahun</a></li>--}}
-
                     </ul>
                 </li>
                 <li><a><i class="fa fa-table"></i> Lap.Pembangunan <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="{{ route('report.construction') }}">Laporan Pembayaran Pembagunan</a></li>
-{{--                        <li><a href="{{ url('lappembangunanperkelas') }}">Laporan Pembayaran Pembagunan Perkelas</a></li>--}}
-{{--                        <li><a href="{{ url('lappembangunanpertahun') }}">Laporan Pembayaran Pembangunan Pertahun</a></li>--}}
+                    </ul>
+                </li>
+                <li><a><i class="fa fa-table"></i> Lap.Konsumsi <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="{{ route('report.consumption') }}">Laporan Pembayaran Konsumsi</a></li>
+                    </ul>
+                </li>
+                <li><a><i class="fa fa-table"></i> Lap.Uang Baju <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="{{ route('report.clothes') }}">Laporan Pembayaran Uang Baju</a></li>
+                    </ul>
+                </li>
+                <li><a><i class="fa fa-table"></i> Lap.Uang Buku <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="{{ route('report.books') }}">Laporan Pembayaran Uang Buku</a></li>
                     </ul>
                 </li>
             @elseif(Auth::user()->status == 'kepala_sekolah')
                 <li><a><i class="fa fa-table"></i> Lap.Pembayaran SPP <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="{{ url('lappembayaranspp')}}">Laporan Pembayaran SPP</a></li>
-                        <li><a href="{{ url('lappembayaranperbulan') }}">Laporan Pembayaran SPP Perbulan</a></li>
-                        <li><a href="{{ url('lappembayaranperkelas') }}">Laporan Pembayaran SPP Kelas</a></li>
-                        <li><a href="{{ url('lappembayaransiswakelas') }}">Laporan Pembayaran SPP Siswa & Kelas</a></li>
-                        <li><a href="{{ url('lappembayaranpertahun') }}">Laporan Pembayaran SPP Pertahun</a></li>
-
-                    </ul>
-                </li>
-                <li><a><i class="fa fa-table"></i> Lap.Tunggakan SPP <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                        <li><a href="{{ url('laptertunggakperbulan') }}">Laporan Tunggakan SPP Perbulan</a></li>
-                        <li><a href="{{ url('laptertunggakperkelas') }}">Laporan Tunggakan SPP Perkelas</a></li>
+                        <li><a href="{{ route('report.spp')}}">Laporan Pembayaran SPP</a></li>
                     </ul>
                 </li>
                 <li><a><i class="fa fa-table"></i> Lap.Pembangunan <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="{{ url('lappembangunantunggakan') }}">Laporan Tunggakan & Pembayaran Pembangunan</a></li>
-                        <li><a href="{{ url('lappembangunanperkelas') }}">Laporan Pembayaran Pembagunan Perkelas</a></li>
-                        <li><a href="{{ url('lappembangunanpertahun') }}">Laporan Pembayaran Pembangunan Pertahun</a></li>
+                        <li><a href="{{ route('report.construction') }}">Laporan Pembayaran Pembagunan</a></li>
+                    </ul>
+                </li>
+                <li><a><i class="fa fa-table"></i> Lap.Konsumsi <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="{{ route('report.consumption') }}">Laporan Pembayaran Konsumsi</a></li>
+                    </ul>
+                </li>
+                <li><a><i class="fa fa-table"></i> Lap.Uang Baju <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="{{ route('report.clothes') }}">Laporan Pembayaran Uang Baju</a></li>
+                    </ul>
+                </li>
+                <li><a><i class="fa fa-table"></i> Lap.Uang Buku <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="{{ route('report.books') }}">Laporan Pembayaran Uang Buku</a></li>
                     </ul>
                 </li>
             @elseif(Auth::user()->status == 'orang_tua')

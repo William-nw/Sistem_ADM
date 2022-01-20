@@ -25,4 +25,10 @@ class PaymentBooks extends Model
     {
         return $this->hasOne('App\Models\Siswa', 'NIS_siswa', 'NIS_siswa');
     }
+
+    /** Books Money **/
+    public function booksMoney()
+    {
+        return $this->belongsTo('App\Models\BooksMoney', 'id_uang_buku', 'id_uang_buku');
+    }
 }

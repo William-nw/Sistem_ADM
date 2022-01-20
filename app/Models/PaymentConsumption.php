@@ -26,4 +26,11 @@ class PaymentConsumption extends Model
     {
         return $this->hasOne('App\Models\Siswa', 'NIS_siswa', 'NIS_siswa');
     }
+
+    /** Consumption Money **/
+    public function consumptionMoney()
+    {
+        return $this->belongsTo('App\Models\ConsumptionMoney', 'id_uang_konsumsi', 'id_uang_konsumsi');
+
+    }
 }

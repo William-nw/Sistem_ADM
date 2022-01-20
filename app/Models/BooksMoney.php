@@ -39,4 +39,10 @@ class BooksMoney extends Model
     {
         return $this->hasOne('App\Models\MasterTahunAjaran', 'id', 'tahun_ajaran');
     }
+
+    /** payment Books */
+    public function paymentBooks()
+    {
+        return $this->hasMany('App\Models\PaymentBooks', 'id_uang_buku', 'id_uang_buku');
+    }
 }

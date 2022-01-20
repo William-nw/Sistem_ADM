@@ -25,4 +25,10 @@ class PaymentClothes extends Model
     {
         return $this->hasOne('App\Models\Siswa', 'NIS_siswa', 'NIS_siswa');
     }
+
+    /** Clothes Money **/
+    public function clothesMoney()
+    {
+        return $this->belongsTo('App\Models\ClothesMoney', 'id_uang_baju', 'id_uang_baju');
+    }
 }

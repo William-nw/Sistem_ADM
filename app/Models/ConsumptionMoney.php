@@ -33,4 +33,9 @@ class ConsumptionMoney extends Model
         return $this->hasOne('App\Models\MasterKelas', 'id', 'kelas');
     }
 
+    /** payment consumption */
+    public function paymentConsumption()
+    {
+        return $this->hasMany('App\Models\PaymentConsumption', 'id_uang_konsumsi', 'id_uang_konsumsi');
+    }
 }

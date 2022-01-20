@@ -71,10 +71,16 @@ Route::group(['middleware' => ['auth']], function() {
         // report
         Route::get('laporan-pembayaran-pembagunan','Report\ReportController@reportConstruction')->name('report.construction');
         Route::get('laporan-pembayaran-spp','Report\ReportController@reportSPP')->name('report.spp');
+        Route::get('laporan-pembayaran-konsumsi','Report\ReportController@reportConsumption')->name('report.consumption');
+        Route::get('laporan-pembayaran-baju','Report\ReportController@reportClothes')->name('report.clothes');
+        Route::get('laporan-pembayaran-buku','Report\ReportController@reportBooks')->name('report.books');
 
         //Printing
         Route::get('print-spp', 'Printing\PrintController@printSPP')->name('print.spp');
         Route::get('print-pembagunan', 'Printing\PrintController@printConstruction')->name('print.construction');
+        Route::get('print-konsumsi', 'Printing\PrintController@printCosumption')->name('print.consumption');
+        Route::get('print-uang-baju', 'Printing\PrintController@printAdmClothes')->name('print.admClothes');
+        Route::get('print-uang-buku', 'Printing\PrintController@printAdmBooks')->name('print.admBooks');
     });
 
 });

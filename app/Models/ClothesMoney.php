@@ -39,4 +39,10 @@ class ClothesMoney extends Model
     {
         return $this->hasOne('App\Models\MasterTahunAjaran', 'id', 'tahun_ajaran');
     }
+
+    /** payment Clothes */
+    public function paymentClothes()
+    {
+        return $this->hasMany('App\Models\PaymentClothes', 'id_uang_baju', 'id_uang_baju');
+    }
 }
