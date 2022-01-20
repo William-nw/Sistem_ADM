@@ -73,10 +73,12 @@
                                 </td>
                                 <td>
                                     <div class="d-flex">
-                                        <a href="#" type="submit" class="btn btn-success" data-toggle="modal"
-                                           data-target=".bs-example-modal-sm-{{ $books_adm->siswaData->NIS_siswa }}">
-                                            Bayar
-                                        </a>
+                                        @if($books_adm->status_buku != "lunas")
+                                            <a href="#" type="submit" class="btn btn-success" data-toggle="modal"
+                                               data-target=".bs-example-modal-sm-{{ $books_adm->siswaData->NIS_siswa }}">
+                                                Bayar
+                                            </a>
+                                        @endif
                                     </div>
                                 </td>
                             </tr>
@@ -94,31 +96,26 @@
         <div class="col-md-12 col-sm-12">
             <table id="datatable2" class="table table-striped table-bordered" style="width:100%">
                 <thead>
-                <tr>
-                   <th>No.</th>
-                    <th>Data Siswa</th>
-                    <th>Data Buku</th>
-                    <th>Total Harga Buku</th>
-                    <th>Status Buku</th>
-                </tr>
+                    <tr>
+                        <th>No.</th>
+                        <th>Kode Pembayaran</th>
+                        <th>Data Siswa</th>
+                        <th>Total Pembayaran Buku</th>
+                        <th>Tanggal Bayar</th>
+                    </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Poly - SD - 1A - 2021/2022</td>
-                    <td>
-                      <ol>
-                        <li> Matematika - qty: 2  - harga Rp 15.000 - total: Rp 30.000  </li>
-                        <li> Bahasa indonesia - qty: 2  - harga Rp 15.000 - total: Rp 30.000  </li>
-                      </ol>
-                    </td>
-                    <td>Rp. 60.000</td>
-                    <td>
-                      <span class="badge badge-success" style="width: 100%;font-size: 15px;">
-                        Lunas
-                      </span>
-                    </td>
-                </tr>
+                    @foreach($administration as $item_adm)
+                        @foreach($item_adm['data_payment_books'] as $data_payment_book)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $data_payment_book->kode_pembayaran_buku }}</td>
+                                <td>{{ $data_payment_book->NIS_siswa }} - {{ $data_payment_book->siswaData->nama_siswa }}</td>
+                                <td>Rp {{ number_format($data_payment_book->total_pembayaran_buku,2) }}</td>
+                                <td>{{ date('d-m-Y h:i:s', strtotime($data_payment_book->tanggal_pembayaran)) }}</td>
+                            </tr>
+                        @endforeach
+                    @endforeach
                 </tbody>
             </table>
         </div>

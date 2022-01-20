@@ -12,7 +12,7 @@
 
         <div class="col-md-12 col-sm-12">
             <div class="col-md-12 col-sm-12 mb-2">
-                <h3 class="mb-3">Data Uang Baju</h3>>
+                <h3 class="mb-3">Data Uang Baju</h3>
             </div>
             <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                 <thead>
@@ -74,10 +74,12 @@
                                 </td>
                                 <td>
                                     <div class="d-flex">
-                                        <a href="#" type="submit" class="btn btn-success" data-toggle="modal"
-                                           data-target=".bs-example-modal-sm-{{ $cloth_adm->siswaData->NIS_siswa }}">
-                                            Bayar
-                                        </a>
+                                        @if($cloth_adm->status_baju != "lunas")
+                                            <a href="#" type="submit" class="btn btn-success" data-toggle="modal"
+                                               data-target=".bs-example-modal-sm-{{ $cloth_adm->siswaData->NIS_siswa }}">
+                                                Bayar
+                                            </a>
+                                        @endif
                                     </div>
                                 </td>
                             </tr>
@@ -95,31 +97,26 @@
              <div class="col-md-12 col-sm-12">
                  <table id="datatable2" class="table table-striped table-bordered" style="width:100%">
                      <thead>
-                     <tr>
-                         <th>No.</th>
-                         <th>Data Siswa</th>
-                         <th>Data Baju</th>
-                         <th>Total Harga Baju</th>
-                         <th>Status Baju</th>
-                     </tr>
+                         <tr>
+                             <th>No.</th>
+                             <th>Kode Pembayaran</th>
+                             <th>Data Siswa</th>
+                             <th>Total Pembayaran Baju</th>
+                             <th>Tanggal Bayar</th>
+                         </tr>
                      </thead>
                      <tbody>
-                     <tr>
-                         <td>1</td>
-                         <td>Poly - SD - 1A - 2021/2022</td>
-                         <td>
-                             <ol>
-                                 <li> Batik - qty: 2  - size : XL - harga Rp 15.000 - total: Rp 30.000  </li>
-                                 <li> Pramuka - qty: 2 - size : L  - harga Rp 15.000 - total: Rp 30.000  </li>
-                             </ol>
-                         </td>
-                         <td>Rp. 60.000</td>
-                         <td>
-                      <span class="badge badge-success" style="width: 100%;font-size: 15px;">
-                        Lunas
-                      </span>
-                         </td>
-                     </tr>
+                         @foreach($administration as $item_adm)
+                             @foreach($item_adm['data_payment_clothes'] as $data_payment_clothes)
+                                 <tr>
+                                     <td>{{ $loop->iteration }}</td>
+                                     <td>{{ $data_payment_clothes->kode_pembayaran_baju }}</td>
+                                     <td>{{ $data_payment_clothes->NIS_siswa }} - {{ $data_payment_clothes->siswaData->nama_siswa }}</td>
+                                     <td>Rp {{ number_format($data_payment_clothes->total_pembayaran_baju,2) }}</td>
+                                     <td>{{ date('d-m-Y h:i:s', strtotime($data_payment_clothes->tanggal_pembayaran)) }}</td>
+                                 </tr>
+                             @endforeach
+                         @endforeach
                      </tbody>
                  </table>
              </div>

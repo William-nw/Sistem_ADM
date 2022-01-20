@@ -1,5 +1,6 @@
 <?php
 
+use App\Jobs\{AutoDebtBooks,AutoDebtClothes,AutoDebtConstruction,AutoDebtConsumption,AutoDebtSPP};
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -51,7 +52,6 @@ Route::group(['middleware' => ['auth']], function() {
         //Menu Data Ortu
         Route::resource('/data-ortu', 'Admin\DataOrtuController');
 
-
         //Menu Tahun Ajaran
         Route::resource('/master-tahun-ajaran', 'MasterTahunAjaranController');
 
@@ -67,15 +67,20 @@ Route::group(['middleware' => ['auth']], function() {
         //ajax
         Route::get("/getBuku/{id}", "AjaxController@getBuku");
         Route::get("/getBaju/{id}", "AjaxController@getBaju");
+
+        // report
+        Route::get('laporan-pembayaran-pembagunan','Report\ReportController@reportConstruction')->name('report.construction');
+        Route::get('laporan-pembayaran-spp','Report\ReportController@reportSPP')->name('report.spp');
+
+        //Printing
+        Route::get('print-spp', 'Printing\PrintController@printSPP')->name('print.spp');
+        Route::get('print-pembagunan', 'Printing\PrintController@printConstruction')->name('print.construction');
     });
 
 });
 
 
 //laporan Pembayaran
-Route::get('/lappembayaranspp', function () {
-    return view('laporan-pembayaran.index');
-});
 Route::get('/lappembayaranperbulan', function () {
     return view('laporan-pembayaran.tanggal_pembayaran');
 });
@@ -90,9 +95,6 @@ Route::get('/lappembayaranpertahun', function () {
 });
 
 //laporan pembangunan
-Route::get('/lappembangunantunggakan', function () {
-    return view('laporan-pembayaran.laporan_tunggakan_pembangunan');
-});
 Route::get('/lappembangunanperkelas', function () {
     return view('laporan-pembayaran.laporan_pembangunan_perkelas');
 });
@@ -109,8 +111,18 @@ Route::get('/laptertunggakperkelas', function () {
 });
 
 // Backend Feature
-Route::group(['middleware' => ['auth']], function () {
+Route::prefix('dev')->group(function () {
+    Route::get('testjob', function () {
+        AutoDebtConstruction::dispatch()->onQueue('autodebet');
+        AutoDebtSPP::dispatch()->onQueue('autodebet');
+        AutoDebtConsumption::dispatch()->onQueue('autodebet');
+        AutoDebtClothes::dispatch()->onQueue('autodebet');
+        AutoDebtBooks::dispatch()->onQueue('autodebet');
+        return "check Table jobs";
+    });
+});
 
+Route::group(['middleware' => ['auth']], function () {
     // menu bank account
     Route::resource('akun-bank', 'AkunBankController')->only(['index', 'create', 'store']);
     Route::get('update-akun-bank', 'BankController@updateVa')->name('update-akun-bank.updateVa');

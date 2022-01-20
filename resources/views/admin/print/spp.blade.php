@@ -1,11 +1,21 @@
-@extends('layouts.app')
+@extends('layouts.print')
 
-@section('content-title', 'Tabel Pembayaran SPP Siswa')
+@section('title', 'Laporan SPP')
 
 @section('content')
-<table id="datatable" class="table table-striped table-bordered" style="width:100%">
-    <a href="{{ route('print.spp') }}" target="_blank" class="btn btn-primary">Cetak</a>
+<style>
+    table, th, td {
+        border: 1px solid black;
+        text-align: center;
+    }
+</style>
 
+<div>
+    <h1>Laporan SPP</h1>
+    <p>Tanggal Cetak: <b>{{ date('d-m-y H:i:s') }} </b></p>
+</div>
+
+<table id="datatable" class="table table-striped table-bordered" style="width:100%">
     <thead>
         <tr>
             <th>No</th>

@@ -4,9 +4,7 @@ namespace App\Http\Controllers\ParentStudent;
 
 use App\Http\Controllers\Controller;
 use App\Http\Services\UserService;
-use App\Models\DataSPP;
-use App\Models\DetailSPP;
-use App\Models\StudentSavings;
+use App\Models\{DataSPP,PaymentDetailSPP,StudentSavings};
 use Illuminate\Http\Request;
 
 class DataSppSiswaOrtuController extends Controller
@@ -57,6 +55,9 @@ class DataSppSiswaOrtuController extends Controller
         $data['spp'] = DataSPP::with('detailSppStudent','siswaData','masterKelas', 'tahunAjaran')
                                 ->where('kode_spp', $id)
                                 ->first();
+
+        $id_spp = array_column($data['spp']->detailSppStudent->toArray(), 'id_detail_spp');
+        $data['payment_spp'] = PaymentDetailSPP::with('siswaData')->whereIn('kode_spp',$id_spp)->get();
 
         $data['studentSaving'] = StudentSavings::getStudentSavingAccount($data['spp']->NIS_siswa);
 

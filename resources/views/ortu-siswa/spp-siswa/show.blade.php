@@ -30,6 +30,11 @@
                 </li>
                 <li>
                     <i class="fa fa-credit-card"></i>
+                    Sisa Pembayaran:
+                    <b>Rp {{ number_format($spp->total_spp) }}</b>
+                </li>
+                <li>
+                    <i class="fa fa-credit-card"></i>
                     Tabungan Siswa : Rp {{ number_format($studentSaving->total_tabungan,2)}}
                 </li>
             </ul>
@@ -62,9 +67,9 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($spp->detailSppStudent as $index => $dataSppStudent)
+                @foreach($spp->detailSppStudent as  $dataSppStudent)
                     <tr>
-                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $loop->iteration }}</td>
                         <td>{{ date("d-m-Y", strtotime($dataSppStudent->jatuh_tempo) ) }}</td>
                         <td>{{ $dataSppStudent->tanggal_pembayaran }}</td>
                         <td>{{ $dataSppStudent->tertungak }}</td>
@@ -82,11 +87,13 @@
                             @endif
                         </td>
                         <td>
-                            <div class="d-flex">
-                                <a href="#" type="submit" class="btn btn-success" data-toggle="modal" data-target=".bs-example-modal-sm">
-                                    Bayar
-                                </a>
-                            </div>
+                            @if ($dataSppStudent->status_detail_spp != 'lunas')
+                                <div class="d-flex">
+                                    <a href="#" type="submit" class="btn btn-success" data-toggle="modal" data-target=".bs-example-modal-sm">
+                                        Bayar
+                                    </a>
+                                </div>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
@@ -108,37 +115,22 @@
                 <thead>
                 <tr>
                     <th>No.</th>
-                    <th>Kode SPP</th>
-                    <th>Jatuh Tempo</th>
+                    <th>No Pembayaran</th>
+                    <th>Nama Siswa</th>
                     <th>Tanggal Bayar</th>
-                    <th>Hari Tertunggak</th>
                     <th>Total Bayar</th>
-                    <th>Status SPP</th>
-                    <th>Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-
-                </tr>
-                <tr>
-
-                </tr>
-                <tr>
-
-                </tr>
-                <tr>
-
-                </tr>
-                <tr>
-
-                </tr>
-                <tr>
-
-                </tr>
-                <tr>
-                    <button>bayar</button>
-                </tr>
+                    @foreach($payment_spp as $data_payment_spp)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $data_payment_spp->kode_pembayaran }}</td>
+                            <td>{{ $data_payment_spp->siswaData->NIS_siswa }} - {{ $data_payment_spp->siswaData->nama_siswa }}</td>
+                            <td>{{ date("d-m-Y", strtotime($data_payment_spp->tanggal_pembayaran) ) }}</td>
+                            <td>Rp {{ number_format($data_payment_spp->total_bayar, 2) }}</td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

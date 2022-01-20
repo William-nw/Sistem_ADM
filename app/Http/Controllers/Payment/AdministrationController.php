@@ -16,7 +16,6 @@ class AdministrationController extends Controller
     public function ContructionAdmininstration()
     {
         $data['administration'] = $this->report_administration_service->ConstructionAdministrationStudent();
-
         return view ('ortu-siswa/data-pembayaran.uang-pembangunan', $data);
     }
 
@@ -35,7 +34,6 @@ class AdministrationController extends Controller
     public function ConsumptionAdmininstration()
     {
         $data['administration'] = $this->report_administration_service->ConsumptionAdministrationStudent();
-//        dd($data);
         return view('ortu-siswa/data-pembayaran.uang-konsumsi', $data);
     }
 }

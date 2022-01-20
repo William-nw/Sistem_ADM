@@ -28,4 +28,10 @@ class DetailSPP extends Model
     {
         return $this->belongsTo('App\Models\DataSPP', 'kode_spp', 'kode_spp');
     }
+
+    /** Payment Detail SPP **/
+    public function paymentDetailSPP()
+    {
+        return $this->belongsTo('App\Models\PaymentDetailSPP', 'kode_spp', 'id_detail_spp');
+    }
 }

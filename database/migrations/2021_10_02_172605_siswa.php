@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -15,7 +16,7 @@ class Siswa extends Migration
     {
         Schema::create('siswa', function (Blueprint $table) {
             $table->id();
-            $table->string('NIS_siswa',30);
+            $table->string('NIS_siswa',30)->unique();
             $table->string('nama_siswa',70);
             $table->enum('tingkat',['TK','SD','SMP']);
             $table->unsignedBigInteger('kelas');
