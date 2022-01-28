@@ -28,6 +28,7 @@ class EditDataAdminRequest extends FormRequest
             'email' => 'required',
             'password' => 'required|min:6',
             'status_user' => 'required',
+            'isactive' => 'required',
         ];
     }
 
@@ -44,6 +45,7 @@ class EditDataAdminRequest extends FormRequest
             'password.required' => 'Harap Masukkan Password',
             'password.min' => 'Minimal Password 6 digit',
             'status_user.required' => 'Harap Masukkan Status Admin',
+            'isactive.required' => 'Harap Pilih Status Aktif',
         ];
     }
 }

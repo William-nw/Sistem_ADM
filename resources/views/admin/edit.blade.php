@@ -57,9 +57,9 @@
         </div>
     </div>
     <div class="item form-group">
-        <label class="col-form-label col-md-3 col-sm-3 label-align" for="status-user">Status Aktif <span class="required">*</span></label>
+        <label class="col-form-label col-md-3 col-sm-3 label-align" for="isactive">Status Aktif <span class="required">*</span></label>
         <div class="col-md-6 col-sm-6 ">
-            <select id="status-user" name="status_user" class="select2_single form-control" tabindex="-1">
+            <select id="isactive" name="isactive" class="select2_single form-control" tabindex="-1">
                 <option value="0" {{ $user->isactive == '0' ? "selected" : "" }}>Non Aktif</option>
                 <option value="1" {{ $user->isactive == '1' ? "selected" : "" }}>Aktif</option>
             </select>
