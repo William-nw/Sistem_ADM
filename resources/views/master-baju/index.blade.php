@@ -22,8 +22,8 @@
                                 <th>Ukuran Baju</th>
                                 <th>Kelas</th>
                                 <th>Harga Baju</th>
-                                @if (Auth::user()->status == 'tata_usaha') 
-                                <th>Aksi</th>
+                                @if (Auth::user()->status == 'tata_usaha')
+{{--                                <th>Aksi</th>--}}
                                 @endif
                             </tr>
                         </thead>
@@ -35,11 +35,11 @@
                                         <td>{{ $item_baju->ukuran_baju }}</td>
                                         <td>{{ $item_baju->masterKelas[0]->nama_kelas}}</td>
                                         <td>{{ $item_baju->harga_baju}}</td>
-                                @if (Auth::user()->status == 'tata_usaha') 
-                                        <td>
-                                            <a href="{{ route('master-baju.edit',[$item_baju->id_baju]) }}" class=" btn btn-sm btn-warning">Edit</a>
-                                            <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('Yakin ingin menghapus data?')">Hapus</button>
-                                        </td>
+                                @if (Auth::user()->status == 'tata_usaha')
+{{--                                        <td>--}}
+{{--                                            <a href="{{ route('master-baju.edit',[$item_baju->id_baju]) }}" class=" btn btn-sm btn-warning">Edit</a>--}}
+{{--                                            <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('Yakin ingin menghapus data?')">Hapus</button>--}}
+{{--                                        </td>--}}
                                     </tr>
                                 @endif
                                 @endforeach

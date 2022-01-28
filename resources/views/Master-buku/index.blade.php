@@ -22,8 +22,8 @@
                                 <th>Kelas</th>
                                 <th>Tahun Ajaran</th>
                                 <th>Harga Buku</th>
-                                @if (Auth::user()->status == 'tata_usaha') 
-                                <th>Aksi</th>
+                                @if (Auth::user()->status == 'tata_usaha')
+{{--                                <th>Aksi</th>--}}
                                 @endif
                             </tr>
                         </thead>
@@ -35,11 +35,11 @@
                                         <td>{{ $item_buku->masterKelas[0]->nama_kelas}}</td>
                                         <td>{{ $item_buku->masterTahunAjaran[0]->nama_tahun_ajaran}}</td>
                                         <td>{{ $item_buku->harga_buku}}</td>
-                                @if (Auth::user()->status == 'tata_usaha') 
-                                        <td>
-                                            <a href="{{ route('master-buku.edit',[$item_buku->id_buku]) }}" class=" btn btn-sm btn-warning">Edit</a>
-                                            <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('Yakin ingin menghapus data?')">Hapus</button>
-                                        </td>
+                                @if (Auth::user()->status == 'tata_usaha')
+{{--                                        <td>--}}
+{{--                                            <a href="{{ route('master-buku.edit',[$item_buku->id_buku]) }}" class=" btn btn-sm btn-warning">Edit</a>--}}
+{{--                                            <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('Yakin ingin menghapus data?')">Hapus</button>--}}
+{{--                                        </td>--}}
                                     </tr>
                                 @endif
                                 @endforeach
@@ -70,14 +70,14 @@
     let btn_tambah = document.getElementById('btn_tambah');
     btn_tambah.addEventListener('click', tambahBarang);
 
-    
+
 
     function tambahBarang()
     {
         let form_buku = document.getElementById('buku');
         let get_id_buku = form_buku.options[form_buku.selectedIndex].value;
         let result = document.getElementById('result');
-        
+
         result.innerHTML =get_id_buku;
 
     }

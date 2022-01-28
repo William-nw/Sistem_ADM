@@ -8,7 +8,7 @@
             <div class="col-sm-12">
                 <div class="card-box table-responsive">
                     <p class="text-muted font-13 m-b-30">
-                        <a href="{{ route('data-siswa.create') }}" class="btn btn-primary text-white " >Tambah Siswa</a>
+                        <a href="{{ route('register-all.index') }}" class="btn btn-primary text-white " >Tambah Siswa</a>
                     </p>
 
                     {{-- Validation --}}
@@ -21,8 +21,8 @@
                                 <th>Nama Siswa</th>
                                 <th>Kelas</th>
                                 <th>Tahun Ajaran</th>
-                                @if (Auth::user()->status == 'tata_usaha') 
-                                <th>Aksi</th>
+                                @if (Auth::user()->status == 'tata_usaha')
+{{--                                <th>Aksi</th>--}}
                                 @endif
                             </tr>
                         </thead>
@@ -34,11 +34,11 @@
                                         <td>{{ $item_siswa->nama_siswa}}</td>
                                         <td>{{ $item_siswa->masterKelas->nama_kelas}}</td>
                                         <td>{{ $item_siswa->tahunAjaran->nama_tahun_ajaran}}</td>
-                                @if (Auth::user()->status == 'tata_usaha') 
-                                        <td>
-                                            <a href="{{ route('data-siswa.edit',[$item_siswa->id]) }}" class=" btn btn-sm btn-warning">Edit</a>
-                                            <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('Yakin ingin menghapus data?')">Hapus</button>
-                                        </td>
+                                @if (Auth::user()->status == 'tata_usaha')
+{{--                                        <td>--}}
+{{--                                            <a href="{{ route('data-siswa.edit',[$item_siswa->id]) }}" class=" btn btn-sm btn-warning">Edit</a>--}}
+{{--                                            <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('Yakin ingin menghapus data?')">Hapus</button>--}}
+{{--                                        </td>--}}
                                     </tr>
                                 @endif
                                 @endforeach

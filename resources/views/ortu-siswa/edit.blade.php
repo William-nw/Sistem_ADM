@@ -1,63 +1,54 @@
 @extends('layouts.app')
 
-@section('content-title', 'Form Edit User Orang Tua')
+@section('content-title', 'Edit User Orang Tua')
 
 @section('content')
+    <?php
+        $kid = json_decode($ortu->siswa_ortu);
+    ?>
 
-    @if (session('success'))
-        <div class="alert alert-success alert-dismissible " role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-            </button>
-            {{ session('success') }}
-        </div>
-    @endif
+   @include('includes/error')
 
-    @if (session('error'))
-        <div class="alert alert-danger alert-dismissible " role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-            </button>
-            {{ session('error') }}
-        </div>
-    @endif
-
-    @if ($errors->any())
-        @foreach ($errors->all() as $error)
-            <div class="alert alert-danger alert-dismissible " role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-                </button>
-                {{ $error }}
-            </div>
-        @endforeach
-    @endif
-
-
-<form action="{{ route('data-ortu.update', $ortu->id) }}" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" >
-    @csrf
+   <form action="{{ route('data-ortu.update', [$ortu->id])}}" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" >
     @method('PUT')
-
+    @csrf
     <div class="item form-group">
         <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_orang_tua">Nama Lengkap Orang Tua <span class="required">*</span>
         </label>
         <div class="col-md-6 col-sm-6 ">
-            <input type="text" id="nama_orang_tua" name="nama_orang_tua" value="{{ $ortu->nama_lengkap}}" required="required" class="form-control ">
+            <input type="text" id="nama_orang_tua" name="nama_orang_tua" value={{ $ortu->name }} required="required" class="form-control ">
         </div>
     </div>
     <div class="item form-group">
         <label class="col-form-label col-md-3 col-sm-3 label-align" for="email">Email <span class="required">*</span></label>
         <div class="col-md-6 col-sm-6 ">
-            <input type="text" id="email" name="email" value="{{ $ortu->email }}" required="required" class="form-control">
+            <input type="email" id="email" name="email" value={{ $ortu->email }} required="required" class="form-control">
         </div>
     </div>
     <div class="item form-group">
-        <label class="col-form-label col-md-3 col-sm-3 label-align" for="no_hp">No.HP <span class="required">*</span></label>
+        <label class="col-form-label col-md-3 col-sm-3 label-align" for="no_hp">No_HP <span class="required">*</span></label>
         <div class="col-md-6 col-sm-6 ">
-            <input type="text" id="no_hp" name="no_hp" value="{{ $ortu->no_hp }}" required="required" class="form-control">
+            <input type="text" id="no_hp" name="no_hp" value={{ $ortu->no_hp }} maxlength="13" pattern="[0-9]+" title="Harap Masukan Angka" required="required" class="form-control">
         </div>
     </div>
     <div class="item form-group">
-        <label class="col-form-label col-md-3 col-sm-3 label-align" for="password">New Password <span class="required">*</span></label>
+        <label class="col-form-label col-md-3 col-sm-3 label-align" for="password">Password <span class="required">*</span></label>
         <div class="col-md-6 col-sm-6 ">
             <input type="password" class="form-control" id="password" name="password">
+        </div>
+    </div>
+    <div class="item form-group">
+        <label class="col-form-label col-md-3 col-sm-3 label-align" for="siswa_ortu">Siswa Ortu <span class="required">*</span></label>
+        <div class="col-md-6 col-sm-6 ">
+            <div class="form-group">
+                <select class="js-example-basic-multiple w-100" name="siswa_ortu[]" id="siswa_ortu" multiple="multiple">
+                    @foreach ($siswa as $itemSiswa)
+                        @foreach($kid as $value)
+                            <option value="{{$itemSiswa->NIS_siswa}}" {{ $itemSiswa->NIS_siswa == $value ? "selected" : "" }}>{{$itemSiswa->NIS_siswa}} - {{ $itemSiswa->nama_siswa}} - {{$itemSiswa->masterKelas->nama_kelas}}</option>
+                        @endforeach
+                    @endforeach
+                </select>
+              </div>
         </div>
     </div>
     <div class="ln_solid"></div>

@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->json('siswa_ortu')->nullable();
             $table->enum('status', ['orang_tua', 'tata_usaha', 'kepala_sekolah']);
             $table->boolean('changed_password')->default(false);
+            $table->tinyInteger('isactive')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });

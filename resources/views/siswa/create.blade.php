@@ -14,7 +14,7 @@
         </label>
         <div class="col-md-6 col-sm-6 ">
             <input type="number" name="nis_siswa" id="nis_siswa"
-             pattern="(^0[0-9])\w+" 
+             pattern="(^0[0-9])\w+"
              title="Angka Mulai Dari 0"
              required="required" class="form-control">
         </div>
@@ -53,9 +53,9 @@
         <div class="col-md-6 col-sm-6 ">
             <select id="tahun_ajaran" name="tahun_ajaran" class="select2_single form-control" tabindex="-1">
             <option value="">-- Pilih Salah Satu --</option>
-                {{-- @foreach ($tahun_ajaran as $ttahunAjaran)
+                @foreach ($tahun_ajaran as $ttahunAjaran)
                     <option value="{{ $ttahunAjaran->id }}">{{ $ttahunAjaran->nama_tahun_ajaran }}</option>
-                @endforeach --}}
+                @endforeach
             </select>
         </div>
     </div>

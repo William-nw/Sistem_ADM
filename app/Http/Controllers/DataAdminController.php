@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\DataAdminStore;
+use App\Http\Requests\EditDataAdminRequest;
 use App\Models\UserModel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -40,7 +41,7 @@ class DataAdminController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(DataAdminStore $request)
@@ -53,19 +54,18 @@ class DataAdminController extends Controller
                 'status' => $request->status,
                 'created_at' => Carbon::now()
             ]);
-            return redirect()->route('data-admin.index')->with(['success' => 'Admin '. ucwords($request->nama_baju). ' Telah Tersimpan']);
+            return redirect()->route('data-admin.index')->with(['success' => 'Admin ' . ucwords($request->nama_baju) . ' Telah Tersimpan']);
         } catch (\Throwable $th) {
             Log::debug('Error DataAdmin function store');
             Log::debug($th);
             return redirect()->route('data-admin.index')->with(['error' => 'Aplikasi Error']);
         }
-        dd($request->all());
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -76,37 +76,49 @@ class DataAdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $user = UserModel::find($id);
-        
-
-        return view('admin/edit',['user' => $user]);
+        return view('admin/edit', ['user' => $user]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EditDataAdminRequest $request, $id)
     {
-        //
+        try {
+            UserModel::where('id', $id)->update([
+                'name' => $request->nama_lengkap,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'status' => $request->status_user,
+                'isactive' => $request->isactive,
+                'updated_at' => Carbon::now()
+            ]);
+            return redirect()->route('data-admin.index')->with(['success' => 'Admin  Telah Diubah']);
+        }catch (\Throwable $th) {
+                Log::debug('Error DataAdmin function update');
+                Log::debug($th);
+                return redirect()->route('data-admin.index')->with(['error' => 'Aplikasi Error']);
+            }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        return redirect()->route('data-admin.index')->with(['error' => ucwords('Tidak Dapat Dihapus, mohon non aktifkan')]);
     }
 }
